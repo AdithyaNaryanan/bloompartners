@@ -128,7 +128,6 @@
   @media (max-width: 900px) {
     .hero-grid { grid-template-columns: 1fr !important; gap: 48px !important; }
     .patterns-grid { grid-template-columns: 60px 1fr !important; }
-    .patterns-body { display: none; }
     .pillar-grid { grid-template-columns: 1fr !important; }
     .criteria-grid { grid-template-columns: 1fr !important; }
     .audit-grid { grid-template-columns: 1fr !important; }
@@ -162,8 +161,9 @@
     /* Pillar figures: reduce height on mobile */
     .pillar-figure { display: none !important; }
 
-    /* Patterns: simpler layout */
-    .pattern-row { grid-template-columns: 40px 1fr !important; gap: 16px !important; }
+    /* Patterns: number + title row, body spans full width below */
+    .pattern-row { grid-template-columns: 40px 1fr !important; gap: 8px 16px !important; }
+    .patterns-body { grid-column: 1 / -1 !important; padding-top: 4px; }
 
     /* Hero: hide tagline on mobile */
     .hero-tagline { display: none !important; }
@@ -280,7 +280,15 @@ function Hero() {
           gap: 80,
           alignItems: "start"
         }}>
-          <p style={{ fontSize: 17, lineHeight: 1.55, color: "var(--ink-2)", margin: 0, maxWidth: "52ch" }}>
+          <p style={{
+            fontFamily: "var(--serif)",
+            fontWeight: 300,
+            fontSize: "clamp(22px, 1.9vw, 30px)",
+            lineHeight: 1.4,
+            color: "var(--ink-2)",
+            margin: 0,
+            maxWidth: "30ch"
+          }}>
             We work with a handful of founder-led schools to scale them without losing what made them worth building.
           </p>
 
@@ -289,7 +297,11 @@ function Hero() {
             borderLeft: "1px solid var(--line)"
           }}>
             <div className="mono" style={{ color: "var(--accent)", marginBottom: 18 }}>How to begin</div>
-            <p style={{ fontSize: 17, lineHeight: 1.55, color: "var(--ink-2)", margin: 0, maxWidth: "36ch" }}>
+            <p style={{
+              fontFamily: "var(--serif)", fontSize: 18,
+              lineHeight: 1.5, color: "var(--ink-2)",
+              margin: 0, maxWidth: "30ch"
+            }}>
               Take the audit. It takes five minutes. If what you read sounds like us — and you sound like the kind of school we work with — book a call at the end.
             </p>
             <a href="#audit" className="btn" style={{ marginTop: 28 }}>
