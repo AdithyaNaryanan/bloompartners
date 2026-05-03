@@ -762,12 +762,7 @@ const QUESTIONS = [
     { v: "franchise", label: "A franchise model with partners running new locations" },
     { v: "unsure",    label: "Honestly not sure yet" },
   ]},
-  { id: "obstacle", section: "Your Ambition", prompt: "What is your single biggest obstacle to scaling right now?", type: "choice", options: [
-    { v: "ops",        label: "I'm too involved in day-to-day operations" },
-    { v: "leadership", label: "I don't have the right leadership team yet" },
-    { v: "capital",    label: "I don't have the capital to grow" },
-    { v: "clarity",    label: "I don't have the financial clarity to make growth decisions" },
-    { v: "systems",    label: "Our systems and processes aren't ready to replicate" },
+  
   ]},
   { id: "next_location", section: "Your Ambition", prompt: "When are you looking to open your next location?", type: "choice", options: [
     { v: "12months", label: "Within 12 months" },
@@ -801,14 +796,32 @@ const QUESTIONS = [
     { v: "worldclass", label: "World class — academic excellence is our core strength" },
   ]},
   // Part 4 — Your Readiness
-  { id: "finance_clarity", section: "Your Readiness", prompt: "How well do you understand your school's finances?", sub: "1 — Month to month   ·   5 — PE-grade clarity, modelling scenarios", type: "slider", min: 1, max: 5, step: 1, default: 3, leftLabel: "Month to month", rightLabel: "PE-grade clarity" },
-  { id: "data_usage",      section: "Your Readiness", prompt: "How well does your school use data to make decisions?",    sub: "1 — Instinct only   ·   5 — Full dashboard across academic, ops and finance",    type: "slider", min: 1, max: 5, step: 1, default: 3, leftLabel: "Instinct only",    rightLabel: "Full dashboard" },
+  
   { id: "tech_support",    section: "Your Readiness", prompt: "How well does technology support your operations today?",  sub: "1 — Pen, paper, WhatsApp   ·   5 — Fully integrated, data flows across the school", type: "slider", min: 1, max: 5, step: 1, default: 3, leftLabel: "Pen and paper",    rightLabel: "Fully integrated" },
-  { id: "systems_codified",section: "Your Readiness", prompt: "How codified are your systems and processes?",            sub: "1 — Everything in people's heads   ·   5 — Full SOPs across academics and operations",  type: "slider", min: 1, max: 5, step: 1, default: 3, leftLabel: "In people's heads", rightLabel: "Full SOPs" },
+  
   // Close
-  { id: "contact", section: "Close", prompt: "Your name, school name, city, and email.", sub: "We typically reply within 48 hours. If we think there's a fit, we'll send a call link directly.", type: "contact" },
+{
+  id: "obstacle",
+  section: "Your Ambition",
+  prompt: "What is your single biggest obstacle to scaling right now?",
+  type: "choice",
+  options: [
+    { v: "ops",        label: "I'm too involved in day-to-day operations" },
+    { v: "leadership", label: "I don't have the right leadership team yet to scale beyond a centre" },
+    { v: "capital",    label: "I don't have the capital to grow" },
+    { v: "clarity",    label: "I don't have the financial clarity to make growth decisions" },
+    { v: "systems",    label: "Our systems and processes aren't ready to replicate" },
+    { v: "other",      label: "Other" },
+  ],
+},
+{
+  id: "contact",
+  section: "Close",
+  prompt: "Your name, school name, city, and email.",
+  sub: "We typically reply within 48 hours. If we think there's a fit, we'll send a call link directly.",
+  type: "contact"
+}
 ];
-
 const SECTION_ORDER = ["Your School", "Your Ambition", "Your Team", "Your Readiness", "Close"];
 
 function ProgressBar({ step, total }) {
@@ -835,7 +848,7 @@ function SliderInput({ q, value, setValue }) {
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", marginBottom: 18 }}>
         <span className="mono">{q.leftLabel}</span>
         <span style={{ fontFamily: "var(--serif)", fontSize: 56, lineHeight: 1, color: "var(--accent)" }}>
-          {v}<span style={{ fontSize: 22, color: "var(--ink-3)" }}>%</span>
+          {v}
         </span>
         <span className="mono">{q.rightLabel}</span>
       </div>
