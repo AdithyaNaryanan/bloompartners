@@ -165,6 +165,9 @@
     /* Patterns: simpler layout */
     .pattern-row { grid-template-columns: 40px 1fr !important; gap: 16px !important; }
 
+    /* Hero: hide tagline on mobile */
+    .hero-tagline { display: none !important; }
+
     /* Premise: collapse empty left column */
     .premise-grid { grid-template-columns: 1fr !important; gap: 24px !important; }
     .premise-grid > div:first-child { display: none !important; }
@@ -254,7 +257,7 @@ function Hero() {
     <section id="top" style={{ paddingTop: 48, paddingBottom: 140, position: "relative" }}>
       <div className="wrap">
         <div className="hero-meta" style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", marginBottom: 48 }}>
-          <span className="mono">SCALING SCHOOLS WITH A SOUL</span>
+          <span className="mono hero-tagline">SCALING SCHOOLS WITH A SOUL</span>
           <span className="mono" style={{ color: "var(--ink-3)" }}>BLOOM PARTNERS</span>
         </div>
 
@@ -277,15 +280,7 @@ function Hero() {
           gap: 80,
           alignItems: "start"
         }}>
-          <p style={{
-            fontFamily: "var(--serif)",
-            fontWeight: 300,
-            fontSize: "clamp(22px, 1.9vw, 30px)",
-            lineHeight: 1.4,
-            color: "var(--ink-2)",
-            margin: 0,
-            maxWidth: "30ch"
-          }}>
+          <p style={{ fontSize: 17, lineHeight: 1.55, color: "var(--ink-2)", margin: 0, maxWidth: "52ch" }}>
             We work with a handful of founder-led schools to scale them without losing what made them worth building.
           </p>
 
@@ -294,11 +289,7 @@ function Hero() {
             borderLeft: "1px solid var(--line)"
           }}>
             <div className="mono" style={{ color: "var(--accent)", marginBottom: 18 }}>How to begin</div>
-            <p style={{
-              fontFamily: "var(--serif)", fontSize: 18,
-              lineHeight: 1.5, color: "var(--ink-2)",
-              margin: 0, maxWidth: "30ch"
-            }}>
+            <p style={{ fontSize: 17, lineHeight: 1.55, color: "var(--ink-2)", margin: 0, maxWidth: "36ch" }}>
               Take the audit. It takes five minutes. If what you read sounds like us — and you sound like the kind of school we work with — book a call at the end.
             </p>
             <a href="#audit" className="btn" style={{ marginTop: 28 }}>
@@ -329,15 +320,7 @@ function Premise() {
         <div className="premise-grid" style={{ marginTop: 80, display: "grid", gridTemplateColumns: "1fr 2fr", gap: 80, alignItems: "start" }}>
           <div />
           <div>
-            <p style={{
-              fontFamily: "var(--serif)",
-              fontWeight: 400,
-              fontSize: "clamp(24px, 2.6vw, 36px)",
-              lineHeight: 1.25,
-              letterSpacing: "-0.012em",
-              margin: 0,
-              textWrap: "balance"
-            }}>
+            <p style={{ fontSize: 17, lineHeight: 1.55, margin: 0 }}>
               Most schools dilute their impact the moment they add a second location.{" "}
               <span style={{ color: "var(--ink-3)" }}>We exist to prove that bigger can mean better</span>
               {" "}— and do so by providing the{" "}
