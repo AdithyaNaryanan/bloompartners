@@ -165,8 +165,12 @@
     .pattern-row { grid-template-columns: 40px 1fr !important; gap: 8px 16px !important; }
     .patterns-body { grid-column: 1 / -1 !important; padding-top: 4px; }
 
-    /* Hero: hide tagline on mobile */
+    /* Hero: hide tagline on mobile, compress spacing so CTA is visible */
     .hero-tagline { display: none !important; }
+    section#top { padding-top: 24px !important; padding-bottom: 64px !important; }
+    .hero-meta { margin-bottom: 20px !important; }
+    #hero-grid { margin-top: 28px !important; gap: 32px !important; }
+    section#top h1 { font-size: 42px !important; }
 
     /* Premise: collapse empty left column */
     .premise-grid { grid-template-columns: 1fr !important; gap: 24px !important; }
@@ -279,7 +283,7 @@ function Hero() {
           gridTemplateColumns: "1.2fr 1fr",
           gap: 80,
           alignItems: "start"
-        }}>
+        }} id="hero-grid">
           <p style={{
             fontFamily: "var(--serif)",
             fontWeight: 300,
