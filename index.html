@@ -28,9 +28,10 @@
     --paper-3:    #e1d8c5;
     --line:       #c8bfae;
     --line-soft:  #d8d0bf;
-    --accent:     #8a3324;
-    --accent-2:   #c25a3c;
-    --olive:      #4a5240;
+    --accent:        #8a3324;
+    --accent-2:      #c25a3c;
+    --olive:         #4a5240;
+    --surface-dark:  #1f2c3d;
     --serif: "Newsreader", "Iowan Old Style", "Charter", Georgia, serif;
     --sans:  "Inter Tight", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
     --mono:  "JetBrains Mono", ui-monospace, Menlo, monospace;
@@ -581,7 +582,7 @@ function PillarFigure({ kind }) {
 
 function WhatWeDo() {
   return (
-    <section id="work" style={{ padding: "140px 0", background: "var(--ink)", color: "var(--paper)" }}>
+    <section id="work" style={{ padding: "140px 0", background: "var(--surface-dark)", color: "var(--paper)" }}>
       <div className="wrap">
         <div style={{ display: "flex", alignItems: "baseline", gap: 14, marginBottom: 64 }}>
           <span className="mono" style={{ color: "var(--accent-2)", fontWeight: 500 }}>03</span>
@@ -1096,7 +1097,7 @@ function AuditComplete({ answers, onRestart }) {
   const firstName = name.split(" ")[0];
 
   return (
-    <section id="audit" style={{ padding: "140px 0", background: "var(--ink)", color: "var(--paper)" }}>
+    <section id="audit" style={{ padding: "140px 0", background: "var(--surface-dark)", color: "var(--paper)" }}>
       <div className="wrap">
         <div className="complete-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 80, alignItems: "start" }}>
           <div>
@@ -1316,7 +1317,7 @@ function Audit() {
 
 function Footer() {
   return (
-    <footer style={{ background: "var(--ink)", color: "var(--paper)", padding: "120px 0 48px" }}>
+    <footer style={{ background: "var(--surface-dark)", color: "var(--paper)", padding: "120px 0 48px" }}>
       <div className="wrap">
         <h2 style={{
           fontFamily: "var(--serif)", fontWeight: 300,
