@@ -378,7 +378,6 @@ function Patterns() {
             <article key={i} className="pattern-row" style={{
               display: "grid",
               gridTemplateColumns: "80px 1fr 1.6fr",
-
               gap: 48,
               alignItems: "start",
               padding: "44px 0",
@@ -749,11 +748,11 @@ const QUESTIONS = [
   ]},
   { id: "differentiation", section: "Your School", prompt: "How would your most loyal parent describe what makes your school different?", sub: "In their words, not yours.", type: "textarea", placeholder: "They'd say…" },
   { id: "enrollment_trend", section: "Your School", prompt: "How has your enrolment trended over the last two years?", type: "choice", options: [
-    { v: "fast",     label: "Growing fast — we can barely keep up" },
-    { v: "steady",   label: "Growing steadily" },
-    { v: "flat",     label: "Flat" },
-    { v: "declining",label: "Declining" },
-    { v: "early",    label: "Too early to tell" },
+    { v: "fast",      label: "Growing fast — we can barely keep up" },
+    { v: "steady",    label: "Growing steadily" },
+    { v: "flat",      label: "Flat" },
+    { v: "declining", label: "Declining" },
+    { v: "early",     label: "Too early to tell" },
   ]},
   // Part 2 — Your Ambition
   { id: "scale_vision", section: "Your Ambition", prompt: "What does scale look like, for you, in five years?", type: "choice", options: [
@@ -761,8 +760,6 @@ const QUESTIONS = [
     { v: "national",  label: "A national presence — 10 or more locations" },
     { v: "franchise", label: "A franchise model with partners running new locations" },
     { v: "unsure",    label: "Honestly not sure yet" },
-  ]},
-  
   ]},
   { id: "next_location", section: "Your Ambition", prompt: "When are you looking to open your next location?", type: "choice", options: [
     { v: "12months", label: "Within 12 months" },
@@ -796,31 +793,19 @@ const QUESTIONS = [
     { v: "worldclass", label: "World class — academic excellence is our core strength" },
   ]},
   // Part 4 — Your Readiness
-  
-  { id: "tech_support",    section: "Your Readiness", prompt: "How well does technology support your operations today?",  sub: "1 — Pen, paper, WhatsApp   ·   5 — Fully integrated, data flows across the school", type: "slider", min: 1, max: 5, step: 1, default: 3, leftLabel: "Pen and paper",    rightLabel: "Fully integrated" },
-  
+  { id: "tech_support", section: "Your Readiness", prompt: "How well does technology support your operations today?", sub: "1 — Pen, paper, WhatsApp   ·   5 — Fully integrated, data flows across the school", type: "slider", min: 1, max: 5, step: 1, default: 3, leftLabel: "Pen and paper", rightLabel: "Fully integrated" },
   // Close
-  {
-  id: "obstacle",
-  section: "Your Ambition",
-  prompt: "What is your single biggest obstacle to scaling right now?",
-  type: "choice",
-  options: [
+  { id: "obstacle", section: "Your Ambition", prompt: "What is your single biggest obstacle to scaling right now?", type: "choice", options: [
     { v: "ops",        label: "I'm too involved in day-to-day operations" },
     { v: "leadership", label: "I don't have the right leadership team yet to scale beyond a centre" },
     { v: "capital",    label: "I don't have the capital to grow" },
     { v: "clarity",    label: "I don't have the financial clarity to make growth decisions" },
     { v: "systems",    label: "Our systems and processes aren't ready to replicate" },
-    { v: "other",      label: "Other" }
-  ],
-},
-{
-  id: "contact",
-  section: "Close",
-  prompt: "Your name, school name, city, and email.",
-  sub: "We typically reply within 48 hours. If we think there's a fit, we'll send a call link directly.",
-  type: "contact"
-}];
+    { v: "other",      label: "Other" },
+  ]},
+  { id: "contact", section: "Close", prompt: "Your name, school name, city, and email.", sub: "We typically reply within 48 hours. If we think there's a fit, we'll send a call link directly.", type: "contact" },
+];
+
 const SECTION_ORDER = ["Your School", "Your Ambition", "Your Team", "Your Readiness", "Close"];
 
 function ProgressBar({ step, total }) {
@@ -1021,7 +1006,7 @@ function AuditIntro({ onStart }) {
         fontSize: 36, lineHeight: 1.15, letterSpacing: "-0.015em",
         margin: 0, textWrap: "balance",
       }}>
-        A short, honest audit. Roughly nine questions.
+        A short, honest audit. Roughly twelve questions.
       </h3>
       <p style={{ marginTop: 20, fontSize: 16, color: "var(--ink-2)", lineHeight: 1.65 }}>
         Built for founders who already know roughly what they want. We use this to decide whether there's a fit, and to make our first conversation useful — not exploratory.
