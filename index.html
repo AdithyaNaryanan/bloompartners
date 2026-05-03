@@ -720,120 +720,96 @@ function WhatWeLookFor() {
 /* ─── Audit ───────────────────────────────────────────────────────────────── */
 
 const QUESTIONS = [
-  {
-    id: "stage",
-    section: "Where you are",
-    prompt: "How many campuses do you operate today?",
-    sub: "Including any sister or franchise sites you control.",
-    type: "choice",
-    options: [
-      { v: "1",   label: "One campus" },
-      { v: "2-3", label: "Two or three" },
-      { v: "4+",  label: "Four or more" },
-      { v: "0",   label: "Pre-launch / planning second site" },
-    ],
-  },
-  {
-    id: "founder_load",
-    section: "Where you are",
-    prompt: "If you took a month off, what would happen?",
-    sub: "Be honest. There's no wrong answer — only an honest one.",
-    type: "choice",
-    options: [
-      { v: "collapse",  label: "Things would unravel within days." },
-      { v: "wobble",    label: "It would wobble — decisions would stall." },
-      { v: "fine",      label: "It would run, with a few escalations." },
-      { v: "untouched", label: "Genuinely no one would notice." },
-    ],
-  },
-  {
-    id: "philosophy",
-    section: "Identity",
-    prompt: "How would your most loyal parent describe what makes your school different?",
-    sub: "One or two sentences in their words, not yours.",
-    type: "text",
-    placeholder: "They'd say…",
-  },
-  {
-    id: "leaders",
-    section: "Identity",
-    prompt: "Who are the two or three leaders alongside you?",
-    sub: "Roles or names — whichever you prefer. We're checking for organisational depth, not org charts.",
-    type: "text",
-    placeholder: "e.g. Head of Academics, Operations Lead, Curriculum Director…",
-  },
-  {
-    id: "codified",
-    section: "Foundations",
-    prompt: "How much of your school runs on documented systems vs. lived memory?",
-    sub: "Drag to estimate. We'll triangulate this in the audit itself.",
-    type: "slider",
-    min: 0, max: 100, step: 5, default: 30,
-    leftLabel: "All in heads",
-    rightLabel: "All codified",
-  },
-  {
-    id: "ambition",
-    section: "Ambition",
-    prompt: "What does scale look like, for you, in five years?",
-    type: "choice",
-    options: [
-      { v: "2-3",    label: "Two to three campuses, hands-on." },
-      { v: "5-10",   label: "Five to ten, regional network." },
-      { v: "10+",    label: "Ten plus, multi-region." },
-      { v: "fran",   label: "A franchise or licensed model." },
-      { v: "unsure", label: "I'm not sure yet — that's part of why I'm here." },
-    ],
-  },
-  {
-    id: "started",
-    section: "Ambition",
-    prompt: "What have you already done toward scaling?",
-    sub: "We work with founders who've started. Tell us where you've got to.",
-    type: "multi",
-    options: [
-      "Drafted a business plan for site two",
-      "Begun documenting academic SOPs",
-      "Identified a potential head for a new campus",
-      "Run unit economics on the current site",
-      "Spoken to investors or capital partners",
-      "Codified our pedagogical model",
-      "Built or chosen the right tech stack",
-      "Honestly, not much yet",
-    ],
-  },
-  {
-    id: "constraint",
-    section: "Diagnosis",
-    prompt: "What's the single biggest thing holding you back?",
-    sub: "Pick the closest. Free text in the next step if none fit.",
-    type: "choice",
-    options: [
-      { v: "money",   label: "Capital — I can't fund the next move." },
-      { v: "people",  label: "People — I don't have leaders ready to run another site." },
-      { v: "model",   label: "Model — I'm not sure the unit economics actually work yet." },
-      { v: "self",    label: "Me — I'm the bottleneck and I know it." },
-      { v: "clarity", label: "Clarity — I don't know what 'good' looks like." },
-    ],
-  },
-  {
-    id: "context",
-    section: "Diagnosis",
-    prompt: "Anything else we should know before we read your audit?",
-    sub: "Optional. Often the most useful field.",
-    type: "textarea",
-    placeholder: "Anything from a wobble in the senior team to a quiet acquisition you're considering…",
-  },
-  {
-    id: "contact",
-    section: "Close",
-    prompt: "Where do we send the read-back, and book a call?",
-    sub: "We typically reply within 48 hours. If we think there's a fit, we'll send a call link directly.",
-    type: "contact",
-  },
+  // Part 1 — Your School
+  { id: "school_type", section: "Your School", prompt: "What type of school do you run?", type: "choice", options: [
+    { v: "preschool",    label: "Preschool / Early years" },
+    { v: "primary",      label: "Primary / Middle / High school" },
+    { v: "micro",        label: "Micro school" },
+    { v: "afterschool",  label: "After-school centre" },
+    { v: "other",        label: "Other" },
+  ]},
+  { id: "centres", section: "Your School", prompt: "How many centres do you currently operate?", type: "choice", options: [
+    { v: "1",   label: "1" },
+    { v: "2-3", label: "2–3" },
+    { v: "4-6", label: "4–6" },
+    { v: "7+",  label: "7 or more" },
+  ]},
+  { id: "students", section: "Your School", prompt: "How many students are currently enrolled across all centres?", type: "choice", options: [
+    { v: "under100",  label: "Under 100" },
+    { v: "100-300",   label: "100–300" },
+    { v: "300-600",   label: "300–600" },
+    { v: "600-1000",  label: "600–1,000" },
+    { v: "over1000",  label: "Over 1,000" },
+  ]},
+  { id: "operating_years", section: "Your School", prompt: "How long have you been operating?", type: "choice", options: [
+    { v: "under2", label: "Under 2 years" },
+    { v: "2-5",    label: "2–5 years" },
+    { v: "5-10",   label: "5–10 years" },
+    { v: "over10", label: "Over 10 years" },
+  ]},
+  { id: "differentiation", section: "Your School", prompt: "How would your most loyal parent describe what makes your school different?", sub: "In their words, not yours.", type: "textarea", placeholder: "They'd say…" },
+  { id: "enrollment_trend", section: "Your School", prompt: "How has your enrolment trended over the last two years?", type: "choice", options: [
+    { v: "fast",     label: "Growing fast — we can barely keep up" },
+    { v: "steady",   label: "Growing steadily" },
+    { v: "flat",     label: "Flat" },
+    { v: "declining",label: "Declining" },
+    { v: "early",    label: "Too early to tell" },
+  ]},
+  // Part 2 — Your Ambition
+  { id: "scale_vision", section: "Your Ambition", prompt: "What does scale look like, for you, in five years?", type: "choice", options: [
+    { v: "city",      label: "2–3 more centres in the same city" },
+    { v: "national",  label: "A national presence — 10 or more locations" },
+    { v: "franchise", label: "A franchise model with partners running new locations" },
+    { v: "unsure",    label: "Honestly not sure yet" },
+  ]},
+  { id: "obstacle", section: "Your Ambition", prompt: "What is your single biggest obstacle to scaling right now?", type: "choice", options: [
+    { v: "ops",        label: "I'm too involved in day-to-day operations" },
+    { v: "leadership", label: "I don't have the right leadership team yet" },
+    { v: "capital",    label: "I don't have the capital to grow" },
+    { v: "clarity",    label: "I don't have the financial clarity to make growth decisions" },
+    { v: "systems",    label: "Our systems and processes aren't ready to replicate" },
+  ]},
+  { id: "next_location", section: "Your Ambition", prompt: "When are you looking to open your next location?", type: "choice", options: [
+    { v: "12months", label: "Within 12 months" },
+    { v: "1-2years", label: "1–2 years" },
+    { v: "2-3years", label: "2–3 years" },
+    { v: "flexible", label: "No fixed timeline — when we're ready" },
+  ]},
+  // Part 3 — Your Team
+  { id: "independent_leaders", section: "Your Team", prompt: "How many leaders in your team could run a centre independently today?", type: "choice", options: [
+    { v: "none",  label: "None — it all runs through me" },
+    { v: "one",   label: "One, at a stretch" },
+    { v: "two3",  label: "Two or three" },
+    { v: "bench", label: "We have a strong leadership bench" },
+  ]},
+  { id: "business_expertise", section: "Your Team", prompt: "How would you describe the business expertise in your current team?", type: "choice", options: [
+    { v: "limited", label: "Mostly educators — limited business experience" },
+    { v: "some",    label: "Some business understanding but not deep" },
+    { v: "strong",  label: "Strong — we have people who think commercially" },
+    { v: "mixed",   label: "Mixed — strong in some areas, weak in others" },
+  ]},
+  { id: "ops_expertise", section: "Your Team", prompt: "How would you describe the operations expertise in your team?", type: "choice", options: [
+    { v: "instinct",   label: "We operate on instinct and experience" },
+    { v: "some",       label: "Some processes documented, most in people's heads" },
+    { v: "reasonable", label: "Reasonably well documented but not scale-ready" },
+    { v: "strong",     label: "Strong — we have SOPs and systems that hold" },
+  ]},
+  { id: "academic_leadership", section: "Your Team", prompt: "How would you describe the academic leadership in your team?", type: "choice", options: [
+    { v: "dependent",  label: "Entirely dependent on me or one person" },
+    { v: "delivery",   label: "Strong in delivery, weaker in design and development" },
+    { v: "owned",      label: "We have educators who can own the academic vision" },
+    { v: "worldclass", label: "World class — academic excellence is our core strength" },
+  ]},
+  // Part 4 — Your Readiness
+  { id: "finance_clarity", section: "Your Readiness", prompt: "How well do you understand your school's finances?", sub: "1 — Month to month   ·   5 — PE-grade clarity, modelling scenarios", type: "slider", min: 1, max: 5, step: 1, default: 3, leftLabel: "Month to month", rightLabel: "PE-grade clarity" },
+  { id: "data_usage",      section: "Your Readiness", prompt: "How well does your school use data to make decisions?",    sub: "1 — Instinct only   ·   5 — Full dashboard across academic, ops and finance",    type: "slider", min: 1, max: 5, step: 1, default: 3, leftLabel: "Instinct only",    rightLabel: "Full dashboard" },
+  { id: "tech_support",    section: "Your Readiness", prompt: "How well does technology support your operations today?",  sub: "1 — Pen, paper, WhatsApp   ·   5 — Fully integrated, data flows across the school", type: "slider", min: 1, max: 5, step: 1, default: 3, leftLabel: "Pen and paper",    rightLabel: "Fully integrated" },
+  { id: "systems_codified",section: "Your Readiness", prompt: "How codified are your systems and processes?",            sub: "1 — Everything in people's heads   ·   5 — Full SOPs across academics and operations",  type: "slider", min: 1, max: 5, step: 1, default: 3, leftLabel: "In people's heads", rightLabel: "Full SOPs" },
+  // Close
+  { id: "contact", section: "Close", prompt: "Your name, school name, city, and email.", sub: "We typically reply within 48 hours. If we think there's a fit, we'll send a call link directly.", type: "contact" },
 ];
 
-const SECTION_ORDER = ["Where you are", "Identity", "Foundations", "Ambition", "Diagnosis", "Close"];
+const SECTION_ORDER = ["Your School", "Your Ambition", "Your Team", "Your Readiness", "Close"];
 
 function ProgressBar({ step, total }) {
   return (
