@@ -85,6 +85,37 @@
 
   #root { position: relative; z-index: 2; }
 
+  /* Scroll fade-in */
+  .fade-section {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.65s ease, transform 0.65s ease;
+  }
+  .fade-section.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Marquee */
+  @keyframes marquee-scroll {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+  .marquee-track {
+    display: flex;
+    white-space: nowrap;
+    animation: marquee-scroll 32s linear infinite;
+  }
+
+  /* Pattern row hover */
+  .pattern-row {
+    transition: background 200ms ease, box-shadow 200ms ease;
+  }
+  .pattern-row:hover {
+    background: var(--paper-2);
+    box-shadow: 0 4px 24px rgba(26,24,21,0.07);
+  }
+
   /* Responsive adjustments */
   @media (max-width: 900px) {
     .hero-grid { grid-template-columns: 1fr !important; gap: 48px !important; }
@@ -99,6 +130,14 @@
 </style>
 </head>
 <body>
+
+<form name="bloom-audit" netlify netlify-honeypot="bot-field" hidden>
+  <input name="name" /><input name="email" /><input name="school" />
+  <input name="location" /><input name="stage" /><input name="founder_load" />
+  <input name="philosophy" /><input name="leaders" /><input name="codified" />
+  <input name="ambition" /><input name="started" /><input name="constraint" />
+  <input name="context" />
+</form>
 
 <div id="root"></div>
 
@@ -184,7 +223,7 @@ function Hero() {
           maxWidth: "14ch",
           textWrap: "balance"
         }}>
-          Helping founder-led schools{" "}
+          Helping <span style={{ whiteSpace: "nowrap" }}>founder-led</span> schools{" "}
           <span style={{ color: "var(--accent)" }}>scale.</span>
         </h1>
 
@@ -306,7 +345,7 @@ function Patterns() {
         </p>
         <div style={{ marginTop: 80 }}>
           {PATTERNS.map((p, i) => (
-            <article key={i} style={{
+            <article key={i} className="pattern-row" style={{
               display: "grid",
               gridTemplateColumns: "80px 1fr 1.6fr",
               gap: 48,
@@ -1078,11 +1117,47 @@ function Audit() {
   const [step, setStep] = useState(-1);
   const [answers, setAnswers] = useState({});
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
 
   const total = QUESTIONS.length;
   const q = step >= 0 && step < total ? QUESTIONS[step] : null;
 
   const setAnswer = (id, value) => setAnswers(prev => ({ ...prev, [id]: value }));
+
+  const handleNext = async () => {
+    if (step === total - 1) {
+      setSubmitting(true);
+      const contact = answers.contact || {};
+      try {
+        await fetch("/", {
+          method: "POST",
+          headers: { "Content-Type": "application/x-www-form-urlencoded" },
+          body: new URLSearchParams({
+            "form-name": "bloom-audit",
+            name: contact.name || "",
+            email: contact.email || "",
+            school: contact.school || "",
+            location: contact.location || "",
+            stage: answers.stage || "",
+            founder_load: answers.founder_load || "",
+            philosophy: answers.philosophy || "",
+            leaders: answers.leaders || "",
+            codified: String(answers.codified ?? ""),
+            ambition: answers.ambition || "",
+            started: Array.isArray(answers.started) ? answers.started.join(", ") : "",
+            constraint: answers.constraint || "",
+            context: answers.context || "",
+          }).toString(),
+        });
+      } catch (e) {
+        console.error("Submission error:", e);
+      }
+      setSubmitting(false);
+      setSubmitted(true);
+    } else {
+      setStep(s => s + 1);
+    }
+  };
 
   const canAdvance = useMemo(() => {
     if (!q) return true;
@@ -1191,14 +1266,11 @@ function Audit() {
                   style={{ background: "none", border: "none", cursor: "pointer", color: "var(--ink-3)", padding: "8px 0" }}>
                   ← Back
                 </button>
-                <button className="btn" disabled={!canAdvance}
-                  onClick={() => {
-                    if (step === total - 1) setSubmitted(true);
-                    else setStep(s => s + 1);
-                  }}
-                  style={{ opacity: canAdvance ? 1 : 0.35, cursor: canAdvance ? "pointer" : "not-allowed", padding: "12px 22px" }}>
-                  {step === total - 1 ? "Submit audit" : "Continue"}
-                  <span className="arrow">→</span>
+                <button className="btn" disabled={!canAdvance || submitting}
+                  onClick={handleNext}
+                  style={{ opacity: canAdvance && !submitting ? 1 : 0.35, cursor: canAdvance && !submitting ? "pointer" : "not-allowed", padding: "12px 22px" }}>
+                  {step === total - 1 ? (submitting ? "Sending…" : "Submit audit") : "Continue"}
+                  {!submitting && <span className="arrow">→</span>}
                 </button>
               </div>
             )}
@@ -1206,6 +1278,20 @@ function Audit() {
         </div>
       </div>
     </section>
+  );
+}
+
+/* ─── Marquee ─────────────────────────────────────────────────────────────── */
+
+function Marquee() {
+  const seg = "Academic · Operational · Business · Scaling schools with a soul · ".repeat(5);
+  return (
+    <div style={{ overflow: "hidden", borderTop: "1px solid var(--line-soft)", borderBottom: "1px solid var(--line-soft)", padding: "15px 0", background: "var(--paper-3)" }}>
+      <div className="marquee-track">
+        <span className="mono" style={{ fontSize: 11, letterSpacing: "0.12em", color: "var(--ink-3)" }}>{seg}</span>
+        <span className="mono" style={{ fontSize: 11, letterSpacing: "0.12em", color: "var(--ink-3)" }}>{seg}</span>
+      </div>
+    </div>
   );
 }
 
@@ -1273,12 +1359,25 @@ function Footer() {
 /* ─── App root ────────────────────────────────────────────────────────────── */
 
 function App() {
+  useEffect(() => {
+    const els = document.querySelectorAll('section, footer');
+    const obs = new IntersectionObserver(
+      entries => entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
+      }),
+      { threshold: 0.07, rootMargin: "0px 0px -40px 0px" }
+    );
+    els.forEach(el => { el.classList.add('fade-section'); obs.observe(el); });
+    return () => obs.disconnect();
+  }, []);
+
   return (
     <>
       <TopNav />
       <Hero />
       <Premise />
       <Patterns />
+      <Marquee />
       <WhatWeDo />
       <WhatWeLookFor />
       <Audit />
