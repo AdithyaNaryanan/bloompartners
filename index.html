@@ -6,6 +6,14 @@
 <title>Bloom Partners — Scaling schools with a soul</title>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23f4efe6'/><text x='16' y='24' font-family='Georgia,serif' font-size='24' font-weight='700' text-anchor='middle' fill='%238a3324'>B</text></svg>">
 
+<!-- Open Graph / WhatsApp preview -->
+<meta property="og:type"        content="website" />
+<meta property="og:url"         content="https://bloompartners.xyz" />
+<meta property="og:title"       content="Bloom Partners — Scaling schools with a soul" />
+<meta property="og:description" content="We work with founder-led schools to scale them without losing what made them worth building." />
+<meta property="og:image"       content="https://bloompartners.xyz/og-image.png" />
+<meta name="twitter:card"       content="summary_large_image" />
+
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,300;1,6..72,400&family=Inter+Tight:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
@@ -220,11 +228,9 @@ function Hero() {
           lineHeight: 0.98,
           letterSpacing: "-0.025em",
           margin: 0,
-          maxWidth: "14ch",
-          textWrap: "balance"
+          maxWidth: "20ch",
         }}>
-          Helping <span style={{ whiteSpace: "nowrap" }}>founder-led</span> schools{" "}
-          <span style={{ color: "var(--accent)" }}>scale.</span>
+          Helping <span style={{ whiteSpace: "nowrap" }}>founder-led</span> schools <span style={{ color: "var(--accent)" }}>scale.</span>
         </h1>
 
         <div className="hero-grid" style={{
@@ -1281,20 +1287,6 @@ function Audit() {
   );
 }
 
-/* ─── Marquee ─────────────────────────────────────────────────────────────── */
-
-function Marquee() {
-  const seg = "Academic · Operational · Business · Scaling schools with a soul · ".repeat(5);
-  return (
-    <div style={{ overflow: "hidden", borderTop: "1px solid var(--line-soft)", borderBottom: "1px solid var(--line-soft)", padding: "15px 0", background: "var(--paper-3)" }}>
-      <div className="marquee-track">
-        <span className="mono" style={{ fontSize: 11, letterSpacing: "0.12em", color: "var(--ink-3)" }}>{seg}</span>
-        <span className="mono" style={{ fontSize: 11, letterSpacing: "0.12em", color: "var(--ink-3)" }}>{seg}</span>
-      </div>
-    </div>
-  );
-}
-
 /* ─── Footer ──────────────────────────────────────────────────────────────── */
 
 function Footer() {
@@ -1377,7 +1369,6 @@ function App() {
       <Hero />
       <Premise />
       <Patterns />
-      <Marquee />
       <WhatWeDo />
       <WhatWeLookFor />
       <Audit />
