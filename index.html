@@ -164,6 +164,13 @@
 
     /* Patterns: simpler layout */
     .pattern-row { grid-template-columns: 40px 1fr !important; gap: 16px !important; }
+
+    /* Premise: collapse empty left column */
+    .premise-grid { grid-template-columns: 1fr !important; gap: 24px !important; }
+    .premise-grid > div:first-child { display: none !important; }
+
+    /* Audit: remove sticky so left col doesn't overlap right col */
+    .audit-sticky { position: static !important; }
   }
 </style>
 </head>
@@ -319,7 +326,7 @@ function Premise() {
           Scaling shouldn't come with a <em style={{ color: "var(--accent)" }}>compromise to quality.</em>
         </h2>
 
-        <div style={{ marginTop: 80, display: "grid", gridTemplateColumns: "1fr 2fr", gap: 80, alignItems: "start" }}>
+        <div className="premise-grid" style={{ marginTop: 80, display: "grid", gridTemplateColumns: "1fr 2fr", gap: 80, alignItems: "start" }}>
           <div />
           <div>
             <p style={{
@@ -1222,7 +1229,7 @@ function Audit() {
           alignItems: "start",
         }}>
           {/* Left: index column */}
-          <div style={{ position: "sticky", top: 100 }}>
+          <div className="audit-sticky" style={{ position: "sticky", top: 100 }}>
             <SectionLabel num="05" label="The audit" />
             <h2 style={{
               fontFamily: "var(--serif)", fontWeight: 400,
