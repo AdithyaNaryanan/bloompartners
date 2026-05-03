@@ -800,7 +800,7 @@ const QUESTIONS = [
   { id: "tech_support",    section: "Your Readiness", prompt: "How well does technology support your operations today?",  sub: "1 — Pen, paper, WhatsApp   ·   5 — Fully integrated, data flows across the school", type: "slider", min: 1, max: 5, step: 1, default: 3, leftLabel: "Pen and paper",    rightLabel: "Fully integrated" },
   
   // Close
-{
+  {
   id: "obstacle",
   section: "Your Ambition",
   prompt: "What is your single biggest obstacle to scaling right now?",
@@ -811,7 +811,7 @@ const QUESTIONS = [
     { v: "capital",    label: "I don't have the capital to grow" },
     { v: "clarity",    label: "I don't have the financial clarity to make growth decisions" },
     { v: "systems",    label: "Our systems and processes aren't ready to replicate" },
-    { v: "other",      label: "Other" },
+    { v: "other",      label: "Other" }
   ],
 },
 {
@@ -820,8 +820,7 @@ const QUESTIONS = [
   prompt: "Your name, school name, city, and email.",
   sub: "We typically reply within 48 hours. If we think there's a fit, we'll send a call link directly.",
   type: "contact"
-}
-];
+}];
 const SECTION_ORDER = ["Your School", "Your Ambition", "Your Team", "Your Readiness", "Close"];
 
 function ProgressBar({ step, total }) {
