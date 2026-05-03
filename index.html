@@ -23,14 +23,13 @@
     --ink:        #1a1815;
     --ink-2:      #2c2924;
     --ink-3:      #4a463f;
-    --paper:      #f4efe6;
-    --paper-2:    #ebe4d6;
-    --paper-3:    #e1d8c5;
-    --line:       #c8bfae;
-    --line-soft:  #d8d0bf;
+    --paper:      #ebe8e2;
+    --paper-2:    #e3dfd6;
+    --paper-3:    #d8d3c7;
+    --line:       #c2bcad;
+    --line-soft:  #d3cfc6;
     --accent:        #8a3324;
     --accent-2:      #c25a3c;
-    --olive:         #4a5240;
     --surface-dark:  #1f2c3d;
     --serif: "Newsreader", "Iowan Old Style", "Charter", Georgia, serif;
     --sans:  "Inter Tight", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
@@ -221,7 +220,7 @@ function TopNav() {
   return (
     <nav style={{
       position: "sticky", top: 0, zIndex: 50,
-      background: "rgba(244,239,230,0.85)",
+      background: "rgba(235,232,226,0.85)",
       backdropFilter: "blur(8px)",
       WebkitBackdropFilter: "blur(8px)",
       borderBottom: "1px solid var(--line-soft)"
@@ -586,7 +585,7 @@ function WhatWeDo() {
       <div className="wrap">
         <div style={{ display: "flex", alignItems: "baseline", gap: 14, marginBottom: 64 }}>
           <span className="mono" style={{ color: "var(--accent-2)", fontWeight: 500 }}>03</span>
-          <span style={{ flex: 1, height: 1, background: "rgba(244,239,230,0.2)" }} />
+          <span style={{ flex: 1, height: 1, background: "rgba(235,232,226,0.2)" }} />
           <span className="mono" style={{ color: "var(--paper-3)" }}>What we do</span>
         </div>
 
@@ -609,7 +608,7 @@ function WhatWeDo() {
               gridTemplateColumns: "0.9fr 1.5fr",
               gap: 64,
               alignItems: "start",
-              borderTop: "1px solid rgba(244,239,230,0.15)",
+              borderTop: "1px solid rgba(235,232,226,0.15)",
               paddingTop: 44
             }}>
               <div>
@@ -632,7 +631,7 @@ function WhatWeDo() {
                   {p.tags.map((t) => (
                     <span key={t} className="mono" style={{
                       padding: "6px 10px",
-                      border: "1px solid rgba(244,239,230,0.3)",
+                      border: "1px solid rgba(235,232,226,0.3)",
                       color: "var(--paper-3)"
                     }}>{t}</span>
                   ))}
@@ -1082,7 +1081,7 @@ function Summary({ answers }) {
         <div key={i} style={{
           display: "grid", gridTemplateColumns: "1fr 1.4fr", gap: 16,
           padding: "14px 0",
-          borderBottom: i < items.length - 1 ? "1px solid rgba(244,239,230,0.12)" : "none",
+          borderBottom: i < items.length - 1 ? "1px solid rgba(235,232,226,0.12)" : "none",
         }}>
           <span className="mono" style={{ color: "var(--paper-3)" }}>{k}</span>
           <span style={{ fontFamily: "var(--serif)", fontSize: 16, color: "var(--paper)" }}>{v || "—"}</span>
@@ -1103,7 +1102,7 @@ function AuditComplete({ answers, onRestart }) {
           <div>
             <div style={{ display: "flex", alignItems: "baseline", gap: 14, marginBottom: 32 }}>
               <span className="mono" style={{ color: "var(--accent-2)" }}>received</span>
-              <span style={{ flex: 1, height: 1, background: "rgba(244,239,230,0.3)" }} />
+              <span style={{ flex: 1, height: 1, background: "rgba(235,232,226,0.3)" }} />
               <span className="mono" style={{ color: "var(--paper-3)" }}>{new Date().toLocaleDateString("en-GB", { day: "2-digit", month: "short", year: "numeric" })}</span>
             </div>
             <h2 style={{
@@ -1117,7 +1116,7 @@ function AuditComplete({ answers, onRestart }) {
               We read every audit ourselves. You'll hear from us within 48 hours — typically with a written read-back of what we noticed, and a call link if we think there's a fit.
             </p>
 
-            <div style={{ marginTop: 56, paddingTop: 32, borderTop: "1px solid rgba(244,239,230,0.15)" }}>
+            <div style={{ marginTop: 56, paddingTop: 32, borderTop: "1px solid rgba(235,232,226,0.15)" }}>
               <div className="mono" style={{ color: "var(--paper-3)", marginBottom: 14 }}>If you'd rather not wait</div>
               <a href="mailto:hellobloompartners@gmail.com" className="btn" style={{
                 background: "var(--accent-2)", borderColor: "var(--accent-2)", color: "var(--ink)",
@@ -1135,7 +1134,7 @@ function AuditComplete({ answers, onRestart }) {
             </button>
           </div>
 
-          <div style={{ border: "1px solid rgba(244,239,230,0.2)", padding: 32 }}>
+          <div style={{ border: "1px solid rgba(235,232,226,0.2)", padding: 32 }}>
             <div className="mono" style={{ color: "var(--paper-3)", marginBottom: 20 }}>Your read-back, in summary</div>
             <Summary answers={answers} />
           </div>
@@ -1334,7 +1333,7 @@ function Footer() {
           display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr",
           gap: 48,
           paddingTop: 40,
-          borderTop: "1px solid rgba(244,239,230,0.2)"
+          borderTop: "1px solid rgba(235,232,226,0.2)"
         }}>
           <div>
             <div className="mono" style={{ color: "var(--paper-3)", marginBottom: 14 }}>Contact</div>
@@ -1362,7 +1361,7 @@ function Footer() {
 
         <div className="footer-bottom" style={{
           marginTop: 96, paddingTop: 24,
-          borderTop: "1px solid rgba(244,239,230,0.1)",
+          borderTop: "1px solid rgba(235,232,226,0.1)",
           display: "flex", justifyContent: "space-between",
           color: "var(--paper-3)"
         }}>
