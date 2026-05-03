@@ -135,6 +135,36 @@
     .footer-grid { grid-template-columns: 1fr 1fr !important; }
     .complete-grid { grid-template-columns: 1fr !important; }
   }
+
+  @media (max-width: 600px) {
+    /* Nav: hide links, show only logo + CTA */
+    .nav-links { display: none !important; }
+    .nav-inner { padding: 14px 20px !important; }
+
+    /* Tighten all section vertical padding */
+    section { padding-top: 72px !important; padding-bottom: 72px !important; }
+    footer  { padding-top: 72px !important; padding-bottom: 32px !important; }
+
+    /* Hero meta strip: stack */
+    .hero-meta { flex-direction: column !important; gap: 4px !important; margin-bottom: 28px !important; }
+
+    /* Audit card inner */
+    .audit-inner { padding: 32px 20px 20px !important; }
+    .audit-nav   { padding: 14px 20px !important; }
+
+    /* Criteria items: remove left padding/border on first */
+    .criteria-item { padding: 32px 0 !important; border-left: none !important; padding-left: 0 !important; }
+
+    /* Footer: single column */
+    .footer-grid   { grid-template-columns: 1fr !important; gap: 28px !important; }
+    .footer-bottom { flex-direction: column !important; gap: 6px !important; align-items: flex-start !important; }
+
+    /* Pillar figures: reduce height on mobile */
+    .pillar-figure { display: none !important; }
+
+    /* Patterns: simpler layout */
+    .pattern-row { grid-template-columns: 40px 1fr !important; gap: 16px !important; }
+  }
 </style>
 </head>
 <body>
@@ -181,7 +211,7 @@ function TopNav() {
       WebkitBackdropFilter: "blur(8px)",
       borderBottom: "1px solid var(--line-soft)"
     }}>
-      <div className="wrap" style={{
+      <div className="nav-inner" style={{
         display: "flex", alignItems: "center", justifyContent: "space-between",
         padding: "18px 48px"
       }}>
@@ -197,7 +227,7 @@ function TopNav() {
             Bloom Partners
           </span>
         </a>
-        <div style={{ display: "flex", alignItems: "center", gap: 32 }}>
+        <div className="nav-links" style={{ display: "flex", alignItems: "center", gap: 32 }}>
           <a href="#patterns" className="mono" style={{ textDecoration: "none" }}>Patterns</a>
           <a href="#work" className="mono" style={{ textDecoration: "none" }}>What we do</a>
           <a href="#fit" className="mono" style={{ textDecoration: "none" }}>Fit</a>
@@ -216,7 +246,7 @@ function Hero() {
   return (
     <section id="top" style={{ paddingTop: 48, paddingBottom: 140, position: "relative" }}>
       <div className="wrap">
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", marginBottom: 48 }}>
+        <div className="hero-meta" style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", marginBottom: 48 }}>
           <span className="mono">SCALING SCHOOLS WITH A SOUL</span>
           <span className="mono" style={{ color: "var(--ink-3)" }}>BLOOM PARTNERS</span>
         </div>
@@ -354,6 +384,7 @@ function Patterns() {
             <article key={i} className="pattern-row" style={{
               display: "grid",
               gridTemplateColumns: "80px 1fr 1.6fr",
+
               gap: 48,
               alignItems: "start",
               padding: "44px 0",
@@ -612,7 +643,7 @@ function WhatWeDo() {
                   ))}
                 </div>
               </div>
-              <div>
+              <div className="pillar-figure">
                 <PillarFigure kind={p.figure} />
               </div>
             </article>
@@ -664,7 +695,7 @@ function WhatWeLookFor() {
 
         <div className="criteria-grid" style={{ marginTop: 96, display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 0 }}>
           {CRITERIA.map((c, i) => (
-            <div key={i} style={{
+            <div key={i} className="criteria-item" style={{
               padding: "44px 36px 44px 0",
               paddingLeft: i === 0 ? 0 : 36,
               borderLeft: i === 0 ? "none" : "1px solid var(--line-soft)"
@@ -1240,7 +1271,7 @@ function Audit() {
             minHeight: 560,
             display: "flex", flexDirection: "column",
           }}>
-            <div style={{
+            <div className="audit-nav" style={{
               padding: "20px 32px",
               borderBottom: "1px solid var(--line-soft)",
               display: "flex", alignItems: "center", justifyContent: "space-between",
@@ -1255,7 +1286,7 @@ function Audit() {
               </div>
             </div>
 
-            <div style={{ padding: "56px 56px 32px", flex: 1, display: "flex", flexDirection: "column" }}>
+            <div className="audit-inner" style={{ padding: "56px 56px 32px", flex: 1, display: "flex", flexDirection: "column" }}>
               {step < 0 && <AuditIntro onStart={() => setStep(0)} />}
               {q && (
                 <QuestionView q={q} value={answers[q.id]} setValue={(v) => setAnswer(q.id, v)} />
@@ -1334,7 +1365,7 @@ function Footer() {
           </div>
         </div>
 
-        <div style={{
+        <div className="footer-bottom" style={{
           marginTop: 96, paddingTop: 24,
           borderTop: "1px solid rgba(244,239,230,0.1)",
           display: "flex", justifyContent: "space-between",
