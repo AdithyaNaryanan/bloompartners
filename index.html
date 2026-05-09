@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Bloom Partners — Capital and operating partners for India's best founder-led preschools</title>
+<title>Bloom Partners — Scaling schools with a soul</title>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23f4efe6'/><text x='16' y='24' font-family='Georgia,serif' font-size='24' font-weight='700' text-anchor='middle' fill='%238a3324'>B</text></svg>">
 
 <!-- Open Graph / WhatsApp preview -->
 <meta property="og:type"        content="website" />
 <meta property="og:url"         content="https://bloompartners.xyz" />
 <meta property="og:title"       content="Bloom Partners — Capital and operating partners for India's best founder-led preschools" />
-<meta property="og:description" content="The next generation of India's great preschool chains will come from founders, not corporates. Bloom Partners backs them." />
+<meta property="og:description" content="We back a handful of founders each year to scale from one great school to a lasting chain — without losing what made them worth choosing." />
 <meta property="og:image"       content="https://bloompartners.xyz/og-image.png" />
 <meta name="twitter:card"       content="summary_large_image" />
 
@@ -53,7 +53,6 @@
   .mono { font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-3); }
   .serif { font-family: var(--serif); }
   .rule { height: 1px; background: var(--line); border: 0; margin: 0; }
-  .rule-thick { height: 1px; background: var(--ink); border: 0; margin: 0; }
 
   .wrap { max-width: 1280px; margin: 0 auto; padding: 0 48px; }
   @media (max-width: 720px) { .wrap { padding: 0 24px; } }
@@ -67,17 +66,13 @@
     border: 1px solid var(--ink);
     background: var(--ink); color: var(--paper);
     cursor: pointer; text-decoration: none;
-    transition: background 160ms ease, color 160ms ease, transform 160ms ease;
+    transition: background 160ms ease, color 160ms ease;
   }
   .btn:hover { background: var(--accent); border-color: var(--accent); }
-  .btn-ghost { background: transparent; color: var(--ink); }
-  .btn-ghost:hover { background: var(--ink); color: var(--paper); }
   .btn .arrow { transition: transform 160ms ease; }
   .btn:hover .arrow { transform: translateX(3px); }
 
   a { color: inherit; }
-
-  .audit-card { scrollbar-width: thin; }
 
   html { scroll-behavior: smooth; }
 
@@ -93,7 +88,6 @@
 
   #root { position: relative; z-index: 2; }
 
-  /* Scroll fade-in */
   .fade-section {
     opacity: 0;
     transform: translateY(28px);
@@ -104,18 +98,6 @@
     transform: translateY(0);
   }
 
-  /* Marquee */
-  @keyframes marquee-scroll {
-    from { transform: translateX(0); }
-    to   { transform: translateX(-50%); }
-  }
-  .marquee-track {
-    display: flex;
-    white-space: nowrap;
-    animation: marquee-scroll 32s linear infinite;
-  }
-
-  /* Pattern row hover */
   .pattern-row {
     transition: background 200ms ease, box-shadow 200ms ease;
   }
@@ -124,73 +106,57 @@
     box-shadow: 0 4px 24px rgba(26,24,21,0.07);
   }
 
-  /* Responsive adjustments */
   @media (max-width: 900px) {
-    .hero-grid { grid-template-columns: 1fr !important; gap: 48px !important; }
-    .patterns-grid { grid-template-columns: 60px 1fr !important; }
+    .hero-grid   { grid-template-columns: 1fr !important; gap: 48px !important; }
     .pillar-grid { grid-template-columns: 1fr !important; }
     .criteria-grid { grid-template-columns: 1fr !important; }
-    .audit-grid { grid-template-columns: 1fr !important; }
-    .footer-grid { grid-template-columns: 1fr 1fr !important; }
+    .audit-grid  { grid-template-columns: 1fr !important; }
     .complete-grid { grid-template-columns: 1fr !important; }
+    .process-grid  { grid-template-columns: 1fr !important; }
   }
 
   @media (max-width: 600px) {
-    /* Nav: hide links, show only logo + CTA */
     .nav-links { display: none !important; }
     .nav-inner { padding: 14px 20px !important; }
 
-    /* Tighten all section vertical padding */
     section { padding-top: 72px !important; padding-bottom: 72px !important; }
     footer  { padding-top: 72px !important; padding-bottom: 32px !important; }
 
-    /* Hero meta strip: stack */
     .hero-meta { flex-direction: column !important; gap: 4px !important; margin-bottom: 28px !important; }
-
-    /* Audit card inner */
-    .audit-inner { padding: 32px 20px 20px !important; }
-    .audit-nav   { padding: 14px 20px !important; }
-
-    /* Criteria items: remove left padding/border on first */
-    .criteria-item { padding: 32px 0 !important; border-left: none !important; padding-left: 0 !important; }
-
-    /* Footer: single column */
-    .footer-grid   { grid-template-columns: 1fr !important; gap: 28px !important; }
-    .footer-bottom { flex-direction: column !important; gap: 6px !important; align-items: flex-start !important; }
-
-    /* Pillar figures: reduce height on mobile */
-    .pillar-figure { display: none !important; }
-
-    /* Patterns: number + title row, body spans full width below */
-    .pattern-row { grid-template-columns: 40px 1fr !important; gap: 8px 16px !important; }
-    .patterns-body { grid-column: 1 / -1 !important; padding-top: 4px; }
-
-    /* Hero: hide tagline on mobile, compress spacing so CTA is visible */
     .hero-tagline { display: none !important; }
     section#top { padding-top: 36px !important; padding-bottom: 64px !important; }
-    .hero-meta { margin-bottom: 24px !important; }
-    #hero-grid { margin-top: 40px !important; gap: 36px !important; }
-    section#top h1 { font-size: 42px !important; }
+    .hero-meta  { margin-bottom: 24px !important; }
+    #hero-grid  { margin-top: 40px !important; gap: 36px !important; }
+    section#top h1 { font-size: 38px !important; }
 
-    /* Premise: collapse empty left column */
+    .audit-inner { padding: 32px 20px 20px !important; }
+    .audit-nav   { padding: 14px 20px !important; }
+    .audit-sticky { position: static !important; }
+
+    .criteria-item { padding: 32px 0 !important; border-left: none !important; padding-left: 0 !important; }
+
     .premise-grid { grid-template-columns: 1fr !important; gap: 24px !important; }
     .premise-grid > div:first-child { display: none !important; }
 
-    /* Audit: remove sticky so left col doesn't overlap right col */
-    .audit-sticky { position: static !important; }
+    .pattern-row { grid-template-columns: 40px 1fr !important; gap: 8px 16px !important; }
+    .patterns-body { grid-column: 1 / -1 !important; padding-top: 4px; }
+
+    .pillar-figure { display: none !important; }
+
+    .process-step { grid-template-columns: 1fr !important; }
   }
 </style>
 </head>
 <body>
 
 <form name="bloom-audit" netlify netlify-honeypot="bot-field" hidden>
-  <input name="name" /><input name="email" /><input name="school" /><input name="city" />
-  <input name="school_type" /><input name="centres" /><input name="students" />
-  <input name="operating_years" /><input name="differentiation" /><input name="enrollment_trend" />
-  <input name="scale_vision" /><input name="obstacle" /><input name="next_location" />
-  <input name="independent_leaders" /><input name="business_expertise" /><input name="ops_expertise" />
-  <input name="academic_leadership" /><input name="finance_clarity" /><input name="data_usage" />
-  <input name="tech_support" /><input name="systems_codified" />
+  <input name="first_name" /><input name="email" /><input name="whatsapp" /><input name="anything_else" />
+  <input name="school_type" /><input name="units" /><input name="students" />
+  <input name="waitlist" /><input name="parent_word" />
+  <input name="years_running" /><input name="independence" /><input name="senior_leaders" /><input name="timeline" />
+  <input name="revenue_per_unit" /><input name="operating_margin" /><input name="utilization" /><input name="new_unit_capex" />
+  <input name="target_units" /><input name="capital_need" /><input name="scaling_unlocks" />
+  <input name="codification" /><input name="open_to_capital" /><input name="why_now" />
 </form>
 
 <div id="root"></div>
@@ -200,11 +166,9 @@
 <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" crossorigin></script>
 
 <script type="text/babel">
-const { useState, useEffect, useRef, useMemo, useCallback } = React;
+const { useState, useEffect, useRef, useMemo } = React;
 
-/* ─── Design tokens ───────────────────────────────────────────────────────── */
-
-/* ─── Shared atoms ────────────────────────────────────────────────────────── */
+/* ─── Shared atoms ─────────────────────────────────────────────────────────── */
 
 function SectionLabel({ num, label }) {
   return (
@@ -216,13 +180,13 @@ function SectionLabel({ num, label }) {
   );
 }
 
-/* ─── Top nav ─────────────────────────────────────────────────────────────── */
+/* ─── Nav ──────────────────────────────────────────────────────────────────── */
 
 function TopNav() {
   return (
     <nav style={{
       position: "sticky", top: 0, zIndex: 50,
-      background: "rgba(235,232,226,0.85)",
+      background: "rgba(235,232,226,0.88)",
       backdropFilter: "blur(8px)",
       WebkitBackdropFilter: "blur(8px)",
       borderBottom: "1px solid var(--line-soft)"
@@ -236,7 +200,7 @@ function TopNav() {
             width: 22, height: 22, border: "1.5px solid var(--accent)",
             borderRadius: 4, background: "var(--paper)",
             display: "inline-flex", alignItems: "center", justifyContent: "center",
-            fontFamily: "var(--serif)", fontStyle: "normal", fontWeight: 700, fontSize: 15, lineHeight: 1,
+            fontFamily: "var(--serif)", fontWeight: 700, fontSize: 15, lineHeight: 1,
             color: "var(--accent)"
           }}>B</span>
           <span style={{ fontFamily: "var(--serif)", fontSize: 17, letterSpacing: "-0.01em" }}>
@@ -244,11 +208,11 @@ function TopNav() {
           </span>
         </a>
         <div className="nav-links" style={{ display: "flex", alignItems: "center", gap: 32 }}>
-          <a href="#patterns" className="mono" style={{ textDecoration: "none" }}>Patterns</a>
-          <a href="#work" className="mono" style={{ textDecoration: "none" }}>What we do</a>
-          <a href="#fit" className="mono" style={{ textDecoration: "none" }}>Fit</a>
+          <a href="#thesis"       className="mono" style={{ textDecoration: "none" }}>Our thesis</a>
+          <a href="#what-we-bring" className="mono" style={{ textDecoration: "none" }}>What we do</a>
+          <a href="#who"          className="mono" style={{ textDecoration: "none" }}>Who</a>
           <a href="#audit" className="btn" style={{ padding: "10px 18px", fontSize: 13 }}>
-            Begin audit <span className="arrow">→</span>
+            Take the audit <span className="arrow">→</span>
           </a>
         </div>
       </div>
@@ -256,15 +220,15 @@ function TopNav() {
   );
 }
 
-/* ─── Hero ────────────────────────────────────────────────────────────────── */
+/* ─── Hero ─────────────────────────────────────────────────────────────────── */
 
 function Hero() {
   return (
     <section id="top" style={{ paddingTop: 48, paddingBottom: 140, position: "relative" }}>
       <div className="wrap">
         <div className="hero-meta" style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", marginBottom: 48 }}>
-          <span className="mono hero-tagline">CAPITAL + OPERATIONS · INDIA</span>
-          <span className="mono" style={{ color: "var(--ink-3)" }}>BLOOM PARTNERS</span>
+          <span className="mono hero-tagline">Scaling schools with a soul · Bloom Partners</span>
+          <span className="mono" style={{ color: "var(--ink-3)" }}>Bloom Partners</span>
         </div>
 
         <h1 style={{
@@ -274,9 +238,9 @@ function Hero() {
           lineHeight: 0.98,
           letterSpacing: "-0.025em",
           margin: 0,
-          maxWidth: "20ch",
+          maxWidth: "18ch",
         }}>
-          Capital and operations for India's <span style={{ whiteSpace: "nowrap" }}>founder-led</span> <span style={{ color: "var(--accent)" }}>preschools.</span>
+          Capital and operating partners for India's best <span style={{ whiteSpace: "nowrap" }}>founder-led</span> <span style={{ color: "var(--accent)" }}>preschools.</span>
         </h1>
 
         <div className="hero-grid" style={{
@@ -287,19 +251,16 @@ function Hero() {
           alignItems: "start"
         }} id="hero-grid">
           <p style={{ fontSize: 17, lineHeight: 1.6, color: "var(--ink-2)", margin: 0, maxWidth: "44ch" }}>
-            The next generation of India's great preschool chains will come from founders, not corporates. Bloom backs them.
+            We back a handful of founders each year to scale from one great school to a lasting chain — without losing what made them worth choosing.
           </p>
 
-          <div style={{
-            paddingLeft: 32,
-            borderLeft: "1px solid var(--line)"
-          }}>
-            <div className="mono" style={{ color: "var(--accent)", marginBottom: 18 }}>How to begin</div>
+          <div style={{ paddingLeft: 32, borderLeft: "1px solid var(--line)" }}>
+            <div className="mono" style={{ color: "var(--accent)", marginBottom: 18 }}>The only door in</div>
             <p style={{ fontSize: 17, lineHeight: 1.6, color: "var(--ink-2)", margin: 0 }}>
-              Take the audit. Five minutes. If we think there's a fit — on capital, operations, or both — you'll hear from us within 48 hours.
+              A readiness audit — five minutes, honest answers — is the only way to start a conversation with us.
             </p>
-            <a href="#audit-card" className="btn" style={{ marginTop: 28 }}>
-              Begin the audit <span className="arrow">→</span>
+            <a href="#audit" className="btn" style={{ marginTop: 28 }}>
+              Take the readiness audit <span className="arrow">→</span>
             </a>
           </div>
         </div>
@@ -308,30 +269,33 @@ function Hero() {
   );
 }
 
-/* ─── Premise ─────────────────────────────────────────────────────────────── */
+/* ─── Section 02: Why We Exist ─────────────────────────────────────────────── */
 
-function Premise() {
+function WhyWeExist() {
   return (
-    <section id="premise" style={{ padding: "140px 0", background: "var(--paper-2)", borderTop: "1px solid var(--line-soft)", borderBottom: "1px solid var(--line-soft)" }}>
+    <section id="thesis" style={{ padding: "140px 0", background: "var(--paper-2)", borderTop: "1px solid var(--line-soft)", borderBottom: "1px solid var(--line-soft)" }}>
       <div className="wrap">
-        <SectionLabel num="01" label="Why we exist" />
+        <SectionLabel num="01" label="Our thesis" />
         <h2 style={{
           fontFamily: "var(--serif)", fontWeight: 400,
           fontSize: "clamp(36px, 4.4vw, 64px)", lineHeight: 1.05,
-          letterSpacing: "-0.02em", margin: "32px 0 0", maxWidth: "22ch"
+          letterSpacing: "-0.02em", margin: "32px 0 0", maxWidth: "20ch"
         }}>
-          The best preschools in India are built by founders. Most never get past <em style={{ color: "var(--accent)" }}>school two.</em>
+          Bigger should mean <em style={{ color: "var(--accent)" }}>better.</em>
         </h2>
 
         <div className="premise-grid" style={{ marginTop: 80, display: "grid", gridTemplateColumns: "1fr 2fr", gap: 80, alignItems: "start" }}>
           <div />
-          <div>
-            <p style={{ fontSize: 17, lineHeight: 1.55, margin: 0 }}>
-              Not for lack of vision — for lack of capital and the operational scaffolding to grow.{" "}
-              <span style={{ color: "var(--ink-3)" }}>Institutional capital won't touch them. The ceiling is structural, not personal.</span>
-              {" "}The next generation of India's great preschool chains will come from{" "}
-              <em style={{ color: "var(--accent)" }}>founders, not corporates.</em>
-              {" "}Bloom exists to make that possible.
+          <div style={{ display: "grid", gap: 24 }}>
+            <p style={{ fontSize: 17, lineHeight: 1.65, margin: 0 }}>
+              The best preschools in India are built by founders. They reach a ceiling at one or two schools — not for lack of vision, but for lack of capital and operational scaffolding to grow.
+            </p>
+            <p style={{ fontSize: 17, lineHeight: 1.65, margin: 0, color: "var(--ink-2)" }}>
+              Most schools dilute their impact the moment they add a second location. We exist to prove the opposite — that bigger can mean better — and to back the founders who do it without losing what made them worth choosing in the first place.
+            </p>
+            <p style={{ fontSize: 17, lineHeight: 1.65, margin: 0 }}>
+              The next generation of India's great preschool chains will come from founders, not from corporates.{" "}
+              <em style={{ color: "var(--accent)" }}>Bloom backs them.</em>
             </p>
           </div>
         </div>
@@ -340,27 +304,27 @@ function Premise() {
   );
 }
 
-/* ─── Patterns ────────────────────────────────────────────────────────────── */
+/* ─── Section 03: What We See ──────────────────────────────────────────────── */
 
 const PATTERNS = [
   {
     n: "i.",
-    title: "The capital gap.",
-    body: "Personal capital and friendly money runs dry by school two. Institutional capital won't look at preschools. Founders with the vision and the model still can't raise what they need to grow.",
+    title: "Founder dependency.",
+    body: "Every decision flows through the founder. Nothing moves without your say. The school runs — but only because you never stop.",
   },
   {
     n: "ii.",
     title: "Growth feels like risk.",
-    body: "A second location, a new centre. The ambition is there. But without organised capital or an operational model that replicates, you don't know what breaks when you stretch.",
+    body: "A second campus, a franchise, a new centre. The ambition is there. But you don't know what breaks when you stretch.",
   },
   {
     n: "iii.",
-    title: "No one has done this before you.",
-    body: "There's no playbook for scaling an independent preschool in India. No network of operators who've been through it. No investors who understand what you're building.",
+    title: "You can't scale your founding team.",
+    body: "Good people. Unclear roles. Systems that live in heads, not documents. The ceiling is structural, not personal.",
   },
 ];
 
-function Patterns() {
+function WhatWeSee() {
   return (
     <section id="patterns" style={{ padding: "140px 0" }}>
       <div className="wrap">
@@ -370,17 +334,16 @@ function Patterns() {
           fontSize: "clamp(36px, 4.4vw, 64px)", lineHeight: 1.05,
           letterSpacing: "-0.02em", margin: "32px 0 0", maxWidth: "22ch"
         }}>
-          What we see, <em style={{ color: "var(--accent)" }}>repeatedly.</em>
+          What we see, <em style={{ color: "var(--accent)" }}>again and again.</em>
         </h2>
         <p style={{ marginTop: 24, color: "var(--ink-2)", maxWidth: "52ch", fontSize: 17, lineHeight: 1.55 }}>
-          Three things show up across almost every founder-led preschool we talk to. Not failures — just the structural reality of having built something great without capital or a playbook behind you.
+          Three things show up in almost every founder-led school we talk to. Not failures — just the structural cost of having grown a school by personal force of will.
         </p>
         <div style={{ marginTop: 80 }}>
           {PATTERNS.map((p, i) => (
             <article key={i} className="pattern-row" style={{
               display: "grid",
               gridTemplateColumns: "80px 1fr 1.6fr",
-
               gap: 48,
               alignItems: "start",
               padding: "44px 0",
@@ -396,7 +359,7 @@ function Patterns() {
               <h3 style={{
                 fontFamily: "var(--serif)", fontWeight: 400,
                 fontSize: "clamp(22px, 2vw, 30px)", lineHeight: 1.15,
-                letterSpacing: "-0.01em", margin: 0, textWrap: "balance"
+                letterSpacing: "-0.01em", margin: 0
               }}>
                 {p.title}
               </h3>
@@ -411,31 +374,31 @@ function Patterns() {
   );
 }
 
-/* ─── What we do ──────────────────────────────────────────────────────────── */
+/* ─── Section 04: What We Bring ────────────────────────────────────────────── */
 
 const PILLARS = [
   {
     n: "01",
     label: "Capital",
-    title: "Organised capital for founders who've earned the right to grow.",
-    body: "We structure and mobilise capital from a network of operator-investors, regional family wealth, and diaspora capital looking for thoughtful India-edu deployment. Not generic growth equity — capital that understands preschools, their unit economics, and their timelines.",
-    tags: ["Operator-investors", "Family office networks", "Diaspora capital", "India-edu focused"],
+    title: "Organized for what the founder actually needs.",
+    body: "Assembled from a network of operator-investors, regional family wealth, and diaspora capital looking for thoughtful India-edu deployment. Equity, debt, or blended — structured per-deal. Not a fund, not generic growth equity. Capital that understands preschools.",
+    tags: ["Operator-investor syndicate", "Family-office partners", "Equity, debt, or blended", "Deal-by-deal SPVs"],
     figure: "model"
   },
   {
     n: "02",
     label: "Operations",
     title: "The unglamorous work of going from one school to ten.",
-    body: "Hiring and training at scale. Parent acquisition systems. Location selection and build-out. Multi-site governance. The things that break between school two and school five — we've mapped them, and we stay in the room until they're working.",
-    tags: ["Hiring & training", "Parent acquisition", "Location selection", "Multi-site governance"],
+    body: "Hiring, training, parent acquisition, location selection, multi-site governance, the quality bar that holds across sites. We sit alongside the founder in the deal — not as a consultant. The school stops running on memory and starts running on structure.",
+    tags: ["SOPs that hold", "Multi-site QA", "Org design", "Founder offload", "Parent acquisition"],
     figure: "ops"
   },
   {
     n: "03",
     label: "Network",
     title: "The people you can't find by searching.",
-    body: "Connections to founders who've already scaled, real-estate operators who understand school requirements, and eventual liquidity routes. The network Bloom has built is not something you can access alone — and it compounds the longer you're part of it.",
-    tags: ["Scaled-school founders", "Real estate operators", "Governance design", "Liquidity planning"],
+    body: "Connections to scaled-school peers, real-estate operators across India, and the eventual liquidity routes — strategic sale, secondary, consolidation — that make the whole thing worth it. The network compounds the longer you're part of it.",
+    tags: ["Operator-peer network", "Real-estate partners", "Liquidity routes"],
     figure: "network"
   },
 ];
@@ -449,12 +412,12 @@ function PillarFigure({ kind }) {
     return (
       <svg viewBox="0 0 320 220" width="100%" style={{ display: "block" }}>
         <rect x="0" y="0" width="320" height="220" fill="var(--paper-2)" />
-        <text x="14" y="16" fontFamily="var(--mono)" fontSize="7" fill="var(--ink-3)" letterSpacing="1.4">PE-GRADE PROJECTION · 5Y EBITDA</text>
+        <text x="14" y="16" fontFamily="var(--mono)" fontSize="7" fill="var(--ink-3)" letterSpacing="1.4">CAPITAL DEPLOYMENT · 5Y PROJECTION</text>
         <line x1="14" y1="22" x2="306" y2="22" stroke="var(--line)" strokeWidth="0.6" />
         {[40, 80, 120, 160].map((y, i) => (
           <g key={y}>
             <line x1="44" y1={y} x2="300" y2={y} stroke="var(--line)" strokeDasharray="1.5 3" strokeWidth="0.7" />
-            <text x="40" y={y + 3} fontFamily="var(--mono)" fontSize="6.5" fill="var(--ink-3)" textAnchor="end" letterSpacing="0.5">{["£8M", "£6M", "£4M", "£2M"][i]}</text>
+            <text x="40" y={y + 3} fontFamily="var(--mono)" fontSize="6.5" fill="var(--ink-3)" textAnchor="end" letterSpacing="0.5">{["₹8cr", "₹6cr", "₹4cr", "₹2cr"][i]}</text>
           </g>
         ))}
         <line x1="44" y1="186" x2="300" y2="186" stroke="var(--ink)" strokeWidth="1" />
@@ -474,10 +437,9 @@ function PillarFigure({ kind }) {
             <circle cx={x} cy={baseY[i]} r="1.8" fill="var(--ink-3)" />
           </g>
         ))}
-        <line x1={xs[5] + 4} y1={projY[5]} x2={xs[5] + 14} y2={projY[5]} stroke="var(--accent)" strokeWidth="1" />
         <g transform="translate(168, 32)">
           <line x1="0" y1="0" x2="14" y2="0" stroke="var(--accent)" strokeWidth="2" />
-          <text x="20" y="3" fontFamily="var(--mono)" fontSize="7" fill="var(--ink)" letterSpacing="0.6">PROJECTED · POST-AUDIT</text>
+          <text x="20" y="3" fontFamily="var(--mono)" fontSize="7" fill="var(--ink)" letterSpacing="0.6">WITH BLOOM · BACKED PATH</text>
         </g>
         <g transform="translate(168, 46)">
           <line x1="0" y1="0" x2="14" y2="0" stroke="var(--ink-3)" strokeWidth="1.2" strokeDasharray="3 3" />
@@ -531,89 +493,43 @@ function PillarFigure({ kind }) {
           ))
         )}
         <line x1="14" y1="200" x2="306" y2="200" stroke="var(--line)" strokeWidth="0.6" />
-        <text x="14" y="212" fontFamily="var(--mono)" fontSize="6.5" fill="var(--ink-3)" letterSpacing="0.8">SOPs IN USE · 84%</text>
-        <text x="108" y="212" fontFamily="var(--mono)" fontSize="6.5" fill="var(--ink-3)" letterSpacing="0.8">OWNERS · 9 / 9</text>
         <text x="306" y="212" fontFamily="var(--mono)" fontSize="6.5" fill="var(--accent)" letterSpacing="0.8" textAnchor="end">FOUNDER LOAD ↓ 62%</text>
-      </svg>
-    );
-  }
-
-  if (kind === "playbook") {
-    const TOC = [
-      { num: "01", t: "Pedagogy" },
-      { num: "02", t: "Daily rituals" },
-      { num: "03", t: "Curriculum" },
-      { num: "04", t: "Assessment" },
-      { num: "05", t: "Teacher training" },
-      { num: "06", t: "Parent compact" },
-    ];
-    return (
-      <svg viewBox="0 0 320 220" width="100%" style={{ display: "block" }}>
-        <rect x="0" y="0" width="320" height="220" fill="var(--paper-2)" />
-        {[0, 1, 2].map((i) => (
-          <g key={i} transform={`translate(${22 + i * 6}, ${22 + i * 6})`}>
-            <rect width="240" height="180" fill="var(--paper)" stroke="var(--ink)" strokeWidth="1" />
-          </g>
-        ))}
-        <line x1="34" y1="34" x2="34" y2="214" stroke="var(--accent-2)" strokeWidth="2" />
-        <g transform="translate(48, 44)">
-          <text x="0" y="0" fontFamily="var(--mono)" fontSize="7" fill="var(--accent-2)" letterSpacing="1.5">THE PLAYBOOK · V.1</text>
-          <text x="0" y="20" fontFamily="var(--serif)" fontSize="13" fontStyle="italic" fill="var(--ink)">Contents</text>
-          <line x1="0" y1="28" x2="220" y2="28" stroke="var(--ink)" strokeWidth="1" />
-        </g>
-        {TOC.map((row, i) => {
-          const col = i % 2;
-          const r = Math.floor(i / 2);
-          const x = 48 + col * 116;
-          const y = 88 + r * 30;
-          return (
-            <g key={i} transform={`translate(${x}, ${y})`}>
-              <text x="0" y="0" fontFamily="var(--mono)" fontSize="7" fill="var(--ink-3)" letterSpacing="1">{row.num}</text>
-              <text x="20" y="0" fontFamily="var(--serif)" fontSize="11" fill="var(--ink)">{row.t}</text>
-              <line x1="0" y1="8" x2="100" y2="8" stroke="var(--line)" strokeWidth="1" />
-            </g>
-          );
-        })}
       </svg>
     );
   }
 
   if (kind === "network") {
     const nodes = [
-      { x: 160, y: 110, label: "BLOOM", r: 28, accent: true },
-      { x: 160, y: 42,  label: "FOUNDERS",   r: 20, accent: false },
-      { x: 264, y: 82,  label: "CAPITAL",     r: 20, accent: false },
-      { x: 264, y: 148, label: "REAL ESTATE", r: 20, accent: false },
-      { x: 160, y: 188, label: "LIQUIDITY",   r: 20, accent: false },
-      { x:  56, y: 148, label: "OPERATORS",   r: 20, accent: false },
-      { x:  56, y:  82, label: "PEERS",       r: 20, accent: false },
+      { x: 160, y: 110, label: "BLOOM",       r: 26, accent: true },
+      { x: 160, y:  42, label: "FOUNDERS",    r: 20, accent: false },
+      { x: 262, y:  80, label: "CAPITAL",     r: 20, accent: false },
+      { x: 262, y: 148, label: "REAL ESTATE", r: 20, accent: false },
+      { x: 160, y: 184, label: "LIQUIDITY",   r: 20, accent: false },
+      { x:  58, y: 148, label: "OPERATORS",   r: 20, accent: false },
+      { x:  58, y:  80, label: "PEERS",       r: 20, accent: false },
     ];
     const edges = [[0,1],[0,2],[0,3],[0,4],[0,5],[0,6],[1,6],[2,3],[4,5]];
     return (
-      <svg viewBox="0 0 320 230" width="100%" style={{ display: "block" }}>
-        <rect x="0" y="0" width="320" height="230" fill="var(--paper-2)" />
+      <svg viewBox="0 0 320 228" width="100%" style={{ display: "block" }}>
+        <rect x="0" y="0" width="320" height="228" fill="var(--paper-2)" />
         <text x="14" y="16" fontFamily="var(--mono)" fontSize="7" fill="var(--ink-3)" letterSpacing="1.4">BLOOM NETWORK · ACTIVE CONNECTIONS</text>
         <line x1="14" y1="22" x2="306" y2="22" stroke="var(--line)" strokeWidth="0.6" />
         {edges.map(([a, b], i) => (
-          <line key={i}
-            x1={nodes[a].x} y1={nodes[a].y}
-            x2={nodes[b].x} y2={nodes[b].y}
-            stroke="var(--line)" strokeWidth="1" strokeDasharray="2 3" />
+          <line key={i} x1={nodes[a].x} y1={nodes[a].y} x2={nodes[b].x} y2={nodes[b].y}
+            stroke="var(--line)" strokeWidth="1.2" strokeDasharray="2 4" />
         ))}
         {nodes.map((n, i) => (
           <g key={i}>
             <circle cx={n.x} cy={n.y} r={n.r}
               fill={n.accent ? "var(--accent)" : "var(--paper)"}
-              stroke={n.accent ? "var(--accent)" : "var(--ink)"}
-              strokeWidth="1" />
-            <text x={n.x} y={n.y + (n.accent ? 3 : 3)} textAnchor="middle"
+              stroke={n.accent ? "var(--accent)" : "var(--ink)"} strokeWidth="1" />
+            <text x={n.x} y={n.y + 3} textAnchor="middle"
               fontFamily="var(--mono)" fontSize={n.accent ? 7 : 5.5}
-              fill={n.accent ? "var(--paper)" : "var(--ink)"}
-              letterSpacing="0.6">{n.label}</text>
+              fill={n.accent ? "var(--paper)" : "var(--ink)"} letterSpacing="0.5">{n.label}</text>
           </g>
         ))}
-        <line x1="14" y1="218" x2="306" y2="218" stroke="var(--line)" strokeWidth="0.6" />
-        <text x="14" y="228" fontFamily="var(--mono)" fontSize="6.5" fill="var(--ink-3)" letterSpacing="0.8">CONNECTIONS · COMPOUNDING OVER TIME</text>
+        <line x1="14" y1="216" x2="306" y2="216" stroke="var(--line)" strokeWidth="0.6" />
+        <text x="14" y="226" fontFamily="var(--mono)" fontSize="6.5" fill="var(--ink-3)" letterSpacing="0.8">NETWORK COMPOUNDS OVER TIME</text>
       </svg>
     );
   }
@@ -621,9 +537,9 @@ function PillarFigure({ kind }) {
   return null;
 }
 
-function WhatWeDo() {
+function WhatWeBring() {
   return (
-    <section id="work" style={{ padding: "140px 0", background: "var(--surface-dark)", color: "var(--paper)" }}>
+    <section id="what-we-bring" style={{ padding: "140px 0", background: "var(--surface-dark)", color: "var(--paper)" }}>
       <div className="wrap">
         <div style={{ display: "flex", alignItems: "baseline", gap: 14, marginBottom: 64 }}>
           <span className="mono" style={{ color: "var(--accent-2)", fontWeight: 500 }}>03</span>
@@ -636,11 +552,11 @@ function WhatWeDo() {
           fontSize: "clamp(36px, 4.4vw, 64px)", lineHeight: 1.05,
           letterSpacing: "-0.02em", margin: 0, maxWidth: "20ch"
         }}>
-          Three things for founders ready to scale from <em style={{ color: "var(--accent-2)" }}>1–2 schools to 5–15.</em>
+          Three things. <em style={{ color: "var(--accent-2)" }}>Run together.</em>
         </h2>
 
         <p style={{ marginTop: 24, color: "var(--paper-3)", maxWidth: "52ch", fontSize: 17, lineHeight: 1.55 }}>
-          Capital, operations, and network — deliberately combined, because scaling an Indian preschool requires all three, and they only work when they're built together.
+          Capital, operations, and network — for founders ready to go from 1–2 schools to 5–15. Deliberately interlocked, because that's how scaling actually works.
         </p>
 
         <div style={{ marginTop: 96, display: "grid", gap: 72 }}>
@@ -661,8 +577,7 @@ function WhatWeDo() {
                 <h3 style={{
                   fontFamily: "var(--serif)", fontWeight: 400,
                   fontSize: "clamp(28px, 3vw, 40px)", lineHeight: 1.1,
-                  letterSpacing: "-0.015em", margin: 0,
-                  color: "var(--paper)"
+                  letterSpacing: "-0.015em", margin: 0, color: "var(--paper)"
                 }}>
                   {p.title}
                 </h3>
@@ -673,7 +588,7 @@ function WhatWeDo() {
                   {p.tags.map((t) => (
                     <span key={t} className="mono" style={{
                       padding: "6px 10px",
-                      border: "1px solid rgba(235,232,226,0.3)",
+                      border: "1px solid rgba(235,232,226,0.25)",
                       color: "var(--paper-3)"
                     }}>{t}</span>
                   ))}
@@ -690,43 +605,42 @@ function WhatWeDo() {
   );
 }
 
-/* ─── Who we work with ────────────────────────────────────────────────────── */
+/* ─── Section 05: Who We Partner With ──────────────────────────────────────── */
 
 const CRITERIA = [
   {
     k: "A",
-    title: "A preschool with a proven identity.",
-    body: "A differentiated early-years philosophy that's already lived, not aspirational. Parents chose you for a reason and can articulate it. Staff can too. The model works — it just hasn't scaled.",
+    title: "A school with a clear identity.",
+    body: "A differentiated philosophy that's already lived, not aspirational. Parents can articulate why they chose you. So can your staff.",
   },
   {
     k: "B",
-    title: "A founder who wants to build a chain.",
-    body: "Someone who wants to scale up, not step back. Clear on the vision of 5–15 schools. Backed by one or two leaders who could run a campus when you're not in the room.",
+    title: "A founder with vision.",
+    body: "Someone who wants to scale up — not step back. Backed by a team of two or three leaders with the depth to run the organisation when you're not in the room.",
   },
   {
     k: "C",
-    title: "Ready for capital and operating partners — not consultants.",
-    body: "You've thought seriously about the next location. You understand that growth requires organised capital and a replicable model. We are not exploratory advisors — we back founders who are ready to move.",
+    title: "Real commitment, already underway.",
+    body: "You've started codifying. Identified people who could run a new campus. Drafted a plan, however rough. We are not the people you should explore this with — we are the people you bring in once you've explored it yourself.",
   },
 ];
 
-function WhatWeLookFor() {
+function WhoWePartnerWith() {
   return (
-    <section id="fit" style={{ padding: "140px 0" }}>
+    <section id="who" style={{ padding: "140px 0" }}>
       <div className="wrap">
-        <SectionLabel num="04" label="Who we work with" />
+        <SectionLabel num="04" label="Who" />
 
         <h2 style={{
           fontFamily: "var(--serif)", fontWeight: 400,
           fontSize: "clamp(36px, 4.4vw, 64px)", lineHeight: 1.05,
-          letterSpacing: "-0.02em", margin: "32px 0 0", maxWidth: "22ch", textWrap: "balance"
+          letterSpacing: "-0.02em", margin: "32px 0 0", maxWidth: "22ch"
         }}>
-          Who we back.{" "}
-          <em style={{ color: "var(--accent)" }}>Three things, before we engage.</em>
+          Three things, before <em style={{ color: "var(--accent)" }}>we engage.</em>
         </h2>
 
         <p style={{ marginTop: 24, color: "var(--ink-2)", maxWidth: "52ch", fontSize: 17, lineHeight: 1.55 }}>
-          We work with a small number of founders each year. The audit is how we assess fit — on capital readiness, operational stage, and ambition. Not every founder is right for us, and we're not right for every founder.
+          We work with very few schools each year — not as a stance, but because the work only goes well when these three things are already true.
         </p>
 
         <div className="criteria-grid" style={{ marginTop: 96, display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 0 }}>
@@ -745,8 +659,7 @@ function WhatWeLookFor() {
               }}>{c.k}</div>
               <h3 style={{
                 fontFamily: "var(--serif)", fontWeight: 400,
-                fontSize: 24, lineHeight: 1.2, letterSpacing: "-0.01em",
-                margin: 0
+                fontSize: 24, lineHeight: 1.2, letterSpacing: "-0.01em", margin: 0
               }}>{c.title}</h3>
               <p style={{ marginTop: 14, color: "var(--ink-2)", fontSize: 15, lineHeight: 1.6, margin: "14px 0 0" }}>
                 {c.body}
@@ -759,99 +672,191 @@ function WhatWeLookFor() {
   );
 }
 
-/* ─── Audit ───────────────────────────────────────────────────────────────── */
+/* ─── Section 07: Process ───────────────────────────────────────────────────── */
+
+const PROCESS_STEPS = [
+  {
+    n: "1",
+    title: "Readiness Profile",
+    timing: "Immediate",
+    body: "Your audit submission generates a personalised profile delivered to your email — your strengths, your gaps, and one paragraph of useful advice on what to do next. Yours to keep, whether or not we engage.",
+  },
+  {
+    n: "2",
+    title: "First call",
+    timing: "Within 5 business days, only if fit",
+    body: "A 30-minute conversation. Mutual fit-test. We talk about your school, your ambition, our model, and whether we want to spend more time together.",
+  },
+  {
+    n: "3",
+    title: "Diligence",
+    timing: "2–3 weeks",
+    body: "Site visits, financial review, founder and team interviews, parent NPS check, pedagogy review.",
+  },
+  {
+    n: "4",
+    title: "Term sheet",
+    timing: "1–2 weeks",
+    body: "Capital structure, governance, equity terms, operating commitments — laid out cleanly.",
+  },
+  {
+    n: "5",
+    title: "Capital syndication and close",
+    timing: "4–6 weeks",
+    body: "We organize the capital from our partner network. You stay focused on running the school.",
+  },
+  {
+    n: "6",
+    title: "Operating partnership",
+    timing: "Ongoing",
+    body: "We sit alongside you for the scaling phase, with defined cadences, clear ownership, and an eventual exit plan.",
+  },
+];
+
+function Process() {
+  return (
+    <section id="process" style={{ padding: "140px 0", background: "var(--surface-dark)", color: "var(--paper)" }}>
+      <div className="wrap">
+        <div style={{ display: "flex", alignItems: "baseline", gap: 14, marginBottom: 64 }}>
+          <span className="mono" style={{ color: "var(--accent-2)", fontWeight: 500 }}>06</span>
+          <span style={{ flex: 1, height: 1, background: "rgba(235,232,226,0.2)" }} />
+          <span className="mono" style={{ color: "var(--paper-3)" }}>Process</span>
+        </div>
+
+        <h2 style={{
+          fontFamily: "var(--serif)", fontWeight: 400,
+          fontSize: "clamp(36px, 4.4vw, 64px)", lineHeight: 1.05,
+          letterSpacing: "-0.02em", margin: 0, maxWidth: "18ch"
+        }}>
+          What happens <em style={{ color: "var(--accent-2)" }}>after.</em>
+        </h2>
+
+        <div className="process-grid" style={{ marginTop: 80, display: "grid", gridTemplateColumns: "1fr 1fr", gap: 2 }}>
+          {PROCESS_STEPS.map((s, i) => (
+            <div key={i} style={{
+              padding: "36px 32px",
+              borderTop: "1px solid rgba(235,232,226,0.12)",
+              borderLeft: i % 2 === 1 ? "1px solid rgba(235,232,226,0.12)" : "none",
+            }}>
+              <div style={{ display: "flex", alignItems: "baseline", gap: 16, marginBottom: 16 }}>
+                <span style={{ fontFamily: "var(--serif)", fontStyle: "italic", fontSize: 24, color: "var(--accent-2)", lineHeight: 1 }}>{s.n}.</span>
+                <div>
+                  <div style={{ fontFamily: "var(--serif)", fontSize: 18, color: "var(--paper)", lineHeight: 1.2 }}>{s.title}</div>
+                  <div className="mono" style={{ color: "var(--paper-3)", marginTop: 4 }}>{s.timing}</div>
+                </div>
+              </div>
+              <p style={{ fontSize: 15, lineHeight: 1.6, color: "var(--paper-3)", margin: 0 }}>{s.body}</p>
+            </div>
+          ))}
+        </div>
+
+        <div style={{ marginTop: 64, paddingTop: 32, borderTop: "1px solid rgba(235,232,226,0.12)" }}>
+          <p style={{ fontFamily: "var(--serif)", fontStyle: "italic", fontSize: 18, color: "var(--paper-3)", margin: 0 }}>
+            Total: roughly 3–4 months from audit submission to capital in the bank, in a typical deal.
+          </p>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ─── Audit ─────────────────────────────────────────────────────────────────── */
 
 const QUESTIONS = [
-  // Part 1 — Your School
-  { id: "school_type", section: "Your School", prompt: "What type of school do you run?", type: "choice", options: [
-    { v: "preschool",    label: "Preschool / Early years" },
-    { v: "primary",      label: "Primary / Middle / High school" },
-    { v: "micro",        label: "Micro school" },
-    { v: "afterschool",  label: "After-school centre" },
-    { v: "other",        label: "Other" },
+  // Section 1 — Your School
+  { id: "school_type", section: "Your School", prompt: "What kind of school are you running?", type: "choice", options: [
+    { v: "preschool",   label: "Preschool" },
+    { v: "microschool", label: "Microschool" },
+    { v: "k12",         label: "K-12" },
+    { v: "hybrid",      label: "Hybrid" },
+    { v: "other",       label: "Other" },
   ]},
-  { id: "centres", section: "Your School", prompt: "How many centres do you currently operate?", type: "choice", options: [
-    { v: "1",   label: "1" },
-    { v: "2-3", label: "2–3" },
-    { v: "4-6", label: "4–6" },
-    { v: "7+",  label: "7 or more" },
+  { id: "units", section: "Your School", prompt: "How many units do you currently operate?", type: "number", min: 1, placeholder: "e.g. 3" },
+  { id: "students", section: "Your School", prompt: "How many students are enrolled across all your units?", type: "number", min: 1, placeholder: "e.g. 240" },
+  { id: "waitlist", section: "Your School", prompt: "What's the waitlist depth at your most-popular unit, in months?", type: "choice", options: [
+    { v: "0",    label: "No waitlist" },
+    { v: "1-3",  label: "1–3 months" },
+    { v: "3-6",  label: "3–6 months" },
+    { v: "6-12", label: "6–12 months" },
+    { v: "12+",  label: "12+ months" },
   ]},
-  { id: "students", section: "Your School", prompt: "How many students are currently enrolled across all centres?", type: "choice", options: [
-    { v: "under100",  label: "Under 100" },
-    { v: "100-300",   label: "100–300" },
-    { v: "300-600",   label: "300–600" },
-    { v: "600-1000",  label: "600–1,000" },
-    { v: "over1000",  label: "Over 1,000" },
-  ]},
-  { id: "operating_years", section: "Your School", prompt: "How long have you been operating?", type: "choice", options: [
+  { id: "parent_word", section: "Your School", prompt: "In one sentence: what do parents say when they tell others about your school?", type: "text", maxChars: 200, placeholder: "\"The teachers actually know my child...\"" },
+
+  // Section 2 — Founder & Team
+  { id: "years_running", section: "Founder & Team", prompt: "How long have you been running this school?", type: "choice", options: [
     { v: "under2", label: "Under 2 years" },
     { v: "2-5",    label: "2–5 years" },
     { v: "5-10",   label: "5–10 years" },
-    { v: "over10", label: "Over 10 years" },
+    { v: "10+",    label: "10+ years" },
   ]},
-  { id: "differentiation", section: "Your School", prompt: "How would your most loyal parent describe what makes your school different?", sub: "In their words, not yours.", type: "textarea", placeholder: "They'd say…" },
-  { id: "enrollment_trend", section: "Your School", prompt: "How has your enrolment trended over the last two years?", type: "choice", options: [
-    { v: "fast",     label: "Growing fast — we can barely keep up" },
-    { v: "steady",   label: "Growing steadily" },
-    { v: "flat",     label: "Flat" },
-    { v: "declining",label: "Declining" },
-    { v: "early",    label: "Too early to tell" },
+  { id: "independence", section: "Founder & Team", prompt: "Could the school run for 60 days without you?", type: "choice", options: [
+    { v: "not_at_all",  label: "Not at all" },
+    { v: "mostly_not",  label: "Mostly not" },
+    { v: "partially",   label: "Partially" },
+    { v: "mostly",      label: "Mostly yes" },
+    { v: "fully",       label: "Fully" },
   ]},
-  // Part 2 — Your Ambition
-  { id: "scale_vision", section: "Your Ambition", prompt: "What does scale look like, for you, in five years?", type: "choice", options: [
-    { v: "city",      label: "2–3 more centres in the same city" },
-    { v: "national",  label: "A national presence — 10 or more locations" },
-    { v: "franchise", label: "A franchise model with partners running new locations" },
-    { v: "unsure",    label: "Honestly not sure yet" },
+  { id: "senior_leaders", section: "Founder & Team", prompt: "Do you have at least two senior leaders — academic and ops — who could each independently run a campus?", type: "choice", options: [
+    { v: "yes",         label: "Yes" },
+    { v: "in_progress", label: "In progress" },
+    { v: "not_yet",     label: "Not yet" },
   ]},
-  { id: "obstacle", section: "Your Ambition", prompt: "What is your single biggest obstacle to scaling right now?", type: "choice", options: [
-    { v: "ops",        label: "I'm too involved in day-to-day operations" },
-    { v: "leadership", label: "I don't have the right leadership team yet" },
-    { v: "capital",    label: "I don't have the capital to grow" },
-    { v: "clarity",    label: "I don't have the financial clarity to make growth decisions" },
-    { v: "systems",    label: "Our systems and processes aren't ready to replicate" },
+  { id: "timeline", section: "Founder & Team", prompt: "Timeline from today to your goal scale, in years?", type: "number", min: 1, max: 20, placeholder: "e.g. 4" },
+
+  // Section 3 — Economics
+  { id: "revenue_per_unit", section: "Economics", prompt: "Annual revenue per unit at your most mature unit?", type: "choice", options: [
+    { v: "under50L",  label: "Under ₹50L" },
+    { v: "50L-1cr",   label: "₹50L – ₹1 cr" },
+    { v: "1-2cr",     label: "₹1 – ₹2 cr" },
+    { v: "2-5cr",     label: "₹2 – ₹5 cr" },
+    { v: "5cr+",      label: "₹5 cr+" },
   ]},
-  { id: "next_location", section: "Your Ambition", prompt: "When are you looking to open your next location?", type: "choice", options: [
-    { v: "12months", label: "Within 12 months" },
-    { v: "1-2years", label: "1–2 years" },
-    { v: "2-3years", label: "2–3 years" },
-    { v: "flexible", label: "No fixed timeline — when we're ready" },
+  { id: "operating_margin", section: "Economics", prompt: "Operating margin (EBITDA-ish) at your most mature unit?", type: "choice", options: [
+    { v: "under10",    label: "Under 10%" },
+    { v: "10-20",      label: "10–20%" },
+    { v: "20-30",      label: "20–30%" },
+    { v: "30+",        label: "30%+" },
+    { v: "prefer_not", label: "I'd rather not say" },
   ]},
-  // Part 3 — Your Team
-  { id: "independent_leaders", section: "Your Team", prompt: "How many leaders in your team could run a centre independently today?", type: "choice", options: [
-    { v: "none",  label: "None — it all runs through me" },
-    { v: "one",   label: "One, at a stretch" },
-    { v: "two3",  label: "Two or three" },
-    { v: "bench", label: "We have a strong leadership bench" },
+  { id: "utilization", section: "Economics", prompt: "Capacity utilization at your most mature unit?", sub: "0% — empty   ·   100% — fully enrolled", type: "slider", min: 0, max: 100, step: 5, default: 70, unit: "%", leftLabel: "Empty", rightLabel: "Fully enrolled" },
+  { id: "new_unit_capex", section: "Economics", prompt: "Estimated capex to open a new unit in your context?", type: "choice", options: [
+    { v: "under50L",   label: "Under ₹50L" },
+    { v: "50L-1.5cr",  label: "₹50L – ₹1.5 cr" },
+    { v: "1.5-3cr",    label: "₹1.5 – ₹3 cr" },
+    { v: "3-5cr",      label: "₹3 – ₹5 cr" },
+    { v: "5cr+",       label: "₹5 cr+" },
   ]},
-  { id: "business_expertise", section: "Your Team", prompt: "How would you describe the business expertise in your current team?", type: "choice", options: [
-    { v: "limited", label: "Mostly educators — limited business experience" },
-    { v: "some",    label: "Some business understanding but not deep" },
-    { v: "strong",  label: "Strong — we have people who think commercially" },
-    { v: "mixed",   label: "Mixed — strong in some areas, weak in others" },
+
+  // Section 4 — Ambition
+  { id: "target_units", section: "Ambition", prompt: "How many units do you want to be running in 3–5 years?", type: "number", min: 1, placeholder: "e.g. 10" },
+  { id: "capital_need", section: "Ambition", prompt: "Honest capital-need range to get there?", type: "choice", options: [
+    { v: "under1cr", label: "Under ₹1 cr" },
+    { v: "1-5cr",    label: "₹1 – ₹5 cr" },
+    { v: "5-15cr",   label: "₹5 – ₹15 cr" },
+    { v: "15-50cr",  label: "₹15 – ₹50 cr" },
+    { v: "50cr+",    label: "₹50 cr+" },
   ]},
-  { id: "ops_expertise", section: "Your Team", prompt: "How would you describe the operations expertise in your team?", type: "choice", options: [
-    { v: "instinct",   label: "We operate on instinct and experience" },
-    { v: "some",       label: "Some processes documented, most in people's heads" },
-    { v: "reasonable", label: "Reasonably well documented but not scale-ready" },
-    { v: "strong",     label: "Strong — we have SOPs and systems that hold" },
+  { id: "scaling_unlocks", section: "Ambition", prompt: "What does scaling unlock for you that you can't access today?", type: "text", maxChars: 300, placeholder: "Be specific — not \"impact\", but what concretely changes..." },
+
+  // Section 5 — Readiness
+  { id: "codification", section: "Readiness", prompt: "Have you started codifying your model — pedagogy, ops, hiring playbooks?", type: "choice", options: [
+    { v: "not_started",  label: "Not started" },
+    { v: "partial",      label: "Partial — some things documented" },
+    { v: "substantial",  label: "Substantial — most things documented" },
+    { v: "complete",     label: "Complete — ready to replicate" },
   ]},
-  { id: "academic_leadership", section: "Your Team", prompt: "How would you describe the academic leadership in your team?", type: "choice", options: [
-    { v: "dependent",  label: "Entirely dependent on me or one person" },
-    { v: "delivery",   label: "Strong in delivery, weaker in design and development" },
-    { v: "owned",      label: "We have educators who can own the academic vision" },
-    { v: "worldclass", label: "World class — academic excellence is our core strength" },
+  { id: "open_to_capital", section: "Readiness", prompt: "Are you open to outside capital that includes governance and partnership rights?", type: "choice", options: [
+    { v: "yes",   label: "Yes" },
+    { v: "maybe", label: "Maybe — depends on the terms" },
+    { v: "no",    label: "No — I want to stay fully independent" },
   ]},
-  // Part 4 — Your Readiness
-  { id: "finance_clarity", section: "Your Readiness", prompt: "How well do you understand your school's finances?", sub: "1 — Month to month   ·   5 — PE-grade clarity, modelling scenarios", type: "slider", min: 1, max: 5, step: 1, default: 3, leftLabel: "Month to month", rightLabel: "PE-grade clarity" },
-  { id: "data_usage",      section: "Your Readiness", prompt: "How well does your school use data to make decisions?",    sub: "1 — Instinct only   ·   5 — Full dashboard across academic, ops and finance",    type: "slider", min: 1, max: 5, step: 1, default: 3, leftLabel: "Instinct only",    rightLabel: "Full dashboard" },
-  { id: "tech_support",    section: "Your Readiness", prompt: "How well does technology support your operations today?",  sub: "1 — Pen, paper, WhatsApp   ·   5 — Fully integrated, data flows across the school", type: "slider", min: 1, max: 5, step: 1, default: 3, leftLabel: "Pen and paper",    rightLabel: "Fully integrated" },
-  { id: "systems_codified",section: "Your Readiness", prompt: "How codified are your systems and processes?",            sub: "1 — Everything in people's heads   ·   5 — Full SOPs across academics and operations",  type: "slider", min: 1, max: 5, step: 1, default: 3, leftLabel: "In people's heads", rightLabel: "Full SOPs" },
-  // Close
-  { id: "contact", section: "Close", prompt: "Your name, school name, city, and email.", sub: "We typically reply within 48 hours. If we think there's a fit, we'll send a call link directly.", type: "contact" },
+  { id: "why_now", section: "Readiness", prompt: "Why are you reaching out now?", type: "text", maxChars: 500, placeholder: "What's changed, or what made you fill this out today?" },
+
+  // Contact
+  { id: "contact", section: "Contact", prompt: "A few details before we read your audit.", sub: "We'll send your Readiness Profile immediately after you submit. If there's a fit on our side, you'll hear from us within five business days.", type: "contact" },
 ];
 
-const SECTION_ORDER = ["Your School", "Your Ambition", "Your Team", "Your Readiness", "Close"];
+const SECTION_ORDER = ["Your School", "Founder & Team", "Economics", "Ambition", "Readiness", "Contact"];
 
 function ProgressBar({ step, total }) {
   const pct = total > 0 ? Math.round((step / total) * 100) : 0;
@@ -883,12 +888,13 @@ function SliderInput({ q, value, setValue }) {
   useEffect(() => {
     if (typeof value !== "number") setValue(q.default);
   }, []); // eslint-disable-line
+  const unit = q.unit || "";
   return (
     <div>
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", marginBottom: 18 }}>
         <span className="mono">{q.leftLabel}</span>
         <span style={{ fontFamily: "var(--serif)", fontSize: 56, lineHeight: 1, color: "var(--accent)" }}>
-          {v}<span style={{ fontSize: 22, color: "var(--ink-3)" }}> / 5</span>
+          {v}<span style={{ fontSize: 22, color: "var(--ink-3)" }}>{unit}</span>
         </span>
         <span className="mono">{q.rightLabel}</span>
       </div>
@@ -900,8 +906,8 @@ function SliderInput({ q, value, setValue }) {
         style={{ width: "100%", accentColor: "var(--accent)" }}
       />
       <div style={{ display: "flex", justifyContent: "space-between", marginTop: 6 }}>
-        {[1, 2, 3, 4, 5].map(t => (
-          <span key={t} className="mono" style={{ color: "var(--line)" }}>{t}</span>
+        {[q.min, Math.round((q.min + q.max) / 2), q.max].map(t => (
+          <span key={t} className="mono" style={{ color: "var(--line)" }}>{t}{unit}</span>
         ))}
       </div>
     </div>
@@ -915,6 +921,55 @@ const fieldStyle = {
   background: "transparent", outline: "none", color: "var(--ink)",
 };
 
+function NumberInput({ q, value, setValue }) {
+  return (
+    <div>
+      <input
+        type="number"
+        min={q.min || 0}
+        max={q.max}
+        value={value === undefined || value === "" ? "" : value}
+        onChange={e => {
+          const raw = e.target.value;
+          if (raw === "") { setValue(""); return; }
+          const n = parseInt(raw, 10);
+          if (!isNaN(n)) setValue(n);
+        }}
+        style={{ ...fieldStyle, width: 200, fontSize: 36, paddingBottom: 10 }}
+        placeholder={q.placeholder || ""}
+      />
+      {q.max && <p className="mono" style={{ marginTop: 8, color: "var(--ink-3)" }}>Range: {q.min}–{q.max}</p>}
+    </div>
+  );
+}
+
+function TextInput({ q, value, setValue }) {
+  const max = q.maxChars || 200;
+  const current = (value || "").length;
+  return (
+    <div>
+      <textarea
+        value={value || ""}
+        onChange={e => setValue(e.target.value.slice(0, max))}
+        rows={4}
+        style={{
+          width: "100%", padding: "12px 0",
+          border: "none", borderBottom: "1px solid var(--ink)",
+          fontFamily: "var(--serif)", fontSize: 18, lineHeight: 1.5,
+          background: "transparent", outline: "none", color: "var(--ink)",
+          resize: "none",
+        }}
+        placeholder={q.placeholder || ""}
+      />
+      <div style={{ display: "flex", justifyContent: "flex-end", marginTop: 6 }}>
+        <span className="mono" style={{ color: current > max * 0.85 ? "var(--accent)" : "var(--ink-3)" }}>
+          {current} / {max}
+        </span>
+      </div>
+    </div>
+  );
+}
+
 function Field({ label, children }) {
   return (
     <label style={{ display: "block" }}>
@@ -925,24 +980,29 @@ function Field({ label, children }) {
 }
 
 function ContactForm({ value, setValue }) {
-  const update = (k, v) => setValue({ ...value, [k]: v });
+  const update = (k, v) => setValue({ ...(value || {}), [k]: v });
   return (
-    <div style={{ display: "grid", gap: 24 }}>
-      <Field label="Your name">
-        <input type="text" value={value.name || ""} onChange={e => update("name", e.target.value)}
-          style={fieldStyle} placeholder="Anjali Mehta" />
+    <div style={{ display: "grid", gap: 28 }}>
+      <Field label="First name">
+        <input type="text" value={(value && value.first_name) || ""} onChange={e => update("first_name", e.target.value)}
+          style={fieldStyle} placeholder="Anjali" />
       </Field>
       <Field label="Email">
-        <input type="email" value={value.email || ""} onChange={e => update("email", e.target.value)}
+        <input type="email" value={(value && value.email) || ""} onChange={e => update("email", e.target.value)}
           style={fieldStyle} placeholder="anjali@yourschool.com" />
       </Field>
-      <Field label="School / organisation">
-        <input type="text" value={value.school || ""} onChange={e => update("school", e.target.value)}
-          style={fieldStyle} placeholder="Banyan Tree School" />
+      <Field label="WhatsApp or phone (optional)">
+        <input type="tel" value={(value && value.whatsapp) || ""} onChange={e => update("whatsapp", e.target.value)}
+          style={fieldStyle} placeholder="+91 98765 43210" />
       </Field>
-      <Field label="City">
-        <input type="text" value={value.city || ""} onChange={e => update("city", e.target.value)}
-          style={fieldStyle} placeholder="Bangalore" />
+      <Field label="Anything else we should know before we read your audit? (optional)">
+        <textarea
+          value={(value && value.anything_else) || ""}
+          onChange={e => update("anything_else", e.target.value.slice(0, 500))}
+          rows={3}
+          style={{ ...fieldStyle, resize: "none", lineHeight: 1.5 }}
+          placeholder="Context we might not have picked up from the questions..."
+        />
       </Field>
     </div>
   );
@@ -954,13 +1014,13 @@ function QuestionView({ q, value, setValue }) {
       <div className="mono" style={{ color: "var(--accent)", marginBottom: 18 }}>{q.section}</div>
       <h3 style={{
         fontFamily: "var(--serif)", fontWeight: 400,
-        fontSize: "clamp(26px, 2.6vw, 34px)", lineHeight: 1.2,
-        letterSpacing: "-0.01em", margin: 0, textWrap: "balance",
+        fontSize: "clamp(24px, 2.4vw, 32px)", lineHeight: 1.2,
+        letterSpacing: "-0.01em", margin: 0,
       }}>
         {q.prompt}
       </h3>
       {q.sub && (
-        <p style={{ marginTop: 12, color: "var(--ink-3)", fontSize: 14, lineHeight: 1.55 }}>
+        <p style={{ marginTop: 10, color: "var(--ink-3)", fontSize: 14, lineHeight: 1.55 }}>
           {q.sub}
         </p>
       )}
@@ -994,60 +1054,10 @@ function QuestionView({ q, value, setValue }) {
           </div>
         )}
 
-        {q.type === "multi" && (
-          <div style={{ display: "grid", gap: 8 }}>
-            {q.options.map(opt => {
-              const arr = Array.isArray(value) ? value : [];
-              const selected = arr.includes(opt);
-              return (
-                <label key={opt} style={{
-                  display: "flex", alignItems: "center", gap: 14,
-                  padding: "14px 16px",
-                  border: `1px solid ${selected ? "var(--ink)" : "var(--line)"}`,
-                  background: selected ? "var(--paper-2)" : "transparent",
-                  cursor: "pointer",
-                }}>
-                  <input type="checkbox" checked={selected} onChange={() => {
-                    if (selected) setValue(arr.filter(x => x !== opt));
-                    else setValue([...arr, opt]);
-                  }} style={{ display: "none" }} />
-                  <span style={{
-                    width: 14, height: 14, border: "1px solid var(--ink)",
-                    background: selected ? "var(--ink)" : "transparent",
-                    flexShrink: 0,
-                    display: "inline-flex", alignItems: "center", justifyContent: "center",
-                    color: "var(--paper)", fontSize: 10,
-                  }}>{selected ? "✓" : ""}</span>
-                  <span style={{ fontSize: 15 }}>{opt}</span>
-                </label>
-              );
-            })}
-          </div>
-        )}
-
-        {q.type === "text" && (
-          <input type="text" value={value || ""} onChange={e => setValue(e.target.value)}
-            placeholder={q.placeholder} style={{
-              width: "100%", padding: "16px 0",
-              border: "none", borderBottom: "1px solid var(--ink)",
-              fontFamily: "var(--serif)", fontSize: 22,
-              background: "transparent", outline: "none", color: "var(--ink)",
-            }} />
-        )}
-
-        {q.type === "textarea" && (
-          <textarea value={value || ""} onChange={e => setValue(e.target.value)}
-            placeholder={q.placeholder} rows={5} style={{
-              width: "100%", padding: 16,
-              border: "1px solid var(--line)",
-              fontFamily: "var(--serif)", fontSize: 17, lineHeight: 1.5,
-              background: "var(--paper-2)", outline: "none", color: "var(--ink)",
-              resize: "vertical",
-            }} />
-        )}
-
         {q.type === "slider" && <SliderInput q={q} value={value} setValue={setValue} />}
-        {q.type === "contact" && <ContactForm value={value || {}} setValue={setValue} />}
+        {q.type === "number" && <NumberInput q={q} value={value} setValue={setValue} />}
+        {q.type === "text" && <TextInput q={q} value={value} setValue={setValue} />}
+        {q.type === "contact" && <ContactForm value={value} setValue={setValue} />}
       </div>
     </div>
   );
@@ -1059,19 +1069,19 @@ function AuditIntro({ onStart }) {
       <div className="mono" style={{ color: "var(--accent)", marginBottom: 24 }}>Begin</div>
       <h3 style={{
         fontFamily: "var(--serif)", fontWeight: 400,
-        fontSize: 36, lineHeight: 1.15, letterSpacing: "-0.015em",
-        margin: 0, textWrap: "balance",
+        fontSize: 34, lineHeight: 1.15, letterSpacing: "-0.015em",
+        margin: 0,
       }}>
-        A short, honest audit. Around 18 questions across four parts. We use it to assess fit on capital, operations, and ambition.
+        The only way to start a conversation with us.
       </h3>
       <p style={{ marginTop: 20, fontSize: 16, color: "var(--ink-2)", lineHeight: 1.65 }}>
-        Built for founders who are ready to scale — not explore. We use this to assess fit on capital, operations, and ambition, so our first conversation is substantive, not introductory.
+        This audit helps you understand whether we're a fit, and gives us the data to decide the same. Honest beats polished — we read everything.
       </p>
       <ul style={{ margin: "32px 0 40px", padding: 0, listStyle: "none" }}>
         {[
-          ["Five minutes.", "Most finish in three."],
-          ["Honest > polished.", "We read everything."],
-          ["No wrong answers.", "Only an honest one."],
+          ["Five minutes.", "Most founders finish in under six."],
+          ["Honest beats polished.", "We read every answer."],
+          ["You get something out of it.", "A Readiness Profile — delivered to your email regardless of outcome."],
         ].map(([a, b], i) => (
           <li key={i} style={{ display: "grid", gridTemplateColumns: "1fr 1.4fr", gap: 24, padding: "12px 0", borderTop: "1px solid var(--line-soft)" }}>
             <span style={{ fontFamily: "var(--serif)", fontSize: 16 }}>{a}</span>
@@ -1081,7 +1091,7 @@ function AuditIntro({ onStart }) {
       </ul>
       <div>
         <button className="btn" onClick={onStart}>
-          Start the audit <span className="arrow">→</span>
+          Begin the audit <span className="arrow">→</span>
         </button>
       </div>
     </div>
@@ -1092,18 +1102,19 @@ function labelFor(qid, v) {
   const q = QUESTIONS.find(x => x.id === qid);
   if (!q || !q.options) return v || "—";
   const opt = q.options.find(o => o.v === v);
-  return opt ? opt.label : "—";
+  return opt ? opt.label : (v || "—");
 }
 
 function Summary({ answers }) {
+  const contact = answers.contact || {};
   const items = [
-    ["School type", labelFor("school_type", answers.school_type)],
-    ["Centres", labelFor("centres", answers.centres)],
-    ["Enrolment trend", labelFor("enrollment_trend", answers.enrollment_trend)],
-    ["Scale vision", labelFor("scale_vision", answers.scale_vision)],
-    ["Biggest obstacle", labelFor("obstacle", answers.obstacle)],
-    ["Finance clarity", typeof answers.finance_clarity === "number" ? `${answers.finance_clarity} / 5` : "—"],
-    ["Systems codified", typeof answers.systems_codified === "number" ? `${answers.systems_codified} / 5` : "—"],
+    ["School type",      labelFor("school_type", answers.school_type)],
+    ["Units today",      answers.units ? `${answers.units}` : "—"],
+    ["Students",         answers.students ? `${answers.students} enrolled` : "—"],
+    ["Revenue / unit",   labelFor("revenue_per_unit", answers.revenue_per_unit)],
+    ["Target scale",     answers.target_units ? `${answers.target_units} units` : "—"],
+    ["Capital need",     labelFor("capital_need", answers.capital_need)],
+    ["Open to capital",  labelFor("open_to_capital", answers.open_to_capital)],
   ];
   return (
     <div>
@@ -1122,8 +1133,9 @@ function Summary({ answers }) {
 }
 
 function AuditComplete({ answers, onRestart }) {
-  const name = (answers.contact && answers.contact.name) || "you";
-  const firstName = name.split(" ")[0];
+  const contact = answers.contact || {};
+  const firstName = (contact.first_name || "you").split(" ")[0];
+  const email = contact.email || "";
 
   return (
     <section id="audit" style={{ padding: "140px 0", background: "var(--surface-dark)", color: "var(--paper)" }}>
@@ -1133,30 +1145,24 @@ function AuditComplete({ answers, onRestart }) {
             <div style={{ display: "flex", alignItems: "baseline", gap: 14, marginBottom: 32 }}>
               <span className="mono" style={{ color: "var(--accent-2)" }}>received</span>
               <span style={{ flex: 1, height: 1, background: "rgba(235,232,226,0.3)" }} />
-              <span className="mono" style={{ color: "var(--paper-3)" }}>{new Date().toLocaleDateString("en-GB", { day: "2-digit", month: "short", year: "numeric" })}</span>
+              <span className="mono" style={{ color: "var(--paper-3)" }}>{new Date().toLocaleDateString("en-IN", { day: "2-digit", month: "short", year: "numeric" })}</span>
             </div>
             <h2 style={{
               fontFamily: "var(--serif)", fontWeight: 400,
               fontSize: "clamp(40px, 5vw, 72px)", lineHeight: 1.05,
-              letterSpacing: "-0.02em", margin: 0, textWrap: "balance",
+              letterSpacing: "-0.02em", margin: 0,
             }}>
               Thank you, <em style={{ color: "var(--accent-2)" }}>{firstName}.</em>
             </h2>
             <p style={{ marginTop: 28, color: "var(--paper-3)", fontSize: 18, lineHeight: 1.55, maxWidth: "40ch" }}>
-              We read every audit ourselves. You'll hear from us within 48 hours — typically with a written read-back of what we noticed, and a call link if we think there's a fit.
+              Your Readiness Profile is on its way{email ? ` to ${email}` : " to your inbox"} — your strengths, your gaps, and one paragraph of honest advice on what to do next.
+            </p>
+            <p style={{ marginTop: 16, color: "var(--paper-3)", fontSize: 16, lineHeight: 1.55, maxWidth: "40ch" }}>
+              If there's a fit on our side, you'll hear from us within five business days. If not, the profile is yours to keep.
             </p>
 
-            <div style={{ marginTop: 56, paddingTop: 32, borderTop: "1px solid rgba(235,232,226,0.15)" }}>
-              <div className="mono" style={{ color: "var(--paper-3)", marginBottom: 14 }}>If you'd rather not wait</div>
-              <a href="mailto:hellobloompartners@gmail.com" className="btn" style={{
-                background: "var(--accent-2)", borderColor: "var(--accent-2)", color: "var(--ink)",
-              }}>
-                Book a 30-minute call <span className="arrow">→</span>
-              </a>
-            </div>
-
             <button onClick={onRestart} className="mono" style={{
-              marginTop: 40, background: "none", border: "none",
+              marginTop: 48, background: "none", border: "none",
               color: "var(--paper-3)", cursor: "pointer", padding: 0,
               borderBottom: "1px solid var(--paper-3)",
             }}>
@@ -1165,7 +1171,7 @@ function AuditComplete({ answers, onRestart }) {
           </div>
 
           <div style={{ border: "1px solid rgba(235,232,226,0.2)", padding: 32 }}>
-            <div className="mono" style={{ color: "var(--paper-3)", marginBottom: 20 }}>Your read-back, in summary</div>
+            <div className="mono" style={{ color: "var(--paper-3)", marginBottom: 20 }}>What you shared</div>
             <Summary answers={answers} />
           </div>
         </div>
@@ -1175,10 +1181,27 @@ function AuditComplete({ answers, onRestart }) {
 }
 
 function Audit() {
-  const [step, setStep] = useState(-1);
-  const [answers, setAnswers] = useState({});
+  const [step, setStep]           = useState(-1);
+  const [answers, setAnswers]     = useState({});
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
+
+  // localStorage auto-save / restore
+  useEffect(() => {
+    try {
+      const saved = localStorage.getItem("bloom-audit-v2");
+      if (saved) {
+        const { step: s, answers: a } = JSON.parse(saved);
+        if (s >= 0) { setStep(s); setAnswers(a); }
+      }
+    } catch (e) {}
+  }, []);
+
+  useEffect(() => {
+    if (step >= 0 || Object.keys(answers).length > 0) {
+      try { localStorage.setItem("bloom-audit-v2", JSON.stringify({ step, answers })); } catch (e) {}
+    }
+  }, [step, answers]);
 
   const total = QUESTIONS.length;
   const q = step >= 0 && step < total ? QUESTIONS[step] : null;
@@ -1195,32 +1218,35 @@ function Audit() {
           headers: { "Content-Type": "application/x-www-form-urlencoded" },
           body: new URLSearchParams({
             "form-name": "bloom-audit",
-            name: contact.name || "",
-            email: contact.email || "",
-            school: contact.school || "",
-            city: contact.city || "",
-            school_type: answers.school_type || "",
-            centres: answers.centres || "",
-            students: answers.students || "",
-            operating_years: answers.operating_years || "",
-            differentiation: answers.differentiation || "",
-            enrollment_trend: answers.enrollment_trend || "",
-            scale_vision: answers.scale_vision || "",
-            obstacle: answers.obstacle || "",
-            next_location: answers.next_location || "",
-            independent_leaders: answers.independent_leaders || "",
-            business_expertise: answers.business_expertise || "",
-            ops_expertise: answers.ops_expertise || "",
-            academic_leadership: answers.academic_leadership || "",
-            finance_clarity: String(answers.finance_clarity ?? ""),
-            data_usage: String(answers.data_usage ?? ""),
-            tech_support: String(answers.tech_support ?? ""),
-            systems_codified: String(answers.systems_codified ?? ""),
+            first_name:      contact.first_name || "",
+            email:           contact.email || "",
+            whatsapp:        contact.whatsapp || "",
+            anything_else:   contact.anything_else || "",
+            school_type:     answers.school_type || "",
+            units:           String(answers.units ?? ""),
+            students:        String(answers.students ?? ""),
+            waitlist:        answers.waitlist || "",
+            parent_word:     answers.parent_word || "",
+            years_running:   answers.years_running || "",
+            independence:    answers.independence || "",
+            senior_leaders:  answers.senior_leaders || "",
+            timeline:        String(answers.timeline ?? ""),
+            revenue_per_unit: answers.revenue_per_unit || "",
+            operating_margin: answers.operating_margin || "",
+            utilization:     String(answers.utilization ?? ""),
+            new_unit_capex:  answers.new_unit_capex || "",
+            target_units:    String(answers.target_units ?? ""),
+            capital_need:    answers.capital_need || "",
+            scaling_unlocks: answers.scaling_unlocks || "",
+            codification:    answers.codification || "",
+            open_to_capital: answers.open_to_capital || "",
+            why_now:         answers.why_now || "",
           }).toString(),
         });
       } catch (e) {
         console.error("Submission error:", e);
       }
+      try { localStorage.removeItem("bloom-audit-v2"); } catch (e) {}
       setSubmitting(false);
       setSubmitted(true);
     } else {
@@ -1231,12 +1257,11 @@ function Audit() {
   const canAdvance = useMemo(() => {
     if (!q) return true;
     const a = answers[q.id];
-    if (q.type === "contact") return a && a.name && a.email && /\S+@\S+\.\S+/.test(a.email);
-    if (q.type === "slider") return true;
-    if (q.type === "textarea") return true;
-    if (q.type === "multi") return Array.isArray(a) && a.length > 0;
-    if (q.type === "text") return a && a.trim().length > 2;
-    if (q.type === "choice") return !!a;
+    if (q.type === "contact") return !!(a && a.first_name && a.first_name.trim() && a.email && /\S+@\S+\.\S+/.test(a.email));
+    if (q.type === "slider")  return true;
+    if (q.type === "number")  return a !== "" && a !== undefined && !isNaN(a) && Number(a) >= (q.min || 0);
+    if (q.type === "text")    return !!(a && a.trim().length >= 10);
+    if (q.type === "choice")  return !!a;
     return true;
   }, [q, answers]);
 
@@ -1247,29 +1272,24 @@ function Audit() {
   return (
     <section id="audit" style={{ padding: "140px 0", background: "var(--paper-2)", borderTop: "1px solid var(--line-soft)" }}>
       <div className="wrap">
-        <div className="audit-grid" style={{
-          display: "grid",
-          gridTemplateColumns: "1fr 1.6fr",
-          gap: 80,
-          alignItems: "start",
-        }}>
-          {/* Left: index column */}
+        <div className="audit-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1.6fr", gap: 80, alignItems: "start" }}>
+
+          {/* Left: description column */}
           <div className="audit-sticky" style={{ position: "sticky", top: 100 }}>
             <SectionLabel num="05" label="The audit" />
             <h2 style={{
               fontFamily: "var(--serif)", fontWeight: 400,
-              fontSize: "clamp(36px, 4vw, 56px)", lineHeight: 1.05,
+              fontSize: "clamp(32px, 3.6vw, 52px)", lineHeight: 1.07,
               letterSpacing: "-0.02em",
               margin: "32px 0 0",
-              textWrap: "balance",
             }}>
               Five minutes. <em style={{ color: "var(--accent)" }}>Honest answers.</em>
             </h2>
             <p style={{ marginTop: 20, color: "var(--ink-2)", fontSize: 16, lineHeight: 1.6, maxWidth: "36ch" }}>
-              Take the audit. It helps you understand us, and us understand you. If you like what you see at the end, book a call.
+              The only door in. We use it to understand your school, your ambition, and whether there's a fit. You get a Readiness Profile in return — regardless of outcome.
             </p>
 
-            <div style={{ marginTop: 56, borderTop: "1px solid var(--line)", paddingTop: 20 }}>
+            <div style={{ marginTop: 48, borderTop: "1px solid var(--line)", paddingTop: 20 }}>
               {SECTION_ORDER.map((s, i) => {
                 const sectionFirstIdx = QUESTIONS.findIndex(qq => qq.section === s);
                 const sectionLastIdx = QUESTIONS.length - 1 - [...QUESTIONS].reverse().findIndex(qq => qq.section === s);
@@ -1277,36 +1297,30 @@ function Audit() {
                 const isPast = step > sectionLastIdx || submitted;
                 return (
                   <div key={s} style={{
-                    display: "grid", gridTemplateColumns: "32px 1fr auto",
-                    padding: "12px 0",
+                    display: "grid", gridTemplateColumns: "28px 1fr auto",
+                    padding: "10px 0",
                     borderBottom: i < SECTION_ORDER.length - 1 ? "1px solid var(--line-soft)" : "none",
                     color: isActive ? "var(--ink)" : "var(--ink-3)",
                   }}>
-                    <span className="mono" style={{ color: isActive ? "var(--accent)" : undefined }}>
+                    <span className="mono" style={{ color: isActive ? "var(--accent)" : undefined, fontSize: 10 }}>
                       {String(i + 1).padStart(2, "0")}
                     </span>
-                    <span style={{
-                      fontFamily: "var(--serif)", fontSize: 18,
-                      fontStyle: isActive ? "italic" : "normal",
-                    }}>{s}</span>
-                    <span className="mono">{isPast ? "✓" : isActive ? "···" : ""}</span>
+                    <span style={{ fontFamily: "var(--serif)", fontSize: 16, fontStyle: isActive ? "italic" : "normal" }}>{s}</span>
+                    <span className="mono" style={{ fontSize: 10 }}>{isPast ? "✓" : isActive ? "···" : ""}</span>
                   </div>
                 );
               })}
             </div>
           </div>
 
-          {/* Right: card */}
-          <div id="audit-card" className="audit-card" style={{
+          {/* Right: audit card */}
+          <div id="audit-card" style={{
             background: "var(--paper)",
             border: "1px solid var(--line)",
             minHeight: 560,
             display: "flex", flexDirection: "column",
           }}>
-            <div className="audit-nav" style={{
-              padding: "16px 32px",
-              borderBottom: "1px solid var(--line-soft)",
-            }}>
+            <div className="audit-nav" style={{ padding: "16px 32px", borderBottom: "1px solid var(--line-soft)" }}>
               <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 10 }}>
                 <span className="mono" style={{ fontSize: 10 }}>
                   {step < 0 ? "The audit" : q ? q.section : ""}
@@ -1318,7 +1332,7 @@ function Audit() {
               <ProgressBar step={Math.max(step, 0)} total={total} />
             </div>
 
-            <div className="audit-inner" style={{ padding: "56px 56px 32px", flex: 1, display: "flex", flexDirection: "column" }}>
+            <div className="audit-inner" style={{ padding: "52px 52px 28px", flex: 1, display: "flex", flexDirection: "column" }}>
               {step < 0 && <AuditIntro onStart={() => setStep(0)} />}
               {q && (
                 <QuestionView q={q} value={answers[q.id]} setValue={(v) => setAnswer(q.id, v)} />
@@ -1332,7 +1346,7 @@ function Audit() {
                 display: "flex", alignItems: "center", justifyContent: "space-between",
               }}>
                 <button onClick={() => setStep(s => Math.max(-1, s - 1))} className="mono"
-                  style={{ background: "none", border: "none", cursor: "pointer", color: "var(--ink-3)", padding: "8px 0" }}>
+                  style={{ background: "none", border: "none", cursor: "pointer", color: "var(--ink-3)", padding: "8px 0", fontSize: 11 }}>
                   ← Back
                 </button>
                 <button className="btn" disabled={!canAdvance || submitting}
@@ -1344,85 +1358,51 @@ function Audit() {
               </div>
             )}
           </div>
+
         </div>
       </div>
     </section>
   );
 }
 
-/* ─── Footer ──────────────────────────────────────────────────────────────── */
+/* ─── Footer ────────────────────────────────────────────────────────────────── */
 
 function Footer() {
   return (
-    <footer style={{ background: "var(--surface-dark)", color: "var(--paper)", padding: "120px 0 48px" }}>
+    <footer style={{ background: "var(--surface-dark)", color: "var(--paper)", padding: "96px 0 64px" }}>
       <div className="wrap">
-        <h2 style={{
+        <p style={{
           fontFamily: "var(--serif)", fontWeight: 300,
-          fontSize: "clamp(56px, 9vw, 144px)",
-          lineHeight: 0.95, letterSpacing: "-0.03em",
-          margin: 0,
-          textWrap: "balance"
+          fontSize: "clamp(28px, 4vw, 56px)",
+          lineHeight: 1.15, letterSpacing: "-0.02em",
+          margin: 0, maxWidth: "22ch",
+          color: "var(--paper)",
         }}>
-          Backing India's best <em style={{ color: "var(--accent-2)", fontWeight: 400 }}>founder-led preschools.</em>
-        </h2>
+          Building the next generation of India's best preschools — <em style={{ color: "var(--accent-2)", fontWeight: 400 }}>without compromise to soul.</em>
+        </p>
 
-        <div className="footer-grid" style={{
-          marginTop: 96,
-          display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr",
-          gap: 48,
-          paddingTop: 40,
-          borderTop: "1px solid rgba(235,232,226,0.2)"
-        }}>
-          <div>
-            <div className="mono" style={{ color: "var(--paper-3)", marginBottom: 14 }}>Contact</div>
-            <a href="mailto:hellobloompartners@gmail.com" style={{ fontFamily: "var(--serif)", fontSize: 18, textDecoration: "none" }}>
-              hellobloompartners@gmail.com
-            </a>
-          </div>
-          <div>
-            <div className="mono" style={{ color: "var(--paper-3)", marginBottom: 14 }}>Engagements</div>
-            <div style={{ fontFamily: "var(--serif)", fontSize: 18 }}>A handful, each year</div>
-          </div>
-          <div>
-            <div className="mono" style={{ color: "var(--paper-3)", marginBottom: 14 }}>Currently</div>
-            <div style={{ fontFamily: "var(--serif)", fontSize: 18 }}>Open to first audits</div>
-          </div>
-          <div>
-            <div className="mono" style={{ color: "var(--paper-3)", marginBottom: 14 }}>Begin</div>
-            <a href="#audit" style={{
-              fontFamily: "var(--serif)", fontSize: 18,
-              textDecoration: "underline", textUnderlineOffset: "0.15em",
-              textDecorationColor: "var(--accent-2)"
-            }}>Take the 5-minute audit →</a>
-          </div>
-        </div>
-
-        <div className="footer-bottom" style={{
-          marginTop: 96, paddingTop: 24,
-          borderTop: "1px solid rgba(235,232,226,0.1)",
-          display: "flex", justifyContent: "space-between",
-          color: "var(--paper-3)"
-        }}>
-          <span className="mono">© 2025 Bloom Partners — All rights reserved</span>
-          <span className="mono">Based in Bangalore</span>
+        <div style={{ marginTop: 72, paddingTop: 32, borderTop: "1px solid rgba(235,232,226,0.15)" }}>
+          <p className="mono" style={{ color: "var(--paper-3)", margin: 0 }}>
+            Capital partners and referrals: through warm introductions only.
+          </p>
         </div>
       </div>
     </footer>
   );
 }
 
-/* ─── App root ────────────────────────────────────────────────────────────── */
+/* ─── App ───────────────────────────────────────────────────────────────────── */
 
 function App() {
   useEffect(() => {
-    const els = document.querySelectorAll('section, footer');
+    const els = document.querySelectorAll("section, footer");
     const obs = new IntersectionObserver(
       entries => entries.forEach(e => {
-        if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
+        if (e.isIntersecting) { e.target.classList.add("visible"); obs.unobserve(e.target); }
       }),
       { threshold: 0.07, rootMargin: "0px 0px -40px 0px" }
     );
-    els.forEach(el => { el.classList.add('fade-section'); obs.observe(el); });
+    els.forEach(el => { el.classList.add("fade-section"); obs.observe(el); });
     return () => obs.disconnect();
   }, []);
 
@@ -1430,11 +1410,12 @@ function App() {
     <>
       <TopNav />
       <Hero />
-      <Premise />
-      <Patterns />
-      <WhatWeDo />
-      <WhatWeLookFor />
+      <WhyWeExist />
+      <WhatWeSee />
+      <WhatWeBring />
+      <WhoWePartnerWith />
       <Audit />
+      <Process />
       <Footer />
     </>
   );
