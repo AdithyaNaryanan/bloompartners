@@ -93,7 +93,7 @@ function buildSubmission(d) {
 // ─── Prompt ───────────────────────────────────────────────────────────────────
 
 function buildPrompt(submission, scoring, firstName) {
-  return `You are writing a personalized "Readiness Profile" email to a preschool or microschool founder in India who just completed Bloom Partners' readiness audit. Bloom is a capital + operating partner for India's best founder-led preschools — selective, soulful, honest. Voice: gatekeeper energy. Respectful of the founder, direct about gaps. No fluff, no consultant-speak, no "exciting opportunity to work together" language. No emojis. No "best regards." No HTML formatting — plain text only.
+  return `You are writing a personalized "Readiness Profile" for a preschool or microschool founder in India who just completed Bloom Partners' readiness audit. Bloom is a capital + operating partner for India's best founder-led preschools — selective, soulful, honest. Voice: gatekeeper energy. Respectful of the founder, direct about gaps. No fluff, no consultant-speak, no "exciting opportunity to work together" language. No emojis. No HTML formatting — plain text only.
 
 Here is the founder's submission:
 ${JSON.stringify(submission, null, 2)}
@@ -101,7 +101,7 @@ ${JSON.stringify(submission, null, 2)}
 Here is the internal scoring (use to calibrate honesty — DO NOT reveal scores or numerical ratings to the founder):
 ${JSON.stringify(scoring, null, 2)}
 
-Write an email with this exact structure:
+Write the Readiness Profile with this exact structure:
 
 1. Opening line: "Thanks, ${firstName} — here's what your audit told us." (one line only, no fluff before or after)
 
@@ -149,32 +149,6 @@ async function generateProfile(submission, scoring, firstName) {
   return json.content[0].text.trim();
 }
 
-// ─── Resend email ─────────────────────────────────────────────────────────────
-
-async function sendEmail({ to, subject, text, bcc }) {
-  const payload = {
-    from: "Bloom Partners <profile@bloompartners.xyz>",
-    to: [to],
-    subject,
-    text,
-  };
-  if (bcc) payload.bcc = [bcc];
-
-  const res = await fetch("https://api.resend.com/emails", {
-    method: "POST",
-    headers: {
-      Authorization: `Bearer ${process.env.RESEND_API_KEY}`,
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(payload),
-  });
-
-  if (!res.ok) {
-    const body = await res.text();
-    throw new Error(`Resend ${res.status}: ${body}`);
-  }
-}
-
 // ─── Handler ──────────────────────────────────────────────────────────────────
 
 exports.handler = async (event) => {
@@ -206,49 +180,20 @@ exports.handler = async (event) => {
 
   console.log(`[audit] score: ${scoring.total}/12 → ${scoring.recommendation}`);
 
-  // ── Generate Readiness Profile ──────────────────────────────────────────────
-  let profileText;
-  let llmFailed = false;
-
   try {
-    profileText = await generateProfile(submission, scoring, firstName);
+    const profileText = await generateProfile(submission, scoring, firstName);
     console.log(`[audit] profile generated (${profileText.length} chars)`);
-  } catch (err) {
-    console.error(`[audit] LLM failed: ${err.message}`);
-    llmFailed = true;
-    profileText =
-      `Thanks, ${firstName}. We've received your audit and we'll be in touch within five business days if there's a fit.\n\n— Bloom Partners`;
-
-    // Notify operator of LLM failure
-    if (process.env.OPERATOR_EMAIL) {
-      await sendEmail({
-        to: process.env.OPERATOR_EMAIL,
-        subject: `[Bloom Audit] LLM failure — ${firstName} (${email})`,
-        text: `LLM generation failed.\nError: ${err.message}\n\nSubmission:\n${JSON.stringify(d, null, 2)}\n\nScoring:\n${JSON.stringify(scoring, null, 2)}`,
-      }).catch(e => console.error(`[audit] operator notify failed: ${e.message}`));
-    }
-  }
-
-  // ── Send email to founder ───────────────────────────────────────────────────
-  try {
-    await sendEmail({
-      to: email,
-      subject: "Your Bloom Readiness Profile",
-      text: profileText,
-      bcc: process.env.OPERATOR_EMAIL,
-    });
-    console.log(`[audit] email sent to ${email}`);
-  } catch (err) {
-    console.error(`[audit] email send failed: ${err.message}`);
-    // Still return 200 — submission was received, email issue is operator's problem
     return {
       statusCode: 200,
-      body: JSON.stringify({ ok: true, emailFailed: true, llmFailed }),
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ ok: true, profile: profileText }),
+    };
+  } catch (err) {
+    console.error(`[audit] LLM failed: ${err.message}`);
+    return {
+      statusCode: 200,
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ ok: true, profile: null }),
     };
   }
-
-  return {
-    statusCode: 200,
-    body: JSON.stringify({ ok: true, llmFailed }),
-  };
 };
