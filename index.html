@@ -683,16 +683,28 @@ const QUESTIONS = [
     { v: "hybrid",      label: "Hybrid" },
     { v: "other",       label: "Other" },
   ]},
-  { id: "units", section: "Your School", prompt: "How many units do you currently operate?", type: "number", min: 1, placeholder: "e.g. 3" },
-  { id: "students", section: "Your School", prompt: "How many students are enrolled across all your units?", type: "number", min: 1, placeholder: "e.g. 240" },
-  { id: "waitlist", section: "Your School", prompt: "What's the waitlist depth at your most-popular unit, in months?", type: "choice", options: [
-    { v: "0",    label: "No waitlist" },
-    { v: "1-3",  label: "1–3 months" },
-    { v: "3-6",  label: "3–6 months" },
-    { v: "6-12", label: "6–12 months" },
-    { v: "12+",  label: "12+ months" },
+  { id: "units", section: "Your School", prompt: "How many centres do you currently operate?", type: "choice", options: [
+    { v: "1-2",  label: "1–2" },
+    { v: "3-5",  label: "3–5" },
+    { v: "5-10", label: "5–10" },
+    { v: "10+",  label: "10+" },
   ]},
-  { id: "parent_word", section: "Your School", prompt: "In one sentence: what do parents say when they tell others about your school?", type: "text", maxChars: 200, placeholder: "\"The teachers actually know my child...\"" },
+  { id: "students", section: "Your School", prompt: "How many students are enrolled across all your centres?", type: "choice", options: [
+    { v: "under100",   label: "Under 100" },
+    { v: "100-200",    label: "100–200" },
+    { v: "200-500",    label: "200–500" },
+    { v: "500-1000",   label: "500–1,000" },
+    { v: "1000-5000",  label: "1,000–5,000" },
+    { v: "5000+",      label: "5,000+" },
+  ]},
+  { id: "applications_per_seat", section: "Your School", prompt: "How many applications do you receive per seat?", type: "choice", options: [
+    { v: "under1",  label: "Less than 1 per seat" },
+    { v: "around1", label: "Around 1 per seat" },
+    { v: "1-2",     label: "1–2 per seat" },
+    { v: "2-5",     label: "2–5 per seat" },
+    { v: "5+",      label: "More than 5 per seat" },
+  ]},
+  { id: "parent_word", section: "Your School", prompt: "What would your happiest parent say when asked what stands out about your school?", type: "text", maxChars: 200, placeholder: "\"The teachers actually know my child...\"" },
 
   // Section 2 — Founder & Team
   { id: "years_running", section: "Founder & Team", prompt: "How long have you been running this school?", type: "choice", options: [
@@ -701,22 +713,14 @@ const QUESTIONS = [
     { v: "5-10",   label: "5–10 years" },
     { v: "10+",    label: "10+ years" },
   ]},
-  { id: "independence", section: "Founder & Team", prompt: "Could the school run for 60 days without you?", type: "choice", options: [
-    { v: "not_at_all",  label: "Not at all" },
-    { v: "mostly_not",  label: "Mostly not" },
-    { v: "partially",   label: "Partially" },
-    { v: "mostly",      label: "Mostly yes" },
-    { v: "fully",       label: "Fully" },
-  ]},
   { id: "senior_leaders", section: "Founder & Team", prompt: "Do you have at least two senior leaders — academic and ops — who could each independently run a campus?", type: "choice", options: [
     { v: "yes",         label: "Yes" },
     { v: "in_progress", label: "In progress" },
     { v: "not_yet",     label: "Not yet" },
   ]},
-  { id: "timeline", section: "Founder & Team", prompt: "Timeline from today to your goal scale, in years?", type: "number", min: 1, max: 20, placeholder: "e.g. 4" },
 
   // Section 3 — Economics
-  { id: "revenue_per_unit", section: "Economics", prompt: "Annual revenue per unit at your most mature unit?", type: "choice", options: [
+  { id: "revenue_total", section: "Economics", prompt: "Annual revenue across all your centres?", type: "choice", options: [
     { v: "under50L",  label: "Under ₹50L" },
     { v: "50L-1cr",   label: "₹50L – ₹1 cr" },
     { v: "1-2cr",     label: "₹1 – ₹2 cr" },
@@ -730,32 +734,23 @@ const QUESTIONS = [
     { v: "30+",        label: "30%+" },
     { v: "prefer_not", label: "I'd rather not say" },
   ]},
-  { id: "utilization", section: "Economics", prompt: "Capacity utilization at your most mature unit?", sub: "0% — empty   ·   100% — fully enrolled", type: "slider", min: 0, max: 100, step: 5, default: 70, unit: "%", leftLabel: "Empty", rightLabel: "Fully enrolled" },
-  { id: "new_unit_capex", section: "Economics", prompt: "Estimated capex to open a new unit in your context?", type: "choice", options: [
+  { id: "new_unit_capex", section: "Economics", prompt: "Estimated capex to open a new centre?", type: "choice", options: [
     { v: "under50L",   label: "Under ₹50L" },
     { v: "50L-1.5cr",  label: "₹50L – ₹1.5 cr" },
     { v: "1.5-3cr",    label: "₹1.5 – ₹3 cr" },
     { v: "3-5cr",      label: "₹3 – ₹5 cr" },
     { v: "5cr+",       label: "₹5 cr+" },
   ]},
+  { id: "capital_self_fund", section: "Economics", prompt: "How much of that capex do you or your family currently have?", sub: "The remainder is what you'd need to raise from outside.", type: "slider", min: 0, max: 100, step: 5, default: 0, unit: "%", leftLabel: "None — need to raise it all", rightLabel: "All of it — fully self-funded" },
 
   // Section 4 — Ambition
-  { id: "target_units", section: "Ambition", prompt: "How many units do you want to be running in 3–5 years?", type: "number", min: 1, placeholder: "e.g. 10" },
-  { id: "capital_need", section: "Ambition", prompt: "Honest capital-need range to get there?", type: "choice", options: [
-    { v: "under1cr", label: "Under ₹1 cr" },
-    { v: "1-5cr",    label: "₹1 – ₹5 cr" },
-    { v: "5-15cr",   label: "₹5 – ₹15 cr" },
-    { v: "15-50cr",  label: "₹15 – ₹50 cr" },
-    { v: "50cr+",    label: "₹50 cr+" },
+  { id: "target_units", section: "Ambition", prompt: "How many centres do you want to be running in 3–5 years?", type: "choice", options: [
+    { v: "2-3",  label: "2–3" },
+    { v: "3-5",  label: "3–5" },
+    { v: "5-10", label: "5–10" },
+    { v: "10-25",label: "10–25" },
+    { v: "25+",  label: "25+" },
   ]},
-  { id: "capital_have", section: "Ambition", prompt: "Of that capital, how much do you currently have access to?", type: "choice", options: [
-    { v: "all",  label: "All of it — fully self-funded" },
-    { v: "most", label: "Most of it — just need a top-up" },
-    { v: "half", label: "Roughly half" },
-    { v: "some", label: "Some — still need the bulk" },
-    { v: "none", label: "None yet" },
-  ]},
-  { id: "scaling_unlocks", section: "Ambition", prompt: "What does scaling unlock for you that you can't access today?", type: "text", maxChars: 300, placeholder: "Be specific — not \"impact\", but what concretely changes..." },
 
   // Section 5 — Readiness
   { id: "codification", section: "Readiness", prompt: "Have you started codifying your model — pedagogy, ops, hiring playbooks?", type: "choice", options: [
@@ -769,7 +764,7 @@ const QUESTIONS = [
     { v: "maybe", label: "Maybe — depends on the terms" },
     { v: "no",    label: "No — I want to stay fully independent" },
   ]},
-  { id: "why_now", section: "Readiness", prompt: "Why are you reaching out now?", type: "text", maxChars: 500, placeholder: "What's changed, or what made you fill this out today?" },
+  { id: "why_now", section: "Readiness", prompt: "Why is this the right time for you to scale your school?", type: "text", maxChars: 500, placeholder: "What's changed, or what made you fill this out today?" },
 
   // Contact
   { id: "contact", section: "Contact", prompt: "A few details before we read your audit.", sub: "If there's a fit on our side, you'll hear from us within five business days.", type: "contact" },
@@ -1000,7 +995,7 @@ function AuditIntro({ onStart }) {
         {[
           ["Five minutes.", "Most founders finish in under six."],
           ["Honest beats polished.", "We read every answer."],
-          ["You get something out of it.", "A Readiness Profile — delivered to your email regardless of outcome."],
+          ["No fluff.", "Twelve questions. No essay prompts."],
         ].map(([a, b], i) => (
           <li key={i} style={{ display: "grid", gridTemplateColumns: "1fr 1.4fr", gap: 24, padding: "12px 0", borderTop: "1px solid var(--line-soft)" }}>
             <span style={{ fontFamily: "var(--serif)", fontSize: 16 }}>{a}</span>
@@ -1028,11 +1023,11 @@ function Summary({ answers }) {
   const contact = answers.contact || {};
   const items = [
     ["School type",      labelFor("school_type", answers.school_type)],
-    ["Units today",      answers.units ? `${answers.units}` : "—"],
-    ["Students",         answers.students ? `${answers.students} enrolled` : "—"],
-    ["Revenue / unit",   labelFor("revenue_per_unit", answers.revenue_per_unit)],
-    ["Target scale",     answers.target_units ? `${answers.target_units} units` : "—"],
-    ["Capital need",     labelFor("capital_need", answers.capital_need)],
+    ["Centres today",    labelFor("units", answers.units)],
+    ["Students",         labelFor("students", answers.students)],
+    ["Revenue",          labelFor("revenue_total", answers.revenue_total)],
+    ["Target scale",     labelFor("target_units", answers.target_units)],
+    ["Self-funded",      answers.capital_self_fund != null ? `${answers.capital_self_fund}%` : "—"],
     ["Open to capital",  labelFor("open_to_capital", answers.open_to_capital)],
   ];
   return (
@@ -1128,29 +1123,25 @@ function Audit() {
       setSubmitting(true);
       const contact = answers.contact || {};
       const formBody = new URLSearchParams({
-        first_name:       contact.first_name || "",
-        email:            contact.email || "",
-        whatsapp:         contact.whatsapp || "",
-        anything_else:    contact.anything_else || "",
-        school_type:      answers.school_type || "",
-        units:            String(answers.units ?? ""),
-        students:         String(answers.students ?? ""),
-        waitlist:         answers.waitlist || "",
-        parent_word:      answers.parent_word || "",
-        years_running:    answers.years_running || "",
-        independence:     answers.independence || "",
-        senior_leaders:   answers.senior_leaders || "",
-        timeline:         String(answers.timeline ?? ""),
-        revenue_per_unit: answers.revenue_per_unit || "",
-        operating_margin: answers.operating_margin || "",
-        utilization:      String(answers.utilization ?? ""),
-        new_unit_capex:   answers.new_unit_capex || "",
-        target_units:     String(answers.target_units ?? ""),
-        capital_need:     answers.capital_need || "",
-        scaling_unlocks:  answers.scaling_unlocks || "",
-        codification:     answers.codification || "",
-        open_to_capital:  answers.open_to_capital || "",
-        why_now:          answers.why_now || "",
+        first_name:            contact.first_name || "",
+        email:                 contact.email || "",
+        whatsapp:              contact.whatsapp || "",
+        anything_else:         contact.anything_else || "",
+        school_type:           answers.school_type || "",
+        units:                 answers.units || "",
+        students:              answers.students || "",
+        applications_per_seat: answers.applications_per_seat || "",
+        parent_word:           answers.parent_word || "",
+        years_running:         answers.years_running || "",
+        senior_leaders:        answers.senior_leaders || "",
+        revenue_total:         answers.revenue_total || "",
+        operating_margin:      answers.operating_margin || "",
+        new_unit_capex:        answers.new_unit_capex || "",
+        capital_self_fund:     String(answers.capital_self_fund ?? ""),
+        target_units:          answers.target_units || "",
+        codification:          answers.codification || "",
+        open_to_capital:       answers.open_to_capital || "",
+        why_now:               answers.why_now || "",
       }).toString();
       // fire-and-forget: log submission in background, don't block the UI
       fetch("/.netlify/functions/submit-audit", {
