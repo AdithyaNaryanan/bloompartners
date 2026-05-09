@@ -748,6 +748,13 @@ const QUESTIONS = [
     { v: "15-50cr",  label: "₹15 – ₹50 cr" },
     { v: "50cr+",    label: "₹50 cr+" },
   ]},
+  { id: "capital_have", section: "Ambition", prompt: "Of that capital, how much do you currently have access to?", type: "choice", options: [
+    { v: "all",  label: "All of it — fully self-funded" },
+    { v: "most", label: "Most of it — just need a top-up" },
+    { v: "half", label: "Roughly half" },
+    { v: "some", label: "Some — still need the bulk" },
+    { v: "none", label: "None yet" },
+  ]},
   { id: "scaling_unlocks", section: "Ambition", prompt: "What does scaling unlock for you that you can't access today?", type: "text", maxChars: 300, placeholder: "Be specific — not \"impact\", but what concretely changes..." },
 
   // Section 5 — Readiness
@@ -765,7 +772,7 @@ const QUESTIONS = [
   { id: "why_now", section: "Readiness", prompt: "Why are you reaching out now?", type: "text", maxChars: 500, placeholder: "What's changed, or what made you fill this out today?" },
 
   // Contact
-  { id: "contact", section: "Contact", prompt: "A few details before we read your audit.", sub: "We'll send your Readiness Profile immediately after you submit. If there's a fit on our side, you'll hear from us within five business days.", type: "contact" },
+  { id: "contact", section: "Contact", prompt: "A few details before we read your audit.", sub: "If there's a fit on our side, you'll hear from us within five business days.", type: "contact" },
 ];
 
 const SECTION_ORDER = ["Your School", "Founder & Team", "Economics", "Ambition", "Readiness", "Contact"];
@@ -1044,47 +1051,30 @@ function Summary({ answers }) {
   );
 }
 
-function AuditComplete({ answers, profileText, onRestart }) {
+function AuditComplete({ answers, onRestart }) {
   const contact = answers.contact || {};
   const firstName = (contact.first_name || "you").split(" ")[0];
 
   return (
     <section id="audit" style={{ padding: "140px 0", background: "var(--surface-dark)", color: "var(--paper)" }}>
       <div className="wrap">
-        <div style={{ display: "flex", alignItems: "baseline", gap: 14, marginBottom: 32 }}>
-          <span className="mono" style={{ color: "var(--accent-2)" }}>readiness profile</span>
-          <span style={{ flex: 1, height: 1, background: "rgba(235,232,226,0.3)" }} />
-          <span className="mono" style={{ color: "var(--paper-3)" }}>{new Date().toLocaleDateString("en-IN", { day: "2-digit", month: "short", year: "numeric" })}</span>
-        </div>
-
-        <h2 style={{
-          fontFamily: "var(--serif)", fontWeight: 400,
-          fontSize: "clamp(40px, 5vw, 72px)", lineHeight: 1.05,
-          letterSpacing: "-0.02em", margin: "0 0 48px",
-        }}>
-          Thank you, <em style={{ color: "var(--accent-2)" }}>{firstName}.</em>
-        </h2>
-
-        <div style={{ display: "grid", gridTemplateColumns: "1.2fr 1fr", gap: 80, alignItems: "start" }}>
+        <div className="complete-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 80, alignItems: "start" }}>
           <div>
-            {profileText ? (
-              <div style={{
-                fontFamily: "var(--serif)", fontSize: 18, lineHeight: 1.7,
-                color: "var(--paper-2)",
-                whiteSpace: "pre-wrap",
-              }}>
-                {profileText}
-              </div>
-            ) : (
-              <div>
-                <p style={{ color: "var(--paper-3)", fontSize: 18, lineHeight: 1.55, maxWidth: "44ch", margin: 0 }}>
-                  We've received your audit and will be in touch within five business days if there's a fit.
-                </p>
-                <p style={{ color: "var(--paper-3)", fontSize: 16, lineHeight: 1.55, maxWidth: "44ch", marginTop: 16 }}>
-                  If not, we'll let you know what to work on.
-                </p>
-              </div>
-            )}
+            <div style={{ display: "flex", alignItems: "baseline", gap: 14, marginBottom: 32 }}>
+              <span className="mono" style={{ color: "var(--accent-2)" }}>received</span>
+              <span style={{ flex: 1, height: 1, background: "rgba(235,232,226,0.3)" }} />
+              <span className="mono" style={{ color: "var(--paper-3)" }}>{new Date().toLocaleDateString("en-IN", { day: "2-digit", month: "short", year: "numeric" })}</span>
+            </div>
+            <h2 style={{
+              fontFamily: "var(--serif)", fontWeight: 400,
+              fontSize: "clamp(40px, 5vw, 72px)", lineHeight: 1.05,
+              letterSpacing: "-0.02em", margin: 0,
+            }}>
+              Thank you, <em style={{ color: "var(--accent-2)" }}>{firstName}.</em>
+            </h2>
+            <p style={{ marginTop: 28, color: "var(--paper-3)", fontSize: 18, lineHeight: 1.55, maxWidth: "40ch" }}>
+              We've read what you shared. If there's a fit on our side, you'll hear from us within five business days.
+            </p>
 
             <button onClick={onRestart} className="mono" style={{
               marginTop: 48, background: "none", border: "none",
@@ -1110,7 +1100,6 @@ function Audit() {
   const [answers, setAnswers]     = useState({});
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
-  const [profileText, setProfileText] = useState(null);
 
   // localStorage auto-save / restore
   useEffect(() => {
@@ -1163,18 +1152,12 @@ function Audit() {
         open_to_capital:  answers.open_to_capital || "",
         why_now:          answers.why_now || "",
       }).toString();
-      try {
-        const res = await fetch("/.netlify/functions/submit-audit", {
-          method: "POST",
-          headers: { "Content-Type": "application/x-www-form-urlencoded" },
-          body: formBody,
-        });
-        const json = res.ok ? await res.json() : {};
-        setProfileText(json.profile || null);
-      } catch (e) {
-        console.error("Submission error:", e);
-        setProfileText(null);
-      }
+      // fire-and-forget: log submission in background, don't block the UI
+      fetch("/.netlify/functions/submit-audit", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: formBody,
+      }).catch(() => {});
       try { localStorage.removeItem("bloom-audit-v2"); } catch (e) {}
       setSubmitting(false);
       setSubmitted(true);
@@ -1195,7 +1178,7 @@ function Audit() {
   }, [q, answers]);
 
   if (submitted) {
-    return <AuditComplete answers={answers} profileText={profileText} onRestart={() => { setAnswers({}); setStep(-1); setSubmitted(false); setProfileText(null); }} />;
+    return <AuditComplete answers={answers} onRestart={() => { setAnswers({}); setStep(-1); setSubmitted(false); }} />;
   }
 
   return (
@@ -1281,7 +1264,7 @@ function Audit() {
                 <button className="btn" disabled={!canAdvance || submitting}
                   onClick={handleNext}
                   style={{ opacity: canAdvance && !submitting ? 1 : 0.35, cursor: canAdvance && !submitting ? "pointer" : "not-allowed", padding: "12px 22px" }}>
-                  {step === total - 1 ? (submitting ? "Generating profile…" : "Submit audit") : "Continue"}
+                  {step === total - 1 ? (submitting ? "Submitting…" : "Submit audit") : "Continue"}
                   {!submitting && <span className="arrow">→</span>}
                 </button>
               </div>
