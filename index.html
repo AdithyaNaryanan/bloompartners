@@ -257,7 +257,7 @@ function Hero() {
           <div style={{ paddingLeft: 32, borderLeft: "1px solid var(--line)" }}>
             <div className="mono" style={{ color: "var(--accent)", marginBottom: 18 }}>The only door in</div>
             <p style={{ fontSize: 17, lineHeight: 1.6, color: "var(--ink-2)", margin: 0 }}>
-              A readiness audit — five minutes, honest answers — is the only way to start a conversation with us.
+              A readiness audit — five minutes, honest answers — is how founders start a conversation with us.
             </p>
             <a href="#audit" className="btn" style={{ marginTop: 28 }}>
               Take the readiness audit <span className="arrow">→</span>
@@ -672,94 +672,6 @@ function WhoWePartnerWith() {
   );
 }
 
-/* ─── Section 07: Process ───────────────────────────────────────────────────── */
-
-const PROCESS_STEPS = [
-  {
-    n: "1",
-    title: "Readiness Profile",
-    timing: "Immediate",
-    body: "Your audit submission generates a personalised profile delivered to your email — your strengths, your gaps, and one paragraph of useful advice on what to do next. Yours to keep, whether or not we engage.",
-  },
-  {
-    n: "2",
-    title: "First call",
-    timing: "Within 5 business days, only if fit",
-    body: "A 30-minute conversation. Mutual fit-test. We talk about your school, your ambition, our model, and whether we want to spend more time together.",
-  },
-  {
-    n: "3",
-    title: "Diligence",
-    timing: "2–3 weeks",
-    body: "Site visits, financial review, founder and team interviews, parent NPS check, pedagogy review.",
-  },
-  {
-    n: "4",
-    title: "Term sheet",
-    timing: "1–2 weeks",
-    body: "Capital structure, governance, equity terms, operating commitments — laid out cleanly.",
-  },
-  {
-    n: "5",
-    title: "Capital syndication and close",
-    timing: "4–6 weeks",
-    body: "We organize the capital from our partner network. You stay focused on running the school.",
-  },
-  {
-    n: "6",
-    title: "Operating partnership",
-    timing: "Ongoing",
-    body: "We sit alongside you for the scaling phase, with defined cadences, clear ownership, and an eventual exit plan.",
-  },
-];
-
-function Process() {
-  return (
-    <section id="process" style={{ padding: "140px 0", background: "var(--surface-dark)", color: "var(--paper)" }}>
-      <div className="wrap">
-        <div style={{ display: "flex", alignItems: "baseline", gap: 14, marginBottom: 64 }}>
-          <span className="mono" style={{ color: "var(--accent-2)", fontWeight: 500 }}>06</span>
-          <span style={{ flex: 1, height: 1, background: "rgba(235,232,226,0.2)" }} />
-          <span className="mono" style={{ color: "var(--paper-3)" }}>Process</span>
-        </div>
-
-        <h2 style={{
-          fontFamily: "var(--serif)", fontWeight: 400,
-          fontSize: "clamp(36px, 4.4vw, 64px)", lineHeight: 1.05,
-          letterSpacing: "-0.02em", margin: 0, maxWidth: "18ch"
-        }}>
-          What happens <em style={{ color: "var(--accent-2)" }}>after.</em>
-        </h2>
-
-        <div className="process-grid" style={{ marginTop: 80, display: "grid", gridTemplateColumns: "1fr 1fr", gap: 2 }}>
-          {PROCESS_STEPS.map((s, i) => (
-            <div key={i} style={{
-              padding: "36px 32px",
-              borderTop: "1px solid rgba(235,232,226,0.12)",
-              borderLeft: i % 2 === 1 ? "1px solid rgba(235,232,226,0.12)" : "none",
-            }}>
-              <div style={{ display: "flex", alignItems: "baseline", gap: 16, marginBottom: 16 }}>
-                <span style={{ fontFamily: "var(--serif)", fontStyle: "italic", fontSize: 24, color: "var(--accent-2)", lineHeight: 1 }}>{s.n}.</span>
-                <div>
-                  <div style={{ fontFamily: "var(--serif)", fontSize: 18, color: "var(--paper)", lineHeight: 1.2 }}>{s.title}</div>
-                  <div className="mono" style={{ color: "var(--paper-3)", marginTop: 4 }}>{s.timing}</div>
-                </div>
-              </div>
-              <p style={{ fontSize: 15, lineHeight: 1.6, color: "var(--paper-3)", margin: 0 }}>{s.body}</p>
-            </div>
-          ))}
-        </div>
-
-        <div style={{ marginTop: 64, paddingTop: 32, borderTop: "1px solid rgba(235,232,226,0.12)" }}>
-          <p style={{ fontFamily: "var(--serif)", fontStyle: "italic", fontSize: 18, color: "var(--paper-3)", margin: 0 }}>
-            Total: roughly 3–4 months from audit submission to capital in the bank, in a typical deal.
-          </p>
-        </div>
-      </div>
-    </section>
-  );
-}
-
 /* ─── Audit ─────────────────────────────────────────────────────────────────── */
 
 const QUESTIONS = [
@@ -1072,7 +984,7 @@ function AuditIntro({ onStart }) {
         fontSize: 34, lineHeight: 1.15, letterSpacing: "-0.015em",
         margin: 0,
       }}>
-        The only way to start a conversation with us.
+        How founders start a conversation with us.
       </h3>
       <p style={{ marginTop: 20, fontSize: 16, color: "var(--ink-2)", lineHeight: 1.65 }}>
         This audit helps you understand whether we're a fit, and gives us the data to decide the same. Honest beats polished — we read everything.
@@ -1303,7 +1215,7 @@ function Audit() {
               Five minutes. <em style={{ color: "var(--accent)" }}>Honest answers.</em>
             </h2>
             <p style={{ marginTop: 20, color: "var(--ink-2)", fontSize: 16, lineHeight: 1.6, maxWidth: "36ch" }}>
-              The only door in. We use it to understand your school, your ambition, and whether there's a fit. You get a Readiness Profile in return — regardless of outcome.
+              We use it to understand your school, your ambition, and whether there's a fit. You get a Readiness Profile in return — regardless of outcome.
             </p>
 
             <div style={{ marginTop: 48, borderTop: "1px solid var(--line)", paddingTop: 20 }}>
@@ -1432,7 +1344,6 @@ function App() {
       <WhatWeBring />
       <WhoWePartnerWith />
       <Audit />
-      <Process />
       <Footer />
     </>
   );
