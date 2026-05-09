@@ -1044,46 +1044,46 @@ function Summary({ answers }) {
   );
 }
 
-function AuditComplete({ answers, emailSent, onRestart }) {
+function AuditComplete({ answers, profileText, onRestart }) {
   const contact = answers.contact || {};
   const firstName = (contact.first_name || "you").split(" ")[0];
-  const email = contact.email || "";
 
   return (
     <section id="audit" style={{ padding: "140px 0", background: "var(--surface-dark)", color: "var(--paper)" }}>
       <div className="wrap">
-        <div className="complete-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 80, alignItems: "start" }}>
+        <div style={{ display: "flex", alignItems: "baseline", gap: 14, marginBottom: 32 }}>
+          <span className="mono" style={{ color: "var(--accent-2)" }}>readiness profile</span>
+          <span style={{ flex: 1, height: 1, background: "rgba(235,232,226,0.3)" }} />
+          <span className="mono" style={{ color: "var(--paper-3)" }}>{new Date().toLocaleDateString("en-IN", { day: "2-digit", month: "short", year: "numeric" })}</span>
+        </div>
+
+        <h2 style={{
+          fontFamily: "var(--serif)", fontWeight: 400,
+          fontSize: "clamp(40px, 5vw, 72px)", lineHeight: 1.05,
+          letterSpacing: "-0.02em", margin: "0 0 48px",
+        }}>
+          Thank you, <em style={{ color: "var(--accent-2)" }}>{firstName}.</em>
+        </h2>
+
+        <div style={{ display: "grid", gridTemplateColumns: "1.2fr 1fr", gap: 80, alignItems: "start" }}>
           <div>
-            <div style={{ display: "flex", alignItems: "baseline", gap: 14, marginBottom: 32 }}>
-              <span className="mono" style={{ color: "var(--accent-2)" }}>received</span>
-              <span style={{ flex: 1, height: 1, background: "rgba(235,232,226,0.3)" }} />
-              <span className="mono" style={{ color: "var(--paper-3)" }}>{new Date().toLocaleDateString("en-IN", { day: "2-digit", month: "short", year: "numeric" })}</span>
-            </div>
-            <h2 style={{
-              fontFamily: "var(--serif)", fontWeight: 400,
-              fontSize: "clamp(40px, 5vw, 72px)", lineHeight: 1.05,
-              letterSpacing: "-0.02em", margin: 0,
-            }}>
-              Thank you, <em style={{ color: "var(--accent-2)" }}>{firstName}.</em>
-            </h2>
-            {emailSent ? (
-              <>
-                <p style={{ marginTop: 28, color: "var(--paper-3)", fontSize: 18, lineHeight: 1.55, maxWidth: "40ch" }}>
-                  Your Readiness Profile is on its way{email ? ` to ${email}` : " to your inbox"} — your strengths, your gaps, and one paragraph of honest advice on what to do next.
-                </p>
-                <p style={{ marginTop: 16, color: "var(--paper-3)", fontSize: 16, lineHeight: 1.55, maxWidth: "40ch" }}>
-                  If there's a fit on our side, you'll hear from us within five business days. If not, the profile is yours to keep.
-                </p>
-              </>
+            {profileText ? (
+              <div style={{
+                fontFamily: "var(--serif)", fontSize: 18, lineHeight: 1.7,
+                color: "var(--paper-2)",
+                whiteSpace: "pre-wrap",
+              }}>
+                {profileText}
+              </div>
             ) : (
-              <>
-                <p style={{ marginTop: 28, color: "var(--paper-3)", fontSize: 18, lineHeight: 1.55, maxWidth: "40ch" }}>
-                  We've received your audit. There was a hiccup sending your Readiness Profile — we'll send it manually within 24 hours{email ? ` to ${email}` : ""}.
+              <div>
+                <p style={{ color: "var(--paper-3)", fontSize: 18, lineHeight: 1.55, maxWidth: "44ch", margin: 0 }}>
+                  We've received your audit and will be in touch within five business days if there's a fit.
                 </p>
-                <p style={{ marginTop: 16, color: "var(--paper-3)", fontSize: 16, lineHeight: 1.55, maxWidth: "40ch" }}>
-                  If there's a fit on our side, you'll hear from us within five business days.
+                <p style={{ color: "var(--paper-3)", fontSize: 16, lineHeight: 1.55, maxWidth: "44ch", marginTop: 16 }}>
+                  If not, we'll let you know what to work on.
                 </p>
-              </>
+              </div>
             )}
 
             <button onClick={onRestart} className="mono" style={{
@@ -1110,7 +1110,7 @@ function Audit() {
   const [answers, setAnswers]     = useState({});
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
-  const [emailSent, setEmailSent] = useState(true);
+  const [profileText, setProfileText] = useState(null);
 
   // localStorage auto-save / restore
   useEffect(() => {
@@ -1170,10 +1170,10 @@ function Audit() {
           body: formBody,
         });
         const json = res.ok ? await res.json() : {};
-        setEmailSent(!json.emailFailed);
+        setProfileText(json.profile || null);
       } catch (e) {
         console.error("Submission error:", e);
-        setEmailSent(false);
+        setProfileText(null);
       }
       try { localStorage.removeItem("bloom-audit-v2"); } catch (e) {}
       setSubmitting(false);
@@ -1195,7 +1195,7 @@ function Audit() {
   }, [q, answers]);
 
   if (submitted) {
-    return <AuditComplete answers={answers} emailSent={emailSent} onRestart={() => { setAnswers({}); setStep(-1); setSubmitted(false); setEmailSent(true); }} />;
+    return <AuditComplete answers={answers} profileText={profileText} onRestart={() => { setAnswers({}); setStep(-1); setSubmitted(false); setProfileText(null); }} />;
   }
 
   return (
@@ -1281,7 +1281,7 @@ function Audit() {
                 <button className="btn" disabled={!canAdvance || submitting}
                   onClick={handleNext}
                   style={{ opacity: canAdvance && !submitting ? 1 : 0.35, cursor: canAdvance && !submitting ? "pointer" : "not-allowed", padding: "12px 22px" }}>
-                  {step === total - 1 ? (submitting ? "Sending…" : "Submit audit") : "Continue"}
+                  {step === total - 1 ? (submitting ? "Generating profile…" : "Submit audit") : "Continue"}
                   {!submitting && <span className="arrow">→</span>}
                 </button>
               </div>
