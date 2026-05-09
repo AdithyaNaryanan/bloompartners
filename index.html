@@ -9,7 +9,7 @@
 <!-- Open Graph / WhatsApp preview -->
 <meta property="og:type"        content="website" />
 <meta property="og:url"         content="https://bloompartners.xyz" />
-<meta property="og:title"       content="Bloom Partners — Capital and operating partners for India's best founder-led preschools" />
+<meta property="og:title"       content="Bloom Partners — Capital and operating partners for founder-led preschools" />
 <meta property="og:description" content="We back a handful of founders each year to scale from one great school to a lasting chain — without losing what made them worth choosing." />
 <meta property="og:image"       content="https://bloompartners.xyz/og-image.png" />
 <meta name="twitter:card"       content="summary_large_image" />
@@ -240,7 +240,7 @@ function Hero() {
           margin: 0,
           maxWidth: "18ch",
         }}>
-          Capital and operating partners for India's best <span style={{ whiteSpace: "nowrap" }}>founder-led</span> <span style={{ color: "var(--accent)" }}>preschools.</span>
+          Capital and operating partners for the best <span style={{ whiteSpace: "nowrap" }}>founder-led</span> <span style={{ color: "var(--accent)" }}>preschools.</span>
         </h1>
 
         <div className="hero-grid" style={{
@@ -288,13 +288,13 @@ function WhyWeExist() {
           <div />
           <div style={{ display: "grid", gap: 24 }}>
             <p style={{ fontSize: 17, lineHeight: 1.65, margin: 0 }}>
-              The best preschools in India are built by founders. They reach a ceiling at one or two schools — not for lack of vision, but for lack of capital and operational scaffolding to grow.
+              The best preschools are built by founders. They reach a ceiling at one or two schools — not for lack of vision, but for lack of capital and operational scaffolding to grow.
             </p>
             <p style={{ fontSize: 17, lineHeight: 1.65, margin: 0, color: "var(--ink-2)" }}>
               Most schools dilute their impact the moment they add a second location. We exist to prove the opposite — that bigger can mean better — and to back the founders who do it without losing what made them worth choosing in the first place.
             </p>
             <p style={{ fontSize: 17, lineHeight: 1.65, margin: 0 }}>
-              The next generation of India's great preschool chains will come from founders, not from corporates.{" "}
+              The next generation of great preschool chains will come from founders, not from corporates.{" "}
               <em style={{ color: "var(--accent)" }}>Bloom backs them.</em>
             </p>
           </div>
@@ -381,7 +381,7 @@ const PILLARS = [
     n: "01",
     label: "Capital",
     title: "Organized for what the founder actually needs.",
-    body: "Assembled from a network of operator-investors, regional family wealth, and diaspora capital looking for thoughtful India-edu deployment. Equity, debt, or blended — structured per-deal. Not a fund, not generic growth equity. Capital that understands preschools.",
+    body: "Assembled from a network of operator-investors, regional family wealth, and diaspora capital looking for thoughtful education deployment. Equity, debt, or blended — structured per-deal. Not a fund, not generic growth equity. Capital that understands preschools.",
     tags: ["Operator-investor syndicate", "Family-office partners", "Equity, debt, or blended", "Deal-by-deal SPVs"],
     figure: "model"
   },
@@ -397,7 +397,7 @@ const PILLARS = [
     n: "03",
     label: "Network",
     title: "The people you can't find by searching.",
-    body: "Connections to scaled-school peers, real-estate operators across India, and the eventual liquidity routes — strategic sale, secondary, consolidation — that make the whole thing worth it. The network compounds the longer you're part of it.",
+    body: "Connections to scaled-school peers, real-estate operators, and the eventual liquidity routes — strategic sale, secondary, consolidation — that make the whole thing worth it. The network compounds the longer you're part of it.",
     tags: ["Operator-peer network", "Real-estate partners", "Liquidity routes"],
     figure: "network"
   },
@@ -417,7 +417,7 @@ function PillarFigure({ kind }) {
         {[40, 80, 120, 160].map((y, i) => (
           <g key={y}>
             <line x1="44" y1={y} x2="300" y2={y} stroke="var(--line)" strokeDasharray="1.5 3" strokeWidth="0.7" />
-            <text x="40" y={y + 3} fontFamily="var(--mono)" fontSize="6.5" fill="var(--ink-3)" textAnchor="end" letterSpacing="0.5">{["₹8cr", "₹6cr", "₹4cr", "₹2cr"][i]}</text>
+            <text x="40" y={y + 3} fontFamily="var(--mono)" fontSize="6.5" fill="var(--ink-3)" textAnchor="end" letterSpacing="0.5">{["$1M", "$750K", "$500K", "$250K"][i]}</text>
           </g>
         ))}
         <line x1="44" y1="186" x2="300" y2="186" stroke="var(--ink)" strokeWidth="1" />
@@ -721,11 +721,11 @@ const QUESTIONS = [
 
   // Section 3 — Economics
   { id: "revenue_total", section: "Economics", prompt: "Annual revenue across all your centres?", type: "choice", options: [
-    { v: "under50L",  label: "Under ₹50L" },
-    { v: "50L-1cr",   label: "₹50L – ₹1 cr" },
-    { v: "1-2cr",     label: "₹1 – ₹2 cr" },
-    { v: "2-5cr",     label: "₹2 – ₹5 cr" },
-    { v: "5cr+",      label: "₹5 cr+" },
+    { v: "under100k",  label: "Under $100K" },
+    { v: "100-250k",   label: "$100K – $250K" },
+    { v: "250-500k",   label: "$250K – $500K" },
+    { v: "500k-1m",    label: "$500K – $1M" },
+    { v: "1m+",        label: "$1M+" },
   ]},
   { id: "operating_margin", section: "Economics", prompt: "Operating margin (EBITDA-ish) at your most mature unit?", type: "choice", options: [
     { v: "under10",    label: "Under 10%" },
@@ -735,11 +735,11 @@ const QUESTIONS = [
     { v: "prefer_not", label: "I'd rather not say" },
   ]},
   { id: "new_unit_capex", section: "Economics", prompt: "Estimated capex to open a new centre?", type: "choice", options: [
-    { v: "under50L",   label: "Under ₹50L" },
-    { v: "50L-1.5cr",  label: "₹50L – ₹1.5 cr" },
-    { v: "1.5-3cr",    label: "₹1.5 – ₹3 cr" },
-    { v: "3-5cr",      label: "₹3 – ₹5 cr" },
-    { v: "5cr+",       label: "₹5 cr+" },
+    { v: "under100k",  label: "Under $100K" },
+    { v: "100-250k",   label: "$100K – $250K" },
+    { v: "250-500k",   label: "$250K – $500K" },
+    { v: "500k-1m",    label: "$500K – $1M" },
+    { v: "1m+",        label: "$1M+" },
   ]},
   { id: "capital_self_fund", section: "Economics", prompt: "How much of that capex do you or your family currently have?", sub: "The remainder is what you'd need to raise from outside.", type: "slider", min: 0, max: 100, step: 5, default: 0, unit: "%", leftLabel: "None — need to raise it all", rightLabel: "All of it — fully self-funded" },
 
@@ -1058,7 +1058,7 @@ function AuditComplete({ answers, onRestart }) {
             <div style={{ display: "flex", alignItems: "baseline", gap: 14, marginBottom: 32 }}>
               <span className="mono" style={{ color: "var(--accent-2)" }}>received</span>
               <span style={{ flex: 1, height: 1, background: "rgba(235,232,226,0.3)" }} />
-              <span className="mono" style={{ color: "var(--paper-3)" }}>{new Date().toLocaleDateString("en-IN", { day: "2-digit", month: "short", year: "numeric" })}</span>
+              <span className="mono" style={{ color: "var(--paper-3)" }}>{new Date().toLocaleDateString("en-GB", { day: "2-digit", month: "short", year: "numeric" })}</span>
             </div>
             <h2 style={{
               fontFamily: "var(--serif)", fontWeight: 400,
@@ -1281,7 +1281,7 @@ function Footer() {
           margin: 0, maxWidth: "22ch",
           color: "var(--paper)",
         }}>
-          Building the next generation of India's best preschools — <em style={{ color: "var(--accent-2)", fontWeight: 400 }}>without compromise to soul.</em>
+          Building the next generation of great preschools — <em style={{ color: "var(--accent-2)", fontWeight: 400 }}>without compromise to soul.</em>
         </p>
 
         <div style={{ marginTop: 72, paddingTop: 32, borderTop: "1px solid rgba(235,232,226,0.15)" }}>
