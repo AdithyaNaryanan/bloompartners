@@ -184,11 +184,13 @@
 <body>
 
 <form name="bloom-audit" netlify netlify-honeypot="bot-field" hidden>
-  <input name="name" /><input name="email" /><input name="school" />
-  <input name="location" /><input name="stage" /><input name="founder_load" />
-  <input name="philosophy" /><input name="leaders" /><input name="codified" />
-  <input name="ambition" /><input name="started" /><input name="constraint" />
-  <input name="context" />
+  <input name="name" /><input name="email" /><input name="school" /><input name="city" />
+  <input name="school_type" /><input name="centres" /><input name="students" />
+  <input name="operating_years" /><input name="differentiation" /><input name="enrollment_trend" />
+  <input name="scale_vision" /><input name="obstacle" /><input name="next_location" />
+  <input name="independent_leaders" /><input name="business_expertise" /><input name="ops_expertise" />
+  <input name="academic_leadership" /><input name="finance_clarity" /><input name="data_usage" />
+  <input name="tech_support" /><input name="systems_codified" />
 </form>
 
 <div id="root"></div>
@@ -378,6 +380,7 @@ function Patterns() {
             <article key={i} className="pattern-row" style={{
               display: "grid",
               gridTemplateColumns: "80px 1fr 1.6fr",
+
               gap: 48,
               alignItems: "start",
               padding: "44px 0",
@@ -748,11 +751,11 @@ const QUESTIONS = [
   ]},
   { id: "differentiation", section: "Your School", prompt: "How would your most loyal parent describe what makes your school different?", sub: "In their words, not yours.", type: "textarea", placeholder: "They'd say…" },
   { id: "enrollment_trend", section: "Your School", prompt: "How has your enrolment trended over the last two years?", type: "choice", options: [
-    { v: "fast",      label: "Growing fast — we can barely keep up" },
-    { v: "steady",    label: "Growing steadily" },
-    { v: "flat",      label: "Flat" },
-    { v: "declining", label: "Declining" },
-    { v: "early",     label: "Too early to tell" },
+    { v: "fast",     label: "Growing fast — we can barely keep up" },
+    { v: "steady",   label: "Growing steadily" },
+    { v: "flat",     label: "Flat" },
+    { v: "declining",label: "Declining" },
+    { v: "early",    label: "Too early to tell" },
   ]},
   // Part 2 — Your Ambition
   { id: "scale_vision", section: "Your Ambition", prompt: "What does scale look like, for you, in five years?", type: "choice", options: [
@@ -760,6 +763,13 @@ const QUESTIONS = [
     { v: "national",  label: "A national presence — 10 or more locations" },
     { v: "franchise", label: "A franchise model with partners running new locations" },
     { v: "unsure",    label: "Honestly not sure yet" },
+  ]},
+  { id: "obstacle", section: "Your Ambition", prompt: "What is your single biggest obstacle to scaling right now?", type: "choice", options: [
+    { v: "ops",        label: "I'm too involved in day-to-day operations" },
+    { v: "leadership", label: "I don't have the right leadership team yet" },
+    { v: "capital",    label: "I don't have the capital to grow" },
+    { v: "clarity",    label: "I don't have the financial clarity to make growth decisions" },
+    { v: "systems",    label: "Our systems and processes aren't ready to replicate" },
   ]},
   { id: "next_location", section: "Your Ambition", prompt: "When are you looking to open your next location?", type: "choice", options: [
     { v: "12months", label: "Within 12 months" },
@@ -793,31 +803,37 @@ const QUESTIONS = [
     { v: "worldclass", label: "World class — academic excellence is our core strength" },
   ]},
   // Part 4 — Your Readiness
-  { id: "tech_support", section: "Your Readiness", prompt: "How well does technology support your operations today?", sub: "1 — Pen, paper, WhatsApp   ·   5 — Fully integrated, data flows across the school", type: "slider", min: 1, max: 5, step: 1, default: 3, leftLabel: "Pen and paper", rightLabel: "Fully integrated" },
+  { id: "finance_clarity", section: "Your Readiness", prompt: "How well do you understand your school's finances?", sub: "1 — Month to month   ·   5 — PE-grade clarity, modelling scenarios", type: "slider", min: 1, max: 5, step: 1, default: 3, leftLabel: "Month to month", rightLabel: "PE-grade clarity" },
+  { id: "data_usage",      section: "Your Readiness", prompt: "How well does your school use data to make decisions?",    sub: "1 — Instinct only   ·   5 — Full dashboard across academic, ops and finance",    type: "slider", min: 1, max: 5, step: 1, default: 3, leftLabel: "Instinct only",    rightLabel: "Full dashboard" },
+  { id: "tech_support",    section: "Your Readiness", prompt: "How well does technology support your operations today?",  sub: "1 — Pen, paper, WhatsApp   ·   5 — Fully integrated, data flows across the school", type: "slider", min: 1, max: 5, step: 1, default: 3, leftLabel: "Pen and paper",    rightLabel: "Fully integrated" },
+  { id: "systems_codified",section: "Your Readiness", prompt: "How codified are your systems and processes?",            sub: "1 — Everything in people's heads   ·   5 — Full SOPs across academics and operations",  type: "slider", min: 1, max: 5, step: 1, default: 3, leftLabel: "In people's heads", rightLabel: "Full SOPs" },
   // Close
-  { id: "obstacle", section: "Your Ambition", prompt: "What is your single biggest obstacle to scaling right now?", type: "choice", options: [
-    { v: "ops",        label: "I'm too involved in day-to-day operations" },
-    { v: "leadership", label: "I don't have the right leadership team yet to scale beyond a centre" },
-    { v: "capital",    label: "I don't have the capital to grow" },
-    { v: "clarity",    label: "I don't have the financial clarity to make growth decisions" },
-    { v: "systems",    label: "Our systems and processes aren't ready to replicate" },
-    { v: "other",      label: "Other" },
-  ]},
   { id: "contact", section: "Close", prompt: "Your name, school name, city, and email.", sub: "We typically reply within 48 hours. If we think there's a fit, we'll send a call link directly.", type: "contact" },
 ];
 
 const SECTION_ORDER = ["Your School", "Your Ambition", "Your Team", "Your Readiness", "Close"];
 
 function ProgressBar({ step, total }) {
+  const pct = total > 0 ? Math.round((step / total) * 100) : 0;
+  const done = step;
+  const left = total - step;
   return (
-    <div style={{ display: "flex", gap: 6, alignItems: "center" }}>
-      {Array.from({ length: total }).map((_, i) => (
-        <div key={i} style={{
-          flex: 1, height: 2,
-          background: i < step ? "var(--accent)" : i === step ? "var(--ink)" : "var(--line)",
-          transition: "background 200ms ease",
+    <div>
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", marginBottom: 8 }}>
+        <span style={{ fontFamily: "var(--serif)", fontSize: 13, color: "var(--ink-3)" }}>
+          <strong style={{ color: "var(--ink)", fontSize: 15 }}>{done}</strong> done &nbsp;·&nbsp; <strong style={{ color: "var(--ink)", fontSize: 15 }}>{left}</strong> left
+        </span>
+        <span className="mono" style={{ fontSize: 10, color: "var(--ink-3)" }}>{pct}%</span>
+      </div>
+      <div style={{ position: "relative", height: 6, background: "var(--line-soft)", borderRadius: 3, overflow: "hidden" }}>
+        <div style={{
+          position: "absolute", left: 0, top: 0, bottom: 0,
+          width: `${pct}%`,
+          background: "var(--accent)",
+          borderRadius: 3,
+          transition: "width 300ms ease",
         }} />
-      ))}
+      </div>
     </div>
   );
 }
@@ -832,7 +848,7 @@ function SliderInput({ q, value, setValue }) {
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", marginBottom: 18 }}>
         <span className="mono">{q.leftLabel}</span>
         <span style={{ fontFamily: "var(--serif)", fontSize: 56, lineHeight: 1, color: "var(--accent)" }}>
-          {v}
+          {v}<span style={{ fontSize: 22, color: "var(--ink-3)" }}> / 5</span>
         </span>
         <span className="mono">{q.rightLabel}</span>
       </div>
@@ -844,7 +860,7 @@ function SliderInput({ q, value, setValue }) {
         style={{ width: "100%", accentColor: "var(--accent)" }}
       />
       <div style={{ display: "flex", justifyContent: "space-between", marginTop: 6 }}>
-        {[0, 25, 50, 75, 100].map(t => (
+        {[1, 2, 3, 4, 5].map(t => (
           <span key={t} className="mono" style={{ color: "var(--line)" }}>{t}</span>
         ))}
       </div>
@@ -884,9 +900,9 @@ function ContactForm({ value, setValue }) {
         <input type="text" value={value.school || ""} onChange={e => update("school", e.target.value)}
           style={fieldStyle} placeholder="Banyan Tree School" />
       </Field>
-      <Field label="Where are you based?">
-        <input type="text" value={value.location || ""} onChange={e => update("location", e.target.value)}
-          style={fieldStyle} placeholder="City, country" />
+      <Field label="City">
+        <input type="text" value={value.city || ""} onChange={e => update("city", e.target.value)}
+          style={fieldStyle} placeholder="Bangalore" />
       </Field>
     </div>
   );
@@ -1006,7 +1022,7 @@ function AuditIntro({ onStart }) {
         fontSize: 36, lineHeight: 1.15, letterSpacing: "-0.015em",
         margin: 0, textWrap: "balance",
       }}>
-        A short, honest audit. Roughly fourteen questions.
+        A short, honest audit. Around 18 questions across four parts.
       </h3>
       <p style={{ marginTop: 20, fontSize: 16, color: "var(--ink-2)", lineHeight: 1.65 }}>
         Built for founders who already know roughly what they want. We use this to decide whether there's a fit, and to make our first conversation useful — not exploratory.
@@ -1041,12 +1057,13 @@ function labelFor(qid, v) {
 
 function Summary({ answers }) {
   const items = [
-    ["Stage", labelFor("stage", answers.stage)],
-    ["Founder dependency", labelFor("founder_load", answers.founder_load)],
-    ["Five-year ambition", labelFor("ambition", answers.ambition)],
-    ["Codification today", typeof answers.codified === "number" ? `${answers.codified}% codified` : "—"],
-    ["Primary constraint", labelFor("constraint", answers.constraint)],
-    ["Already underway", Array.isArray(answers.started) ? `${answers.started.length} commitments` : "—"],
+    ["School type", labelFor("school_type", answers.school_type)],
+    ["Centres", labelFor("centres", answers.centres)],
+    ["Enrolment trend", labelFor("enrollment_trend", answers.enrollment_trend)],
+    ["Scale vision", labelFor("scale_vision", answers.scale_vision)],
+    ["Biggest obstacle", labelFor("obstacle", answers.obstacle)],
+    ["Finance clarity", typeof answers.finance_clarity === "number" ? `${answers.finance_clarity} / 5` : "—"],
+    ["Systems codified", typeof answers.systems_codified === "number" ? `${answers.systems_codified} / 5` : "—"],
   ];
   return (
     <div>
@@ -1141,16 +1158,24 @@ function Audit() {
             name: contact.name || "",
             email: contact.email || "",
             school: contact.school || "",
-            location: contact.location || "",
-            stage: answers.stage || "",
-            founder_load: answers.founder_load || "",
-            philosophy: answers.philosophy || "",
-            leaders: answers.leaders || "",
-            codified: String(answers.codified ?? ""),
-            ambition: answers.ambition || "",
-            started: Array.isArray(answers.started) ? answers.started.join(", ") : "",
-            constraint: answers.constraint || "",
-            context: answers.context || "",
+            city: contact.city || "",
+            school_type: answers.school_type || "",
+            centres: answers.centres || "",
+            students: answers.students || "",
+            operating_years: answers.operating_years || "",
+            differentiation: answers.differentiation || "",
+            enrollment_trend: answers.enrollment_trend || "",
+            scale_vision: answers.scale_vision || "",
+            obstacle: answers.obstacle || "",
+            next_location: answers.next_location || "",
+            independent_leaders: answers.independent_leaders || "",
+            business_expertise: answers.business_expertise || "",
+            ops_expertise: answers.ops_expertise || "",
+            academic_leadership: answers.academic_leadership || "",
+            finance_clarity: String(answers.finance_clarity ?? ""),
+            data_usage: String(answers.data_usage ?? ""),
+            tech_support: String(answers.tech_support ?? ""),
+            systems_codified: String(answers.systems_codified ?? ""),
           }).toString(),
         });
       } catch (e) {
@@ -1239,18 +1264,18 @@ function Audit() {
             display: "flex", flexDirection: "column",
           }}>
             <div className="audit-nav" style={{
-              padding: "20px 32px",
+              padding: "16px 32px",
               borderBottom: "1px solid var(--line-soft)",
-              display: "flex", alignItems: "center", justifyContent: "space-between",
-              gap: 24,
             }}>
-              <span className="mono">
-                {step < 0 ? `Audit · 00 / ${String(total).padStart(2, "0")}` :
-                  q ? `${q.section} · ${String(step + 1).padStart(2, "0")} / ${String(total).padStart(2, "0")}` : ""}
-              </span>
-              <div style={{ flex: 1, maxWidth: 220 }}>
-                <ProgressBar step={Math.max(step, 0)} total={total} />
+              <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 10 }}>
+                <span className="mono" style={{ fontSize: 10 }}>
+                  {step < 0 ? "The audit" : q ? q.section : ""}
+                </span>
+                <span className="mono" style={{ fontSize: 10 }}>
+                  {step < 0 ? `${total} questions` : `Q ${step + 1} / ${total}`}
+                </span>
               </div>
+              <ProgressBar step={Math.max(step, 0)} total={total} />
             </div>
 
             <div className="audit-inner" style={{ padding: "56px 56px 32px", flex: 1, display: "flex", flexDirection: "column" }}>
