@@ -1132,7 +1132,7 @@ function Summary({ answers }) {
   );
 }
 
-function AuditComplete({ answers, onRestart }) {
+function AuditComplete({ answers, emailSent, onRestart }) {
   const contact = answers.contact || {};
   const firstName = (contact.first_name || "you").split(" ")[0];
   const email = contact.email || "";
@@ -1154,12 +1154,25 @@ function AuditComplete({ answers, onRestart }) {
             }}>
               Thank you, <em style={{ color: "var(--accent-2)" }}>{firstName}.</em>
             </h2>
-            <p style={{ marginTop: 28, color: "var(--paper-3)", fontSize: 18, lineHeight: 1.55, maxWidth: "40ch" }}>
-              Your Readiness Profile is on its way{email ? ` to ${email}` : " to your inbox"} — your strengths, your gaps, and one paragraph of honest advice on what to do next.
-            </p>
-            <p style={{ marginTop: 16, color: "var(--paper-3)", fontSize: 16, lineHeight: 1.55, maxWidth: "40ch" }}>
-              If there's a fit on our side, you'll hear from us within five business days. If not, the profile is yours to keep.
-            </p>
+            {emailSent ? (
+              <>
+                <p style={{ marginTop: 28, color: "var(--paper-3)", fontSize: 18, lineHeight: 1.55, maxWidth: "40ch" }}>
+                  Your Readiness Profile is on its way{email ? ` to ${email}` : " to your inbox"} — your strengths, your gaps, and one paragraph of honest advice on what to do next.
+                </p>
+                <p style={{ marginTop: 16, color: "var(--paper-3)", fontSize: 16, lineHeight: 1.55, maxWidth: "40ch" }}>
+                  If there's a fit on our side, you'll hear from us within five business days. If not, the profile is yours to keep.
+                </p>
+              </>
+            ) : (
+              <>
+                <p style={{ marginTop: 28, color: "var(--paper-3)", fontSize: 18, lineHeight: 1.55, maxWidth: "40ch" }}>
+                  We've received your audit. There was a hiccup sending your Readiness Profile — we'll send it manually within 24 hours{email ? ` to ${email}` : ""}.
+                </p>
+                <p style={{ marginTop: 16, color: "var(--paper-3)", fontSize: 16, lineHeight: 1.55, maxWidth: "40ch" }}>
+                  If there's a fit on our side, you'll hear from us within five business days.
+                </p>
+              </>
+            )}
 
             <button onClick={onRestart} className="mono" style={{
               marginTop: 48, background: "none", border: "none",
@@ -1185,6 +1198,7 @@ function Audit() {
   const [answers, setAnswers]     = useState({});
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
+  const [emailSent, setEmailSent] = useState(true);
 
   // localStorage auto-save / restore
   useEffect(() => {
@@ -1212,39 +1226,42 @@ function Audit() {
     if (step === total - 1) {
       setSubmitting(true);
       const contact = answers.contact || {};
+      const formBody = new URLSearchParams({
+        first_name:       contact.first_name || "",
+        email:            contact.email || "",
+        whatsapp:         contact.whatsapp || "",
+        anything_else:    contact.anything_else || "",
+        school_type:      answers.school_type || "",
+        units:            String(answers.units ?? ""),
+        students:         String(answers.students ?? ""),
+        waitlist:         answers.waitlist || "",
+        parent_word:      answers.parent_word || "",
+        years_running:    answers.years_running || "",
+        independence:     answers.independence || "",
+        senior_leaders:   answers.senior_leaders || "",
+        timeline:         String(answers.timeline ?? ""),
+        revenue_per_unit: answers.revenue_per_unit || "",
+        operating_margin: answers.operating_margin || "",
+        utilization:      String(answers.utilization ?? ""),
+        new_unit_capex:   answers.new_unit_capex || "",
+        target_units:     String(answers.target_units ?? ""),
+        capital_need:     answers.capital_need || "",
+        scaling_unlocks:  answers.scaling_unlocks || "",
+        codification:     answers.codification || "",
+        open_to_capital:  answers.open_to_capital || "",
+        why_now:          answers.why_now || "",
+      }).toString();
       try {
-        await fetch("/", {
+        const res = await fetch("/.netlify/functions/submit-audit", {
           method: "POST",
           headers: { "Content-Type": "application/x-www-form-urlencoded" },
-          body: new URLSearchParams({
-            "form-name": "bloom-audit",
-            first_name:      contact.first_name || "",
-            email:           contact.email || "",
-            whatsapp:        contact.whatsapp || "",
-            anything_else:   contact.anything_else || "",
-            school_type:     answers.school_type || "",
-            units:           String(answers.units ?? ""),
-            students:        String(answers.students ?? ""),
-            waitlist:        answers.waitlist || "",
-            parent_word:     answers.parent_word || "",
-            years_running:   answers.years_running || "",
-            independence:    answers.independence || "",
-            senior_leaders:  answers.senior_leaders || "",
-            timeline:        String(answers.timeline ?? ""),
-            revenue_per_unit: answers.revenue_per_unit || "",
-            operating_margin: answers.operating_margin || "",
-            utilization:     String(answers.utilization ?? ""),
-            new_unit_capex:  answers.new_unit_capex || "",
-            target_units:    String(answers.target_units ?? ""),
-            capital_need:    answers.capital_need || "",
-            scaling_unlocks: answers.scaling_unlocks || "",
-            codification:    answers.codification || "",
-            open_to_capital: answers.open_to_capital || "",
-            why_now:         answers.why_now || "",
-          }).toString(),
+          body: formBody,
         });
+        const json = res.ok ? await res.json() : {};
+        setEmailSent(!json.emailFailed);
       } catch (e) {
         console.error("Submission error:", e);
+        setEmailSent(false);
       }
       try { localStorage.removeItem("bloom-audit-v2"); } catch (e) {}
       setSubmitting(false);
@@ -1266,7 +1283,7 @@ function Audit() {
   }, [q, answers]);
 
   if (submitted) {
-    return <AuditComplete answers={answers} onRestart={() => { setAnswers({}); setStep(-1); setSubmitted(false); }} />;
+    return <AuditComplete answers={answers} emailSent={emailSent} onRestart={() => { setAnswers({}); setStep(-1); setSubmitted(false); setEmailSent(true); }} />;
   }
 
   return (
