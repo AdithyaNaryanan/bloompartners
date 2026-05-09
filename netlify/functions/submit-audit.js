@@ -3,23 +3,24 @@
 // ─── Scoring ──────────────────────────────────────────────────────────────────
 
 function computeScoring(d) {
+  // Stage match
   let stageMatch = 0;
   if (["preschool", "microschool"].includes(d.school_type)) stageMatch += 1;
-  const units = parseInt(d.units) || 0;
-  if (units >= 1 && units <= 5) stageMatch += 1;
-  const target = parseInt(d.target_units) || 0;
-  if (target >= 5 && target <= 20) stageMatch += 1;
+  if (["1-2", "3-5"].includes(d.units)) stageMatch += 1;
+  if (["3-5", "5-10"].includes(d.target_units)) stageMatch += 1;
 
+  // Economic floor
   let economicFloor = 0;
-  if (["2-5cr", "5cr+"].includes(d.revenue_per_unit)) economicFloor += 1;
-  else if (d.revenue_per_unit === "1-2cr") economicFloor += 0.5;
+  if (["2-5cr", "5cr+"].includes(d.revenue_total)) economicFloor += 1;
+  else if (d.revenue_total === "1-2cr") economicFloor += 0.5;
   if (["20-30", "30+"].includes(d.operating_margin)) economicFloor += 1;
   else if (d.operating_margin === "10-20") economicFloor += 0.5;
-  const util = parseInt(d.utilization) || 0;
-  if (util >= 80) economicFloor += 1;
-  else if (util >= 60) economicFloor += 0.5;
+  const selfFund = parseInt(d.capital_self_fund) || 0;
+  if (selfFund >= 50) economicFloor += 1;
+  else if (selfFund >= 25) economicFloor += 0.5;
   economicFloor = Math.min(3, Math.round(economicFloor));
 
+  // Founder readiness
   let founderReadiness = 0;
   if (d.senior_leaders === "yes") founderReadiness += 1;
   else if (d.senior_leaders === "in_progress") founderReadiness += 0.5;
@@ -29,13 +30,13 @@ function computeScoring(d) {
   else if (d.open_to_capital === "maybe") founderReadiness += 0.5;
   founderReadiness = Math.min(3, Math.round(founderReadiness));
 
+  // Ambition match
   let ambitionMatch = 0;
-  const timeline = parseInt(d.timeline) || 99;
-  if (timeline >= 2 && timeline <= 5) ambitionMatch += 1;
-  else if (timeline > 5 && timeline <= 8) ambitionMatch += 0.5;
-  if (target >= 5 && target <= 20) ambitionMatch += 1;
-  if (["5-15cr", "15-50cr", "50cr+"].includes(d.capital_need)) ambitionMatch += 1;
-  else if (d.capital_need === "1-5cr") ambitionMatch += 0.5;
+  if (["2-5", "5+"].includes(d.applications_per_seat)) ambitionMatch += 1;
+  else if (d.applications_per_seat === "1-2") ambitionMatch += 0.5;
+  if (["5-10", "10-25"].includes(d.target_units)) ambitionMatch += 1;
+  if (["5-10", "10+"].includes(d.years_running)) ambitionMatch += 0;
+  if (d.years_running === "2-5" || d.years_running === "5-10") ambitionMatch += 1;
   ambitionMatch = Math.min(3, Math.round(ambitionMatch));
 
   const total = stageMatch + economicFloor + founderReadiness + ambitionMatch;
